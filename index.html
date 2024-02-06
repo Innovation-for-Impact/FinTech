@@ -3,29 +3,28 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <style>
-    * { 
-      background-color: #15253aff;
-      color: rgb(200, 200, 200);
-    }
-
-    .center {
-      width: 500px;
-      margin: auto;
-      text-align: center;
-      color: rgb(200, 200, 200);
-    }
-  </style>
+  <link rel="icon" type="image/x-icon" href="front_end/src/app/images/icon.ico">
+  <link rel="stylesheet" href="front_end/src/app/css/html5reset.css">
+  <link rel="stylesheet" href="front_end/src/app/css/login.css">
  <title>FinTech</title>	
 </head>	
 <body>
    <main>
-    <div class="center">
-      <h1>Proceed to the <a href="/front_end/login.html">Login</a> page.</h1>
+    <div class="login">
+      <img src="front_end/src/app/images/icon_transparent.png" width = "200" alt="Innovation for Impact logo" />
+      <h2>WELCOME BACK!</h2>
+        <!-- <h1>FinTech</h1> -->
+        <div class="info">
+          <input type="text" name="username" placeholder="Username">
+          <input type="password" name="password" placeholder="Password">
+          <p class="forgot"><a href = "recover.html">Forgot Password?</a></p>
+          <button> LOG IN </button>
+          <p>Don't have an account? <a href="signup.html">Sign Up</a></p>
+        </div>
     </div>
    </main>  
 
-   <footer class="center">	
+   <footer>	
     <p>&copy; Innovation for Impact 2024</p>	
   </footer>	
   
