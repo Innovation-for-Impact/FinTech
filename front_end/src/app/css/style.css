@@ -57,12 +57,16 @@ img {
     height: 40%;
 }
 
+.info {
+  /* border: solid black 1px; */
+  margin: 10%;
+}
+
 .forgot { 
     width: 150px;
     margin-top: 10px;
-    margin-left: 10px;
-    /* align-content: left; */
-    /* margin-top: -5px; */
+    margin-left: auto;
+    margin-right: 7%;
     color: #6D6D6D; 
 }
 
