@@ -9,13 +9,12 @@ html {
     border-radius: 15px; 
 
     width: 29%;
-    height: 52%;
+    height: 60%;
     position:absolute;
     text-align: center;
     top:50%;
     left:50%;
     transform: translate(-50%, -50%); 
-
 }
 
 
@@ -65,12 +64,15 @@ img {
 }
 
 
-.login button {
+.info button {
     background-color: #BBEEAB;
-    border: 1px solid grey; 
+    border: 1px solid #BBEEAB; 
     border-radius: 5px;
-    width: 30%;
-    height: 40%;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande';
+    font-weight: bold;
+    color: #15253A;
+    width: 235px;
+    height: 35px;
 }
 
 
@@ -111,4 +113,7 @@ footer p {
 }
 
 
-/* Flora include a mouse chaning option */
+/* Flora include a mouse changing option */
+.pointer {
+  cursor: pointer;
+}
