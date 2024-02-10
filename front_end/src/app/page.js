@@ -1,6 +1,7 @@
 import Image from "next/image";
 import styles from "../app/css/page.module.css";
 import logo from '../app/images/icon_transparent.png';
+import Link from 'next/link'
 
 console.log(logo); // /logo.84287d09.png
 
@@ -35,14 +36,20 @@ export default function Home() {
           <button> 
             LOGIN 
           </button>
-          <p>
+          <p class={styles.noAccount}>
               Don't have an account?{" "} 
-              <a className={styles.a} href="signup.html">
-              Sign Up
-              </a>
+              {/* <Link href="/recover"> */}
+                <a className={styles.a} href={"yourMom"}>
+                  Sign Up
+                </a>
+              {/* </Link> */}
             </p>
         </div>
     </div>
-    </main>
+
+    <footer>	
+      <p>&copy; Innovation for Impact 2024</p>	
+    </footer>	
+  </main>
   );
 }

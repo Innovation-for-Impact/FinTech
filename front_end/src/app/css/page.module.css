@@ -42,7 +42,7 @@
 /* https://www.w3schools.com/css/tryit.asp?filename=trycss_forms */
 .input {
   background-color: white;
-  --border: 0.06em solid #b3b2b2; 
+  border: 0.06em solid #b3b2b2; 
   border-radius: 0.5em;
   width: 90%;
   /* width: auto; */
@@ -88,32 +88,24 @@
   font-weight: 350;
 }
 
+.noAccount {
+  margin-top: 2vh;
+} 
+
 
 .info {
-  margin: 10%;
+  margin: 10% 7%;
 }
 
 
 .forgot { 
-  width: 33vw;
-  margin-top: 2vh;
-  margin-left: auto;
-  margin-right: auto;
-  color: #6D6D6D;
+  /* align-items: right; */
+  /* width: auto; */
+  margin-top: 1.5vh;
+  margin-bottom: 2vh;
+  margin-right: 1.1vw;
+  float: right;
 }
-
-
-/* footer p {
-  position: fixed;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  padding: 1em 0;
-  text-align: center;
-  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
-  font-size: 0.6vw;
-  color: white;
-} */
 
 /* PROVIDED CONTENT FROM BELOW */
 
