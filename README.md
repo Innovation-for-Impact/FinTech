@@ -6,4 +6,4 @@ Naming conventions:
 
 backend - branch name (- extra info if needed)
 
-frontend - html page name (- extra info if needed)
+frontend - page name (- extra info if needed)
