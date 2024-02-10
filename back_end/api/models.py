@@ -2,9 +2,10 @@ from django.db import models
 from django.contrib.auth.models import (
     BaseUserManager, AbstractBaseUser
 )
+from django.contrib.auth.models import PermissionsMixin
 
 class FintechUserManager(BaseUserManager):
-    def create_user(self, email, password, first, last):
+    def create_user(self, email, password, first_name, last_name):
         """
         Creates and saves a User with the given email and password.
         """
@@ -13,30 +14,35 @@ class FintechUserManager(BaseUserManager):
 
         user = self.model(
             email=FintechUserManager.normalize_email(email),
-            first_name=first,
-            last_name=last
+            first_name=first_name,
+            last_name=last_name
         )
 
         user.set_password(password)
         user.save(using=self._db)
         return user
 
-    def create_superuser(self, email, password, first, last):
+    def create_superuser(
+        self, 
+        email, 
+        password, 
+        first_name, 
+        last_name
+    ):
         """
         Creates and saves a superuser with the given email and password.
         """
         u = self.create_user(
             email=email,
             password=password,
-            first=first,
-            last=last
+            first_name=first_name,
+            last_name=last_name
         )
         u.is_admin = True
         u.save(using=self._db)
         return u
 
-
-class FintechUser(AbstractBaseUser):
+class FintechUser(AbstractBaseUser, PermissionsMixin):
     email = models.EmailField(
         verbose_name='email address',
         max_length=255,
@@ -49,6 +55,7 @@ class FintechUser(AbstractBaseUser):
     objects = FintechUserManager()
 
     USERNAME_FIELD = 'email'
+    REQUIRED_FIELDS = ['first_name', 'last_name']
 
     def get_full_name(self):
         # The user is identified by their email address
@@ -70,6 +77,9 @@ class FintechUser(AbstractBaseUser):
         "Does the user have permissions to view the app `app_label`?"
         # Simplest possible answer: Yes, always
         return True
+
+    def is_superuser(self):
+        return self.is_admin
 
     @property
     def is_staff(self):
