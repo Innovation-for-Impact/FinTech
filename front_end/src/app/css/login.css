@@ -1,28 +1,28 @@
 html {
-    background-color: #15253aff;
+  background-color: #15253aff;
 }
 
 
 .login {
-    background-color: #FFFFFF;
-    border: solid 1px;
-    border-radius: 15px; 
-
-    width: 29%;
-    height: 60%;
-    position:absolute;
-    text-align: center;
-    top:50%;
-    left:50%;
-    transform: translate(-50%, -50%); 
+  background-color: #FFFFFF;
+  border: solid 0em;
+  border-radius: 1.5vh; 
+  width: 29vw;
+  height: auto;
+  position:absolute;
+  text-align: center;
+  top: 48vh;
+  left: 50vw;
+  transform: translate(-50%, -50%); 
 }
 
 
 img {
   background-color: #15253aff;
   border-radius: 100%;
-  padding: -20px;
-  border: solid white 2px;
+  width: 10vw;
+  padding: -1vw;
+  border: solid white 0.1vw;
   margin-top: -20%;
   max-width: 100%;
 }
@@ -37,24 +37,26 @@ img {
 
 .login h2 {
   font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
-  color: #000000;
-  margin-top: 35px;
-  margin-bottom: -20px;
-  font-size: 30px;
+  color: #15253A;
+  margin-top: 1em;
+  margin-bottom: -1em;
+  font-size: 2.1vw;
 }
 
 
 /* https://www.w3schools.com/css/tryit.asp?filename=trycss_forms */
 .login input {
-  border: 1px solid #b3b2b2; 
-  border-radius: 10px;
-  width: 70%;
-  height: 30px;
-  margin-top: 15px;  
-  padding: 6px 25px 6px 8px;
-
+  border: 0.06em solid #b3b2b2; 
+  border-radius: 0.5em;
+  width: 90%;
+  /* width: auto; */
+  height: auto;
+  margin-top: 1em; 
+  /* margin-left: 0.1vw;
+  margin-right: 0.1vw;  */
+  padding: 0.6em;
   font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
-  font-size: 15px;
+  font-size: 1vw;
   color: black;
 } 
 
@@ -64,27 +66,48 @@ img {
 }
 
 
-.info button {
+.login button {
     background-color: #BBEEAB;
-    border: 1px solid #BBEEAB; 
-    border-radius: 5px;
+    border: 0px solid #BBEEAB;  /* 0.06em */
+    border-radius: 0.5em;
+    width: 83%;
+    height: auto;
+    padding: 0.65em;
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande';
     font-weight: bold;
+    font-size: 1vw; 
     color: #15253A;
-    width: 235px;
-    height: 35px;
+}
+
+.login button:hover {
+  background-color: #aedea0;
+  cursor: pointer;
 }
 
 
-/* Arleen edit here for editing the "don't have an account" text */
 .login p {
-  color: black;
+  color: #8d8b8b;
+  font-size: 1vw;
   font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
-
+  font-weight: 350;
 }
 
 
-/* Arleen add a special style for the links here */
+a:link{ 
+  color: #8d8b8b; 
+  text-decoration: none;
+  font-weight: 600; /* normal = 400, bold = 700*/
+}
+
+
+a:visited{
+  color: #55677e93; 
+}
+
+
+a:hover{
+  text-decoration: underline; 
+}
 
 
 .info {
@@ -93,11 +116,11 @@ img {
 
 
 .forgot { 
-  width: 150px;
-  margin-top: 10px;
+  width: 33vw;
+  margin-top: 2vh;
   margin-left: auto;
-  margin-right: 7%;
-  color: #6D6D6D; 
+  margin-right: auto;
+  color: #6D6D6D;
 }
 
 
@@ -106,16 +129,9 @@ footer p {
   left: 0;
   right: 0;
   bottom: 0;
-  padding: 15px 0;
-
+  padding: 1em 0;
   text-align: center;
   font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
-  font-size: 12px;
+  font-size: 0.6vw;
   color: white;
-}
-
-
-/* Flora include a mouse changing option */
-.pointer {
-  cursor: pointer;
 }
