@@ -37,7 +37,7 @@ export default function Home() {
             LOGIN 
           </button>
           <p class={styles.noAccount}>
-              Don't have an account?{" "} 
+              Don't have an account?{" "}  
               {/* <Link href="/recover"> */}
                 <a className={styles.a} href={"yourMom"}>
                   Sign Up
