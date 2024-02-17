@@ -1,14 +1,33 @@
-import styles from "../app/css/page.module.css";
-import specificStyles from "../app/css/recover.module.css";
+// import React, { useEffect } from 'react';
+import styles from "../css/page.module.css";
+import specificStyles from "../css/recover.module.css";
+import Link from 'next/link';
 
 console.log("this is the forgot password page");
 
 export default function Home() {
+  // useEffect(() => {
+  //   //this way the title remains FinTech as was in the HTML file
+  //   document.title = 'FinTech';
+  // }, []);
   return (
     <main className={styles.main}>
-
-      start working here!
-
+      <div>
+      <main>
+        <div className="login">
+          <p>I'm sorry that you forgot your password :( </p>
+          <p>
+            Return to {" "}
+            <Link className={styles.a} href="/">
+              Login
+            </Link>
+          </p>
+        </div>
+      </main>
+      <footer>
+        <p>&copy; Innovation for Impact 2024</p>
+      </footer>
+    </div>
     </main>
   );
 }
