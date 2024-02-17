@@ -1,7 +1,7 @@
 import Image from "next/image";
 import styles from "../app/css/page.module.css";
 import logo from '../app/images/icon_transparent.png';
-import Link from 'next/link'
+import Link from 'next/link';
 
 console.log(logo); // /logo.84287d09.png
 
@@ -14,7 +14,7 @@ export default function Home() {
         src="/_next/static/media/icon_transparent.e1a2640c.png"
         alt="Grapefruit slice atop a pile of other slices" 
       />
-      <h2>WELCOME BACK!</h2>
+      <h1>WELCOME BACK!</h1>
         <div className={styles.info}>
           <label>
             <input 
@@ -29,20 +29,18 @@ export default function Home() {
             name="password" 
             placeholder="Password"></input>
           <p className={styles.forgot}>
-            <a href = "recover.html">
-              Forgot Password?
-            </a>
-          </p> 
+            <Link href="/recover">
+                Forgot Password?
+            </Link>
+          </p>
           <button> 
             LOGIN 
           </button>
           <p class={styles.noAccount}>
               Don't have an account?{" "}  
-              {/* <Link href="/recover"> */}
-                <a className={styles.a} href={"yourMom"}>
+                <Link className={styles.a} href="/signup">
                   Sign Up
-                </a>
-              {/* </Link> */}
+                </Link>
             </p>
         </div>
     </div>

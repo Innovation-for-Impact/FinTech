@@ -1,0 +1,11 @@
+.form {
+  border: 2px dashed blue;
+}
+
+.inputBox {
+  background-color: fuschia;
+}
+
+.checkbox {
+  background-color: aqua;
+}
