@@ -11,7 +11,6 @@
   transform: translate(-50%, -50%); 
 }
 
-
 .img {
   background-color: #15253aff;
   border-radius: 100%;
@@ -30,7 +29,7 @@
 } */
 
 
-.login h1 {
+.title h1 {
   font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
   color: #15253A;
   margin-top: 1em;

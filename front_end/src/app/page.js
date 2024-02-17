@@ -14,7 +14,9 @@ export default function Home() {
         src="/_next/static/media/icon_transparent.e1a2640c.png"
         alt="Grapefruit slice atop a pile of other slices" 
       />
+      <div class={styles.title}>
       <h1>WELCOME BACK!</h1>
+      </div>
         <div className={styles.info}>
           <label>
             <input 
