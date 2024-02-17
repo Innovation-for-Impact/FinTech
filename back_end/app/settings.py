@@ -150,7 +150,10 @@ ACCOUNT_EMAIL_REQUIRED = True
 ACCOUNT_USERNAME_REQUIRED = False
 ACCOUNT_AUTHENTICATION_METHOD = 'email'
 
-ACCOUNT_FORMS = {'login': 'api.forms.LoginForm', 'signup': 'api.forms.SignupForm'}
+ACCOUNT_FORMS = {
+    'login': 'api.forms.LoginOverrideForm', 
+    'signup': 'api.forms.SignupOverrideForm'
+}
 
 REST_FRAMEWORK = {
     'DEFAULT_PERMISSION_CLASSES': [
