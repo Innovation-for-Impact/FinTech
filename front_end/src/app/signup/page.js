@@ -5,57 +5,60 @@ import Link from 'next/link';
 export default function Home() {
   return (
   <main className={styles.main}>
-    <div className={styles.login}>
+    <div className={styles.signup}>
       <img
           className={styles.img}
           src="/_next/static/media/icon_transparent.e1a2640c.png"
           alt="Grapefruit slice atop a pile of other slices" 
         />
-      <div class={signupStyles.title}><h1>
+      <div className={signupStyles.title}><h1>
         Sign Up
       </h1></div>
-      <div class={styles.form}>
+      <div className={styles.form}>
         <form>
-        <div class={signupStyles.inputName}>
-          <div class={signupStyles.inputBox1}>
-            <label for="firstName">
+        <div className={signupStyles.inputName}>
+          <div className={signupStyles.inputBox1}>
+            <label htmlFor="firstName">
               First Name
             </label>
             <input type="text" id="firstName" name="firstName" required></input>
           </div>
-          <div class={signupStyles.inputBox2}>
-            <label for="lastName">
+          <div className={signupStyles.inputBox2}>
+            <label htmlFor="lastName">
               Last Name
             </label>
             <input type="text" id="lastName" name="lastName" required></input>
           </div>
           </div>
 
-          <div class={signupStyles.inputInfo}>
-          <div class={signupStyles.inputBox}>
-            <label for="email">
+          <div className={signupStyles.inputInfo}>
+          <div className={signupStyles.inputBox}>
+            <label htmlFor="email">
               Email
             </label>
             <input type="email" id="email" name="email" required></input>
           </div>
-          <div class={signupStyles.inputBox}>
-            <label for="Password">
+          <div className={signupStyles.inputBox}>
+            <label htmlFor="Password">
               Password
             </label>
             <input type="text" id = "Password" name = "Password" required></input>
           </div>
-          <div class={signupStyles.inputBox}>
-            <label for="confirmPassword">
+          <div className={signupStyles.inputBox}>
+            <label htmlFor="confirmPassword">
               Password Confirmation
             </label>
             <input type="text" id = "confirmPassword" name = "confirmPassword" required></input>
           </div>
           </div>
 
-          <div class={signupStyles.checkbox}>
+          <div className={signupStyles.checkbox}>
             <input type="checkbox" id="termsCheckbox" name="termsCheckbox" required></input>
-            <label for="termsCheckbox">
-            I agree to the Terms and Conditions
+            <label htmlFor="termsCheckbox">
+            I agree to the {" "}
+            <Link style={{ color: 'grey' }} href="https://maizepages.umich.edu/organization/innovationforimpact">
+              Terms and Conditions
+            </Link>
             </label>
           </div>
           <button> SIGN UP </button>
