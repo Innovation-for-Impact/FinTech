@@ -1,2 +1,2 @@
-Readme file for back end
-#add more info
+Fingure out how to get Django set up and the serializer working
+Implement postgresql database
