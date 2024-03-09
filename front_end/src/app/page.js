@@ -40,7 +40,8 @@ export default function Home() {
               className={styles.input}
               type="text" 
               name="username" 
-              placeholder="Username"></input>
+              placeholder="Username"
+              required ></input>
 
             <input
                 className={styles.input}
@@ -51,6 +52,7 @@ export default function Home() {
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
                 autoComplete="current-password"
+                required
              />
 
              <span className={styles.eye} onClick={handleToggle}>
