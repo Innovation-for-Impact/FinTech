@@ -1,11 +1,109 @@
-.form {
-  border: 2px dashed blue;
+.img {
+  background-color: #15253aff;
+  border-radius: 100%;
+  width: 10vw;
+  padding: -1vw;
+  border: solid white 0.1vw;
+  margin-top: -20%;
+  max-width: 100%;
 }
 
-.inputBox {
-  background-color: fuschia;
+.title{
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Verdana, sans-serif;
+  color: #15253aff;
+  font-size: 0.8vw;
+  text-align: left;
+  margin-top: -10%;
+  margin-left: 7%;
 }
 
-.checkbox {
-  background-color: aqua;
+/* .login {
+  background-color: #ffffff;
+  border: solid 0em;
+  border-radius: 1.5vh; 
+  width: 29vw;
+  height: auto;
+  position:absolute;
+  text-align: center;
+  top: 48vh;
+  left: 50vw;
+  transform: translate(-50%, -50%); 
+} */
+
+.inputName {
+  display: flex;
+  flex-direction: row;
+  margin-top: 5%;
 }
+
+.inputBox1{
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Verdana, sans-serif;
+  text-align: left;
+  margin-left: 7%;
+  color: #b3b2b2; 
+}
+
+.inputBox1 input{
+  background-color: white;
+  border: 0.06em solid #b3b2b2; 
+  border-radius: 0.5em;
+  width: 90%;
+  height: auto;
+  margin-top: 0.3em; 
+  padding: 0.6em;
+}
+
+.inputBox2{
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Verdana, sans-serif;
+  text-align: left;
+  color: #b3b2b2; 
+}
+
+.inputBox2 input{
+  background-color: white;
+  border: 0.06em solid #b3b2b2; 
+  border-radius: 0.5em;
+  width: 90%;
+  height: auto;
+  margin-top: 0.3em; 
+  padding: 0.6em;
+  margin-bottom: 1em; 
+}
+
+.inputInfo{
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Verdana, sans-serif;
+  display: flex;
+  flex-direction: column;
+}
+
+.inputBox{
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Verdana, sans-serif;
+  text-align: left;
+  margin-left: 7%;
+  color: #b3b2b2; 
+}
+
+.inputBox input{
+  background-color: white;
+  border: 0.06em solid #b3b2b2; 
+  border-radius: 0.5em;
+  width: 90%;
+  height: auto;
+  margin-top: 0.3em; 
+  margin-bottom: 1em; 
+  padding: 0.6em;
+}
+
+.checkbox label {
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Verdana, sans-serif;
+  color: #b3b2b2; 
+  margin-left: 5%;
+}
+
+.checkbox{
+  margin-bottom: 5%;
+}
+
+/* .terms{
+  color: purple;
+} */

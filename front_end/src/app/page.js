@@ -90,7 +90,9 @@ export default function Home() {
         src="/_next/static/media/icon_transparent.e1a2640c.png"
         alt="Innovation for Impact Logos" 
       />
+      <div class={styles.title}>
       <h1>WELCOME BACK!</h1>
+      </div>
       <form onSubmit={handleSubmit}>
         <div className={styles.info}>
             <input 
