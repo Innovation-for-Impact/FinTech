@@ -36,30 +36,14 @@
   margin-top: 5%;
 }
 
-.inputBox1{
+.inputBox1, .inputBox2{
   font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Verdana, sans-serif;
   text-align: left;
   margin-left: 7%;
   color: #b3b2b2; 
 }
 
-.inputBox1 input{
-  background-color: white;
-  border: 0.06em solid #b3b2b2; 
-  border-radius: 0.5em;
-  width: 90%;
-  height: auto;
-  margin-top: 0.3em; 
-  padding: 0.6em;
-}
-
-.inputBox2{
-  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Verdana, sans-serif;
-  text-align: left;
-  color: #b3b2b2; 
-}
-
-.inputBox2 input{
+.inputBox1 input, .inputBox2 input{
   background-color: white;
   border: 0.06em solid #b3b2b2; 
   border-radius: 0.5em;
@@ -79,6 +63,8 @@
 .inputBox{
   font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Verdana, sans-serif;
   text-align: left;
+  width: 100%;
+  max-width: 400px;
   margin-left: 7%;
   color: #b3b2b2; 
 }
@@ -87,7 +73,7 @@
   background-color: white;
   border: 0.06em solid #b3b2b2; 
   border-radius: 0.5em;
-  width: 90%;
+  width: 93%;
   height: auto;
   margin-top: 0.3em; 
   margin-bottom: 1em; 

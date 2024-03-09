@@ -16,7 +16,7 @@
   border: solid 0em;
   border-radius: 1.5vh; 
   width: 29vw;
-  height: 60vh;
+  height: auto;
   position:absolute;
   text-align: center;
   top: 48vh;
