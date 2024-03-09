@@ -17,7 +17,7 @@
   margin-left: 7%;
 }
 
-.login {
+/* .login {
   background-color: #ffffff;
   border: solid 0em;
   border-radius: 1.5vh; 
@@ -28,7 +28,7 @@
   top: 48vh;
   left: 50vw;
   transform: translate(-50%, -50%); 
-}
+} */
 
 .inputName {
   display: flex;
@@ -37,6 +37,7 @@
 }
 
 .inputBox1{
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Verdana, sans-serif;
   text-align: left;
   margin-left: 7%;
   color: #b3b2b2; 
@@ -53,6 +54,7 @@
 }
 
 .inputBox2{
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Verdana, sans-serif;
   text-align: left;
   color: #b3b2b2; 
 }
@@ -69,11 +71,13 @@
 }
 
 .inputInfo{
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Verdana, sans-serif;
   display: flex;
   flex-direction: column;
 }
 
 .inputBox{
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Verdana, sans-serif;
   text-align: left;
   margin-left: 7%;
   color: #b3b2b2; 
@@ -91,6 +95,7 @@
 }
 
 .checkbox label {
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Verdana, sans-serif;
   color: #b3b2b2; 
   margin-left: 5%;
 }
@@ -99,6 +104,6 @@
   margin-bottom: 5%;
 }
 
-.login button{
-  width: 2%;
-}
+/* .terms{
+  color: purple;
+} */

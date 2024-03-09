@@ -11,6 +11,19 @@
   transform: translate(-50%, -50%); 
 }
 
+.signup {
+  background-color: #ffffff;
+  border: solid 0em;
+  border-radius: 1.5vh; 
+  width: 29vw;
+  height: 60vh;
+  position:absolute;
+  text-align: center;
+  top: 48vh;
+  left: 50vw;
+  transform: translate(-50%, -50%); 
+}
+
 .img {
   background-color: #15253aff;
   border-radius: 100%;
@@ -30,7 +43,7 @@
 
 
 .title h1 {
-  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Verdana, sans-serif;
   color: #15253A;
   margin-top: 1em;
   margin-bottom: -1em;
@@ -50,7 +63,7 @@
   /* margin-left: 0.1vw;
   margin-right: 0.1vw;  */
   padding: 0.6em;
-  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Verdana, sans-serif;
   font-size: 1vw;
   color: black;
 } 
@@ -68,7 +81,7 @@
     width: 83%;
     height: auto;
     padding: 0.65em;
-    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande';
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Verdana, sans-serif;
     font-weight: bold;
     font-size: 1vw; 
     color: #15253A;
@@ -80,11 +93,38 @@
 }
 
 
-.login p {
+.signup p {
   color: #8d8b8b;
   font-size: 1vw;
-  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Verdana, sans-serif;
   font-weight: 350;
+}
+
+.signup button {
+  background-color: #BBEEAB;
+  border: 0px solid #BBEEAB;  /* 0.06em */
+  border-radius: 0.5em;
+  width: 50%;
+  height: auto;
+  padding: 0.65em;
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Verdana, sans-serif;
+  font-weight: bold;
+  font-size: 1vw; 
+  color: #15253A;
+  margin-bottom: 5%;
+}
+
+.signup button:hover {
+background-color: #aedea0;
+cursor: pointer;
+}
+
+
+.login p {
+color: #8d8b8b;
+font-size: 1vw;
+font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Verdana, sans-serif;
+font-weight: 350;
 }
 
 .noAccount {
