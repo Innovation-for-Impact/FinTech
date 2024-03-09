@@ -46,7 +46,7 @@ export default function Home() {
           </div>
           <div class={signupStyles.inputBox}>
             <label for="confirmPassword">
-              Confirm Password
+              Password Confirmation
             </label>
             <input type="text" id = "confirmPassword" name = "confirmPassword" required></input>
           </div>
