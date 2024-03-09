@@ -55,9 +55,28 @@
 
 
 /* TODO: julia */
-.input:invalid {
+/* .input:valid {
+  border-color: #b3b2b2;
+} */
+
+.error {
   border-color: red;
-} 
+}
+
+.errorMessage {
+  margin: 5vh auto 1vh auto;
+  background-color: rgb(255, 200, 210);
+  /* border: 0.65em solid fuschia; */
+  border-radius: 0.5em;
+  width: 90%;
+  height: auto;
+  padding: 0.65em;
+  text-align: left;
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande';
+  font-weight: bold;
+  font-size: 1vw; 
+  color: #7b7b7b !important;
+}
 
 
 .eye {
