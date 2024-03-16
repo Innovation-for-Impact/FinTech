@@ -9,12 +9,19 @@ import {eye} from 'react-icons-kit/feather/eye';
 import {x} from 'react-icons-kit/feather/x';
 
 export default function Home() {
-  const [username, setUsername] = useState('');
+  const [firstName, setFirst] = useState('');
+  const [lastName, setLast] = useState('');
+  const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
+  const [checkBox, setCheckBox] = useState('');
   const [errorMessage, setErrorMessage] = useState('');
   const [passwordType, setPasswordType] = useState('password');
   const [confirmPasswordType, setConfirmPasswordType] = useState('password');
+  const [firstNameType, setFirstType] = useState('name');
+  const [lastNameType, setLastType] = useState('name');
+  const [emailType, setEmailType] = useState('email');
+  const [checkBoxType, setCheckBoxType] = useState('checkBox');
   const [passwordIcon, setPasswordIcon] = useState(eyeOff);
   const [confirmPasswordIcon, setConfirmPasswordIcon] = useState(eyeOff);
   const [XIcon, setXIcon] = useState(x);
@@ -55,16 +62,21 @@ export default function Home() {
     setErrorMessage('');
 
     // add further username validation here  
-    if (!username || !password) {
+    if (!firstName || !lastNameType || !password || !confirmPassword || !email) {
       setErrorMessage('Error: All fields are required!');
-    } else if (username.length < 4 || password.length < 8) {
-      if (username.length < 4 && password.length < 8) {
-        setErrorMessage('Error: Invalid username and password');
-      } else if (username.length < 4) {
-        setErrorMessage('Error: Invalid username');
+    } else if (email.length < 11 || password.length < 8) {
+      if (email.length < 11 && password.length < 8) {
+        setErrorMessage('Error: Invalid email and password');
+      } else if (email.length < 11) {
+        setErrorMessage('Error: Invalid email');
       } else if (password.length < 8) {
         setErrorMessage('Error: Invalid password');
       }
+    } else if (confirmPassword != password) {
+      setErrorMessage('Error: Password confirmation does not match');
+    }
+    else if (document.getElementById("termsCheckbox").checked==false) {
+      setErrorMessage('Error: Did not check Terms and Conditions');
     }
   } // handleSubmit
 
@@ -87,12 +99,12 @@ export default function Home() {
                 First Name
               </label>
               <input
-                className={`${styles.input} ${submitted && username.length < 4   && styles.error}`}
-                type="text" 
+                className={`${styles.input} ${submitted && firstName === 0 && styles.error}`}
+                type={firstNameType}
                 name="firstName" 
-                value={username}
-                onChange={(e) => setUsername(e.target.value)}
-                required
+                value={firstName}
+                onChange={(e) => setFirst(e.target.value)}
+                // required
               >
               </input>
             </div>
@@ -101,12 +113,12 @@ export default function Home() {
                 Last Name
               </label>
               <input
-                className={`${styles.input} ${submitted && username.length < 4   && styles.error}`}
-                type="text" 
+                className={`${styles.input} ${submitted && lastName === 0 && styles.error}`}
+                type={lastNameType}
                 name="lastName" 
-                value={username}
-                onChange={(e) => setUsername(e.target.value)}
-                required
+                value={lastName}
+                onChange={(e) => setLast(e.target.value)}
+                // required
               >
               </input>
             </div>
@@ -117,7 +129,15 @@ export default function Home() {
               <label htmlFor="email">
                 Email
               </label>
-              <input type="email" id="email" name="email" required></input>
+              <input
+                className={`${styles.input} ${submitted && email < 11 && styles.error}`}
+                type={emailType}
+                name="email" 
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                // required
+              >
+              </input>
             </div>
             <div className={signupStyles.inputBoxPass}>
               <label htmlFor="Password">
@@ -130,8 +150,8 @@ export default function Home() {
                   name="password"
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
-                  autoComplete="current-password"
-                  required
+                  // autoComplete="current-password"
+                  // required
               >
               </input>
               <span className={styles.eye} onClick={handlePasswordToggle}>
@@ -143,14 +163,14 @@ export default function Home() {
                 Password Confirmation
               </label>
               <input
-                className={`${styles.input} ${submitted && password.length < 8 && styles.error}`}
+                className={`${styles.input} ${submitted && confirmPassword != password && styles.error}`}
                 style={{marginLeft: '1vw'}}
                   type={confirmPasswordType}
                   name="confirmPassword"
-                  value={password}
-                  onChange={(e) => setPassword(e.target.value)}
-                  autoComplete="current-password"
-                  required
+                  value={confirmPassword}
+                  onChange={(e) => setConfirmPassword(e.target.value)}
+                  // autoComplete="current-password"
+                  // required
               >
               </input>
               <span className={styles.eye} onClick={handleConfirmPasswordToggle}>
@@ -160,9 +180,19 @@ export default function Home() {
             </div>
 
             <div className={signupStyles.checkbox}>
-              <input type="checkbox" id="termsCheckbox" name="termsCheckbox" required></input>
+              <input
+                className={`${styles.input} ${submitted && styles.error}`}
+                style={{marginLeft: '1vw'}}
+                  type={checkBoxType}
+                  name="checkBox"
+                  id="termsCheckbox"
+                  value={checkBox}
+                  onChange={(e) => setCheckBox(e.target.value)}
+                  // required
+              >
+              </input>
               <label htmlFor="termsCheckbox">
-              I agree to the {" "}
+              . I agree to the {" "}
               <Link style={{ color: 'grey' }} href="https://maizepages.umich.edu/organization/innovationforimpact">
                 Terms and Conditions
               </Link>
