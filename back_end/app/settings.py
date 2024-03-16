@@ -25,14 +25,14 @@ SECRET_KEY = 'django-insecure-zinzk_gmqz3%327&s900k4t6swxbx-36a(3v^^#&i6v)8#vag(
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
-
+ALLOWED_HOSTS = ["localhost", "127.0.0.1"]
 
 CORS_ALLOWED_ORIGINS = [
-    'http://localhost',
-    'http://127.0.0.1',
-    'http://0.0.0.0',
+    "http://localhost:3000",
+    "http://127.0.0.1:3000",
+    "http://0.0.0.0"
 ]
+
 CORS_ALLOW_CREDENTIALS = True
 # Application definition
 
@@ -44,10 +44,6 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     "api",
-    'django_otp',
-    'django_otp.plugins.otp_static',
-    'django_otp.plugins.otp_totp',
-    'django_otp.plugins.otp_email',
     'allauth',
     'allauth.account',
     'allauth.socialaccount',
@@ -148,21 +144,20 @@ STATIC_URL = 'static/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
+REST_FRAMEWORK = {
+    'DEFAULT_PERMISSION_CLASSES': [
+        'rest_framework.permissions.DjangoModelPermissionsOrAnonReadOnly'
+    ]
+}
+
+# Use custom user
 AUTH_USER_MODEL = "api.FintechUser"
+ACCOUNT_ADAPTER = 'api.api.account.auth.AuthAccountAdapter'
+
+EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
 
 # Use emails instead of usernames
 ACCOUNT_USER_MODEL_USERNAME_FIELD = None
 ACCOUNT_EMAIL_REQUIRED = True
 ACCOUNT_USERNAME_REQUIRED = False
 ACCOUNT_AUTHENTICATION_METHOD = 'email'
-
-ACCOUNT_FORMS = {
-    'login': 'api.forms.LoginOverrideForm', 
-    'signup': 'api.forms.SignupOverrideForm'
-}
-
-REST_FRAMEWORK = {
-    'DEFAULT_PERMISSION_CLASSES': [
-        'rest_framework.permissions.DjangoModelPermissionsOrAnonReadOnly'
-    ]
-}
