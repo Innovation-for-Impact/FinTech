@@ -1,95 +1,160 @@
+"use client";
 import Image from "next/image";
-import styles from "./page.module.css";
+import styles from "../app/css/page.module.css";
+import logo from '../app/images/icon_transparent.png';
+import Link from 'next/link';
+import React, { useState } from "react";
+import {Icon} from 'react-icons-kit';
+import {eyeOff} from 'react-icons-kit/feather/eyeOff';
+import {eye} from 'react-icons-kit/feather/eye';
+
+// https://stackoverflow.com/questions/74965849/youre-importing-a-component-that-needs-usestate-it-only-works-in-a-client-comp
+// https://dev.to/annaqharder/hideshow-password-in-react-513a
 
 export default function Home() {
+  const [username, setUsername] = useState('');
+  const [password, setPassword] = useState('');
+  const [errorMessage, setErrorMessage] = useState('');
+  const [type, setType] = useState('password');
+  const [icon, setIcon] = useState(eyeOff);
+  const [submitted, setSubmitted] = useState(false);
+
+  const handleToggle = () => {
+    if (type==='password'){
+       setIcon(eye);
+       setType('text')
+    } else {
+       setIcon(eyeOff)
+       setType('password')
+    }
+  } // handleToggle
+
+  const handleXtoggle = () => {
+    if (errorMessage !==''){
+       setErrorMessage('');
+    }
+  } // handleToggle
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    setSubmitted(true);
+
+    setErrorMessage('');
+
+    // add further username validation here  
+    if (!username || !password) {
+      setErrorMessage('Error: All fields are required!');
+    } else if (username.length < 4 || password.length < 8) {
+      if (username.length < 4 && password.length < 8) {
+        setErrorMessage('Error: Invalid username and password');
+      } else if (username.length < 4) {
+        setErrorMessage('Error: Invalid username');
+      } else if (password.length < 8) {
+        setErrorMessage('Error: Invalid password');
+      }
+    }
+  } // handleSubit
+
+
+  // const handleLogin = async () => {
+  //   const response = await fetch('/login/', {
+  //       method: 'POST',
+  //       headers: {
+  //           'Content-Type': 'application/x-www-form-urlencoded',
+  //       },
+  //       body: new URLSearchParams({
+  //           'username': 'your_username',  // Update with actual username
+  //           'password': password,
+  //       }),
+  //   });
+  //   const data = await response.json();
+  //   if (data.success) {
+  //       alert('Login successful!');
+  //   } else {
+  //       alert('Login failed. ' + data.error);
+  //   }
+  // }
+  // return (
+  //     // ... (your existing JSX)
+  //     <button onClick={handleLogin}>LOGIN</button>
+  //     // ... (your existing JSX)
+  // );
+
+
+
   return (
     <main className={styles.main}>
-      <div className={styles.description}>
-        <p>
-          Get started by editing&nbsp;
-          <code className={styles.code}>src/app/page.js</code>
-        </p>
-        <div>
-          <a
-            href="https://vercel.com?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            By{" "}
-            <Image
-              src="/vercel.svg"
-              alt="Vercel Logo"
-              className={styles.vercelLogo}
-              width={100}
-              height={24}
-              priority
-            />
-          </a>
-        </div>
+    <div className={styles.login}>
+      <img
+        className={styles.img}
+        src="/_next/static/media/icon_transparent.e1a2640c.png"
+        alt="Innovation for Impact Logos" 
+      />
+      <div class={styles.title}>
+      <h1>WELCOME BACK!</h1>
       </div>
+      <form onSubmit={handleSubmit}>
+        <div className={styles.info}>
+            <input 
+              className={`${styles.input} ${submitted && username.length < 4   && styles.error}`}
+              type="text" 
+              name="username" 
+              placeholder="Username"
+              value={username}
+              onChange={(e) => setUsername(e.target.value)}
+              // required
+              />
 
-      <div className={styles.center}>
-        <Image
-          className={styles.logo}
-          src="/next.svg"
-          alt="Next.js Logo"
-          width={180}
-          height={37}
-          priority
-        />
-      </div>
+            <input
+              className={`${styles.input} ${submitted && password.length < 8 && styles.error}`}
+              style={{marginLeft: '1vw'}}
+                type={type}
+                name="password"
+                placeholder="Password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                autoComplete="current-password"
+                // required
+             />
 
-      <div className={styles.grid}>
-        <a
-          href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Docs <span>-&gt;</span>
-          </h2>
-          <p>Find in-depth information about Next.js features and API.</p>
-        </a>
+             <span className={styles.eye} onClick={handleToggle}>
+              <Icon icon={icon} size={"1vw"}/>
+             </span>
 
-        <a
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Learn <span>-&gt;</span>
-          </h2>
-          <p>Learn about Next.js in an interactive course with&nbsp;quizzes!</p>
-        </a>
-
-        <a
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Templates <span>-&gt;</span>
-          </h2>
-          <p>Explore starter templates for Next.js.</p>
-        </a>
-
-        <a
-          href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Deploy <span>-&gt;</span>
-          </h2>
-          <p>
-            Instantly deploy your Next.js site to a shareable URL with Vercel.
+          <p className={styles.forgot}>
+            <Link href="/recover">
+                Forgot Password?
+            </Link>
           </p>
-        </a>
-      </div>
-    </main>
+
+          { errorMessage && (
+            <div>          
+            <p className={styles.errorMessage}>
+              {errorMessage}
+              <span className={styles.x} onClick={handleXtoggle}>
+                <Icon icon={icon} size={"1vw"}/>
+              </span>
+            </p>
+            </div>
+          )}
+
+          <button> 
+            LOGIN 
+          </button>
+
+          <p className={styles.noAccount}>
+              Don't have an account?{" "}  
+                <Link className={styles.a} href="/signup">
+                  Sign Up
+                </Link>
+            </p>
+        </div>
+      </form>
+    </div>
+
+    <footer>	
+      <p>&copy; Innovation for Impact 2024</p>	
+    </footer>	
+  </main>
   );
 }
