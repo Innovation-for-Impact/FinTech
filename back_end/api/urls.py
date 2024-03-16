@@ -7,7 +7,7 @@ urlpatterns = [
     path("", index, name="index"),
     path("", account_login, name="account_login"),
     path("signup", account_signup, name="account_signup"),
-    path("account/reset_password", account_reset_password, name="account_reset_password"),
+    path("recover", account_reset_password, name="account_reset_password"),
     path("account/password/reset/done", account_reset_password_done),
     path("account/password/reset/key/1-set-password", account_change_password, name="account_change_password"),
     path("dashboard", dashboard, name="dashboard")

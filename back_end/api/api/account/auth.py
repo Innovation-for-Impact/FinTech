@@ -10,22 +10,40 @@ def auth_login(request):
     if request.method == "POST":
         username = request.POST['login']
         password = request.POST['password']
-        user = FintechUser.objects.get(email=username)
-        if not user:
+        try:
+            user = FintechUser.objects.get(email=username)
+            if not user.check_password(password):
+                return http.HttpResponseNotFound("Invalid username or password")
+        except:
             return http.HttpResponseNotFound('Invalid username or password')
-        if not user.check_password(password):
-            return http.HttpResponseNotFound("Invalid username or password")
 
         res = authviews.login(request)
         if(res.status_code == 200):
-           return redirect('/account/login')
+           return redirect('/')
         return res
     return redirect('/account/login')
 
 def auth_signup(request):
     if request.method == "POST":
-        return authviews.signup(request)
-    return redirect('/account/signup')
+        username = request.POST['email']
+        password1 = request.POST['password1']
+        password2 = request.POST['password2']            
+
+        # Check if user already exists
+        try:
+            FintechUser.objects.get(email=username)
+            return http.HttpResponseBadRequest('A user with this email already exists')
+        except:
+            pass
+        
+        if password1 != password2:
+            return http.HttpResponseBadRequest('Passwords do not match')
+
+        res = authviews.signup(request)
+        if(res.status_code == 200):
+           return redirect('/signup')
+        return res
+    return redirect('/signup')
 
 def auth_reset_password(request):
     if request.method == "POST":
