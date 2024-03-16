@@ -16,10 +16,16 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
-from two_factor.urls import urlpatterns as tf_urls
+from django.views.decorators.csrf import csrf_exempt
+import api.api.account.auth as auth 
 
 urlpatterns = [
-    path('', include(tf_urls)),
     path('admin/', admin.site.urls),
-    path('accounts/', include('allauth.urls')),
+    path("", include("api.urls")),
+    path("", include("django_nextjs.urls")),
+    path("api/account/login/", auth.auth_login, name="account_login"),
+    path("api/account/signup/", auth.auth_signup, name="account_signup"),
+    path("api/account/reset_password/", auth.auth_reset_password, name="reset_password"),
+    path("api/account/password/reset/done/", auth.auth_reset_password_done, name="account_reset_password_done"),
+    path("api/account/", include('allauth.urls'))
 ]
