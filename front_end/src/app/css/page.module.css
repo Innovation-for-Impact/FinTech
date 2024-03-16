@@ -98,6 +98,13 @@
   margin-bottom: auto;
 }
 
+.x {
+  position: relative;
+  right: -9vw;
+  margin-top: auto;
+  margin-bottom: auto;
+}
+
 
 .login input::placeholder{
   color: #a8a8a8;
