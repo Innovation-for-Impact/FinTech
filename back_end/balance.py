@@ -50,9 +50,17 @@ print(data.decode("utf-8"))
 balance = json.dumps({
   "client_id": client_id,
   "secret": secret,
-  "access_token": accessToken
+  "access_token": accessToken,
 })
 conn.request("POST", "/accounts/balance/get", balance, headers)
 res = conn.getresponse()
 data = res.read()
-print(data.decode("utf-8"))
+
+data_json = json.loads(data)
+print('\n')
+
+for elt in data_json['accounts']:
+    if(elt['subtype'] == "savings"):
+        print(elt)
+
+#print(data.decode("utf-8"))
