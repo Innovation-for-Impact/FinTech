@@ -76,7 +76,7 @@
   flex-direction: column;
 }
 
-.inputBox{
+.inputBox, .inputBoxPass{
   font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Verdana, sans-serif;
   text-align: left;
   margin-left: 7%;
@@ -93,6 +93,18 @@
   margin-bottom: 1em; 
   padding: 0.6em;
 }
+
+.inputBoxPass input{
+  background-color: white;
+  border: 0.06em solid #b3b2b2; 
+  border-radius: 0.5em;
+  width: 90%;
+  height: auto;
+  margin-top: 0.3em; 
+  margin-bottom: 1em; 
+  padding: 0.6em;
+}
+
 
 .checkbox label {
   font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Verdana, sans-serif;
