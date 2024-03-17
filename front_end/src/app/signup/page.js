@@ -27,7 +27,6 @@ export default function Home() {
   const [XIcon, setXIcon] = useState(x);
   const [submitted, setSubmitted] = useState(false);
 
-
   const handlePasswordToggle = () => {
     if (passwordType === 'password') {
       setPasswordIcon(eye);
@@ -54,6 +53,13 @@ export default function Home() {
       setXIcon(x);
     }
   } // handleToggle
+
+  const handleKeyClick = (e, handler) => {
+    if (e.key === 'Enter') {
+      e.preventDefault();
+      handler();
+    }
+  }
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -99,7 +105,7 @@ export default function Home() {
                 First Name
               </label>
               <input
-                className={`${styles.input} ${submitted && firstName === 0 && styles.error}`}
+                className={`${styles.input} ${submitted && !firstName && styles.error_signup}`}
                 type={firstNameType}
                 name="firstName" 
                 value={firstName}
@@ -113,7 +119,7 @@ export default function Home() {
                 Last Name
               </label>
               <input
-                className={`${styles.input} ${submitted && lastName === 0 && styles.error}`}
+                className={`${styles.input} ${submitted && !lastName && styles.error_signup}`}
                 type={lastNameType}
                 name="lastName" 
                 value={lastName}
@@ -130,7 +136,7 @@ export default function Home() {
                 Email
               </label>
               <input
-                className={`${styles.input} ${submitted && email < 11 && styles.error}`}
+                className={`${styles.input} ${submitted && email < 11 && styles.error_signup}`}
                 type={emailType}
                 name="email" 
                 value={email}
@@ -144,8 +150,7 @@ export default function Home() {
                 Password
               </label>
               <input
-                className={`${styles.input} ${submitted && password.length < 8 && styles.error}`}
-                style={{marginLeft: '1vw'}}
+                  className={`${styles.input} ${submitted && password.length < 8 && styles.error_signup}`}
                   type={passwordType}
                   name="password"
                   value={password}
@@ -154,7 +159,12 @@ export default function Home() {
                   // required
               >
               </input>
-              <span className={styles.eye} onClick={handlePasswordToggle}>
+              <span
+                className={styles.eye}
+                tabIndex="0"
+                onClick={handlePasswordToggle}
+                onKeyDown={(e) => handleKeyClick(e, handlePasswordToggle)}
+              >
               <Icon icon={passwordIcon} size={"1vw"}/>
              </span>
             </div>
@@ -163,8 +173,7 @@ export default function Home() {
                 Password Confirmation
               </label>
               <input
-                className={`${styles.input} ${submitted && confirmPassword != password && styles.error}`}
-                style={{marginLeft: '1vw'}}
+                  className={`${styles.input} ${submitted && (confirmPassword !== password || !confirmPassword) && styles.error_signup}`}
                   type={confirmPasswordType}
                   name="confirmPassword"
                   value={confirmPassword}
@@ -173,7 +182,12 @@ export default function Home() {
                   // required
               >
               </input>
-              <span className={styles.eye} onClick={handleConfirmPasswordToggle}>
+              <span
+                className={styles.eye}
+                tabIndex="0"
+                onClick={handlePasswordToggle}
+                onKeyDown={(e) => handleKeyClick(e, handleConfirmPasswordToggle)}
+              >
               <Icon icon={confirmPasswordIcon} size={"1vw"}/>
              </span>
             </div>
@@ -181,8 +195,6 @@ export default function Home() {
 
             <div className={signupStyles.checkbox}>
               <input
-                className={`${styles.input} ${submitted && styles.error}`}
-                style={{marginLeft: '1vw'}}
                   type={checkBoxType}
                   name="checkBox"
                   id="termsCheckbox"
@@ -192,7 +204,7 @@ export default function Home() {
               >
               </input>
               <label htmlFor="termsCheckbox">
-              . I agree to the {" "}
+              I agree to the {" "}
               <Link style={{ color: 'grey' }} href="https://maizepages.umich.edu/organization/innovationforimpact">
                 Terms and Conditions
               </Link>
@@ -203,7 +215,12 @@ export default function Home() {
               <div>          
               <p className={styles.errorMessage}>
                 {errorMessage}
-                <span className={styles.x} onClick={handleXtoggle}>
+                <span
+                  className={styles.x_signup}
+                  tabIndex="0"
+                  onClick={handleXtoggle}
+                  onKeyDown={(e) => handleKeyClick(e, handleXtoggle)}
+                >
                   <Icon icon={XIcon} size={"1vw"}/>
                 </span>
               </p>

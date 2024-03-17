@@ -47,7 +47,7 @@
   background-color: white;
   border: 0.06em solid #b3b2b2; 
   border-radius: 0.5em;
-  width: 90%;
+  width: 80%;
   height: auto;
   margin-top: 0.3em; 
   padding: 0.6em;
@@ -63,7 +63,7 @@
   background-color: white;
   border: 0.06em solid #b3b2b2; 
   border-radius: 0.5em;
-  width: 90%;
+  width: 80%;
   height: auto;
   margin-top: 0.3em; 
   padding: 0.6em;
@@ -115,7 +115,3 @@
 .checkbox{
   margin-bottom: 5%;
 }
-
-/* .terms{
-  color: purple;
-} */

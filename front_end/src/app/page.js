@@ -38,6 +38,13 @@ export default function Home() {
     }
   } // handleToggle
 
+  const handleKeyClick = (e, handler) => {
+    if (e.key === 'Enter') {
+      e.preventDefault();
+      handler();
+    }
+  }
+
   const handleSubmit = (e) => {
     e.preventDefault();
     setSubmitted(true);
@@ -120,7 +127,12 @@ export default function Home() {
                 // required
              />
 
-             <span className={styles.eye} onClick={handleToggle}>
+              <span
+                className={styles.eye}
+                tabIndex="0"
+                onClick={handleToggle}
+                onKeyDown={(e) => handleKeyClick(e, handleToggle)}
+              >
               <Icon icon={icon} size={"1vw"}/>
              </span>
 
@@ -134,7 +146,12 @@ export default function Home() {
             <div>          
             <p className={styles.errorMessage}>
               {errorMessage}
-              <span className={styles.x} onClick={handleXtoggle}>
+                <span
+                  className={styles.x}
+                  tabIndex="0"
+                  onClick={handleXtoggle}
+                  onKeyDown={(e) => handleKeyClick(e, handleXtoggle)}
+                >
                 <Icon icon={XIcon} size={"1vw"}/>
               </span>
             </p>
