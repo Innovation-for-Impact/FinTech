@@ -2,8 +2,8 @@ import http.client
 import json
 
 # Constants
-client_id = "65e7b7407aa8cf001cc59e7b"
-secret = "6247f4912edd996835254c9e47bbf4"
+client_id = "secret"
+secret = "also_secret"
 
 conn = http.client.HTTPSConnection("sandbox.plaid.com")
 headers = {
