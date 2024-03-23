@@ -152,7 +152,7 @@ export default function Home() {
                 <Link className={styles.a} href="/signup">
                   Sign Up
                 </Link>
-            </p>
+          </p>
         </div>
       </form>
     </div>
