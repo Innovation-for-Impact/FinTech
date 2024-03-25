@@ -7,11 +7,13 @@ import React, { useState } from "react";
 import {Icon} from 'react-icons-kit';
 import {eyeOff} from 'react-icons-kit/feather/eyeOff';
 import {eye} from 'react-icons-kit/feather/eye';
+// import { useRouter } from 'next/router';
 
 // https://stackoverflow.com/questions/74965849/youre-importing-a-component-that-needs-usestate-it-only-works-in-a-client-comp
 // https://dev.to/annaqharder/hideshow-password-in-react-513a
 
 export default function Home() {
+  // const router = useRouter(); 
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [errorMessage, setErrorMessage] = useState('');
@@ -52,6 +54,9 @@ export default function Home() {
       } else if (password.length < 8) {
         setErrorMessage('Error: Invalid password');
       }
+    } else {
+      // No errors, redirect to /home
+      window.location.href = '/home';
     }
   } // handleSubit
 
@@ -139,7 +144,7 @@ export default function Home() {
           )}
 
           <button> 
-            LOGIN 
+              LOGIN
           </button>
 
           <p className={styles.noAccount}>
