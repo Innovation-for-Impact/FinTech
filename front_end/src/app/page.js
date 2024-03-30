@@ -100,6 +100,7 @@ export default function Home() {
           <input
             className={`${styles.input} ${submitted && password.length < 8 && styles.error}`}
             style={{marginLeft: '1vw'}}
+            type={type}
             placeholder="Password"
             name="password"
             value={password}
