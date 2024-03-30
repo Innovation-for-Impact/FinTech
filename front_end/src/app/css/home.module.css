@@ -1,0 +1,104 @@
+/* .skip a {
+    position: absolute;
+    top: -40px;
+}
+  
+.skip a:focus {
+    top: 20px;
+} */
+
+/* desktop view */
+/* NAVIGATION BAR */
+@media screen and (min-width: 1024px){
+    .hamburger{
+        display: none;
+    }
+
+    .homeNavbar{
+        display: flex;
+        list-style-type: none;
+        margin-top: 2em;
+        /* changes the entire page to white not sure why?? */
+        /* margin-bottom: 100%; */
+        overflow: hidden;
+        justify-content: center;
+    }
+
+    .nav_item{
+        margin-right: 50px;
+    }
+
+    .nav_item p{
+        display: inline-block; 
+        padding: 16px 16px;
+        font-size: 15px;
+        color: #ffffff;
+    }
+
+    .active{
+        border-bottom: 10px solid #c5c7cb;
+        padding-bottom: 10px;
+    }
+
+    .nav_item p:hover:not(.active){
+        font-weight: bolder;
+    }
+
+    .img{
+        position: absolute;
+        top: 8px;
+        left: 16px;
+    }
+}
+
+/* Tablet View */
+@media screen and (max-width: 768px){
+    .body {
+        background-color: white; 
+    }
+
+    .homePage{
+        margin-left: 70px;
+    }
+
+    .nav_menu {
+        display: none; 
+        position: fixed;
+        top: 0;
+        left: 60px; 
+        width: 200px; 
+        height: 100vh; 
+        background-color: #15253aff; 
+        z-index: 1000;
+    }
+      
+    .open {
+        display: block; 
+    }  
+    
+    .nav_item{
+        padding: 20px;
+        display: block;
+    }
+
+    .nav_item p{
+        color: white;
+    }
+
+    .hamburger{
+        color: white;  
+        position: fixed;
+        width: 60px;
+        height: 100vh; 
+        background-color: #15253aff; 
+        z-index: 1000; 
+    }
+}
+
+/* Tablet View */
+@media screen and (max-width: 425px){
+    .homeNavbar{
+        background-color: rgb(126, 37, 164);
+    }
+    
+}

@@ -1,3 +1,13 @@
+/* HOME PAGE */
+.homeMain{
+  background-color: white;
+}
+
+.homeHeader{
+  background-color: #15253aff;
+}
+
+/* LOGIN AND SIGNUP */
 .login {
   background-color: #FFFFFF;
   border: solid 0em;
@@ -11,6 +21,19 @@
   transform: translate(-50%, -50%); 
 }
 
+.signup {
+  background-color: #ffffff;
+  border: solid 0em;
+  border-radius: 1.5vh; 
+  width: 29vw;
+  height: auto;
+  position:absolute;
+  text-align: center;
+  top: 48vh;
+  left: 50vw;
+  padding-bottom: 2%;
+  transform: translate(-50%, -50%); 
+}
 
 .img {
   background-color: #15253aff;
@@ -30,8 +53,8 @@
 } */
 
 
-.login h1 {
-  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+.title h1 {
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Verdana, sans-serif;
   color: #15253A;
   margin-top: 1em;
   margin-bottom: -1em;
@@ -45,17 +68,64 @@
   border: 0.06em solid #b3b2b2; 
   border-radius: 0.5em;
   width: 90%;
-  /* width: auto; */
   height: auto;
   margin-top: 1em; 
-  /* margin-left: 0.1vw;
-  margin-right: 0.1vw;  */
   padding: 0.6em;
-  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Verdana, sans-serif;
   font-size: 1vw;
   color: black;
 } 
 
+
+/* TODO: julia */
+/* .input:valid {
+  border-color: #b3b2b2;
+} */
+
+.error, .signup .error_signup{
+  border-color: red;
+}
+
+.errorMessage{
+  margin: 5vh auto 1vh auto;
+  background-color: rgb(255, 200, 210);
+  /* border: 0.65em solid fuschia; */
+  border-radius: 0.5em;
+  width: 90%;
+  height: auto;
+  padding: 0.65em;
+  text-align: left;
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande';
+  font-weight: bold;
+  font-size: 1vw; 
+  color: #7b7b7b !important;
+}
+
+
+.eye {
+  position: relative;
+  right: 2vw;
+  margin-top: auto;
+  margin-bottom: auto;
+}
+
+.eye:hover, .eye:focus, .eyeoff:hover, .eyeoff:focus, .x:hover, .x:focus, .x_signup:hover, .x_signup:focus {
+  outline: 1px solid blue; 
+}
+
+.x {
+  position: absolute;
+  right: 4vw;
+  margin-top: auto;
+  margin-bottom: auto;
+}
+
+.x_signup {
+  position: absolute;
+  right: 2vw;
+  margin-top: auto;
+  margin-bottom: auto;
+}
 
 .login input::placeholder{
   color: #a8a8a8;
@@ -69,7 +139,7 @@
     width: 83%;
     height: auto;
     padding: 0.65em;
-    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande';
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Verdana, sans-serif;
     font-weight: bold;
     font-size: 1vw; 
     color: #15253A;
@@ -81,20 +151,38 @@
 }
 
 
-.login p {
+.signup p {
   color: #8d8b8b;
   font-size: 1vw;
-  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Verdana, sans-serif;
   font-weight: 350;
 }
 
-.return {
-  border: solid 2px firebrick;
-  color: #8d8b8b important!;
-  /* font-size: 1vw; */
-  font-size: 3vw;
-  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
-  font-weight: 350;
+.signup button {
+  background-color: #BBEEAB;
+  border: 0px solid #BBEEAB;  /* 0.06em */
+  border-radius: 0.5em;
+  width: 50%;
+  height: auto;
+  padding: 0.65em;
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Verdana, sans-serif;
+  font-weight: bold;
+  font-size: 1vw; 
+  color: #15253A;
+  margin-bottom: 5%;
+}
+
+.signup button:hover {
+background-color: #aedea0;
+cursor: pointer;
+}
+
+
+.login p {
+color: #8d8b8b;
+font-size: 1vw;
+font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Verdana, sans-serif;
+font-weight: 350;
 }
 
 .noAccount {
@@ -103,6 +191,8 @@
 
 
 .info {
+  /* display: flex; */
+  align-content: center;
   margin: 10% 7%;
 }
 
