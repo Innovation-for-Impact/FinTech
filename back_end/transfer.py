@@ -98,7 +98,7 @@ headers = {
 conn.request("POST", "/transfer/authorization/create", payload, headers)
 res = conn.getresponse()
 data = res.read()
-print(data.decode("utf-8"))
+# print(data.decode("utf-8"))
 
 data_json = json.loads(data)
 
@@ -109,7 +109,88 @@ if('error_code' in data_json):
 if(data_json['authorization']['decision'] == 'declined'):
     sys.exit(data_json['authorization']['decision_rationale']["description"])
 
+print("Sucessfully authorized transfer")
+
+authorizationID = data_json['authorization']['id']
+
+# Initiate the transfer
+payload = json.dumps({
+  "client_id": client_id,
+  "secret": secret,
+  "access_token": accessToken,
+  "account_id": accountID,
+  "authorization_id": authorizationID,
+  "description": "test"
+})
+conn.request("POST", "/transfer/create", payload, headers)
+res = conn.getresponse()
+data = res.read()
+# print(data.decode("utf-8"))
+
+data_json = json.loads(data)
+
 # Save the transfer id
-transferID = data_json['authorization']['id']
-print(transferID)
+transferID = data_json['transfer']['id']
+transferAmount = data_json['transfer']['amount']
+print("transfer id", transferID)
+print("transfer amount", transferAmount)
+
+# Get the transfer
+
+payload = json.dumps({
+  "client_id": client_id,
+  "secret": secret,
+  "transfer_id": transferID
+})
+conn.request("POST", "/transfer/get", payload, headers)
+res = conn.getresponse()
+data = res.read()
+print(data.decode("utf-8"))
+
+
+# Cancel a transfer
+cancelTransfer = True # Get this from front end!
+if(cancelTransfer):
+
+    # Only works when transfer.cancelleable is true? Do we need to check if it is false?
+    payload = json.dumps({
+    "client_id": "65e7b7407aa8cf001cc59e7b",
+    "secret": "6247f4912edd996835254c9e47bbf4",
+    "transfer_id": transferID
+    })
+    conn.request("POST", "/transfer/cancel", payload, headers)
+    res = conn.getresponse()
+    data = res.read()
+    print("Transfer Cancelled.")
+
+
+# # Refund stuff
+# payload = json.dumps({
+#   "client_id": client_id,
+#   "secret": secret,
+#   "transfer_id": transferID,
+#   "amount": "0.50",
+#   "idempotency_key": authorizationID
+# })
+
+# conn.request("POST", "/transfer/refund/create", payload, headers)
+# res = conn.getresponse()
+# data = res.read()
+# print(data.decode("utf-8"))
+
+# data_json = json.loads(data)
+# refund_id = data_json['refund']['id']
+# print("Refund ID:", refund_id)
+
+
+# payload2 = json.dumps({
+#   "client_id": client_id,
+#   "secret": secret,
+#   "refund_id": refund_id
+# })
+
+# conn.request("POST", "/transfer/refund/get", payload2, headers)
+# res = conn.getresponse()
+# data = res.read()
+# print(data.decode("utf-8"))
 
