@@ -7,6 +7,7 @@ import React, { useState } from "react";
 import {Icon} from 'react-icons-kit';
 import {eyeOff} from 'react-icons-kit/feather/eyeOff';
 import {eye} from 'react-icons-kit/feather/eye';
+import {x} from 'react-icons-kit/feather/x';
 // import { useRouter } from 'next/router';
 
 // https://stackoverflow.com/questions/74965849/youre-importing-a-component-that-needs-usestate-it-only-works-in-a-client-comp
@@ -19,11 +20,12 @@ export default function Home() {
   const [errorMessage, setErrorMessage] = useState('');
   const [type, setType] = useState('password');
   const [icon, setIcon] = useState(eyeOff);
+  const [XIcon, setXIcon] = useState(x);
   const [submitted, setSubmitted] = useState(false);
 
   const handleToggle = () => {
     if (type==='password'){
-       setIcon(eye);
+       setIcon(eye)
        setType('text')
     } else {
        setIcon(eyeOff)
@@ -32,10 +34,18 @@ export default function Home() {
   } // handleToggle
 
   const handleXtoggle = () => {
-    if (errorMessage !==''){
-       setErrorMessage('');
+    if (errorMessage !== '') {
+      setErrorMessage('');
+      setXIcon(x);
     }
   } // handleToggle
+
+  const handleKeyClick = (e, handler) => {
+    if (e.key === 'Enter') {
+      e.preventDefault();
+      handler();
+    }
+  }
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -58,7 +68,7 @@ export default function Home() {
       // No errors, redirect to /home
       window.location.href = '/home';
     }
-  } // handleSubit
+  } // handleSubmit
 
 
   // const handleLogin = async () => {
@@ -122,7 +132,12 @@ export default function Home() {
                 // required
              />
 
-             <span className={styles.eye} onClick={handleToggle}>
+              <span
+                className={styles.eye}
+                tabIndex="0"
+                onClick={handleToggle}
+                onKeyDown={(e) => handleKeyClick(e, handleToggle)}
+              >
               <Icon icon={icon} size={"1vw"}/>
              </span>
 
@@ -136,8 +151,13 @@ export default function Home() {
             <div>          
             <p className={styles.errorMessage}>
               {errorMessage}
-              <span className={styles.x} onClick={handleXtoggle}>
-                <Icon icon={icon} size={"1vw"}/>
+                <span
+                  className={styles.x}
+                  tabIndex="0"
+                  onClick={handleXtoggle}
+                  onKeyDown={(e) => handleKeyClick(e, handleXtoggle)}
+                >
+                <Icon icon={XIcon} size={"1vw"}/>
               </span>
             </p>
             </div>
