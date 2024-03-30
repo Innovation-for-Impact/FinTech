@@ -166,7 +166,6 @@ export default function Home() {
           <button> 
               LOGIN
           </button>
-
           <p className={styles.noAccount}>
               Don't have an account?{" "}  
                 <Link className={styles.a} href="/signup">
