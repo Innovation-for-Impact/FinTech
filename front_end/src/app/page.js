@@ -37,11 +37,11 @@ export default function Home() {
             LOGIN 
           </button>
           <p class={styles.noAccount}>
-              Don't have an account?{" "}  
-                <Link className={styles.a} href="/signup">
-                  Sign Up
-                </Link>
-            </p>
+            Don't have an account?{" "}  
+              <Link className={styles.a} href="/signup">
+                Sign Up
+              </Link>
+          </p>
         </div>
     </div>
 

@@ -68,14 +68,15 @@ export default function ForgotPassword() {
           value={email}
           onChange={(e) => setEmail(e.target.value)}
           required
+          name="email"
         />
         <button type="submit">
           Submit
         </button>
       </form>
       
-      <p className={styles.return}>
-        Return to <Link className={styles.a} href="/">Login</Link>
+      <p className={styles.noAccount}>
+        Return to{" "}<Link className={styles.a} href="/">Login</Link>
       </p>
       </div>
       <footer>

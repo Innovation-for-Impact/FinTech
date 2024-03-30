@@ -88,6 +88,15 @@
   font-weight: 350;
 }
 
+.return {
+  border: solid 2px firebrick;
+  color: #8d8b8b important!;
+  /* font-size: 1vw; */
+  font-size: 3vw;
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  font-weight: 350;
+}
+
 .noAccount {
   margin-top: 2vh;
 } 
