@@ -14,5 +14,8 @@ def account_reset_password(request):
 def account_reset_password_done(request):
     return render_nextjs_page_sync(request)
 
-def account_change_password(request):
+def account_reset_password_key(request, *args, **kwargs):
+    return render_nextjs_page_sync(request)
+
+def account_reset_password_key_done(request):
     return render_nextjs_page_sync(request)

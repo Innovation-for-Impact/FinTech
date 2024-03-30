@@ -48,21 +48,28 @@ def auth_signup(request):
 def auth_reset_password(request):
     if request.method == "POST":
         return authviews.password_reset(request)
-    return redirect('/account/reset_password')
-
-@csrf_exempt
-def auth_password_change(request):
-    if request.method == "GET":
-        return redirect('/account/password/reset/key/1-set-password')
-    return authviews.password_set(request)
+    return redirect('/reset_password')
 
 def auth_reset_password_done(request):
+    print(request)
     if request.method == "GET":
-        return redirect('/account/password/reset/done')
-    #return authviews.password_reset_done(request)
+        return redirect('/password/reset/done')
+    return authviews.password_reset_done(request)
+
+def auth_password_change(request, *args, **kwargs):
+    if request.method == "GET" and kwargs['key'] == 'set-password':
+        return redirect('/password/reset/key/' + kwargs['uidb36'] + '-' + kwargs['key'])
+    return authviews.password_reset_from_key(request, *args, **kwargs)
+
+def auth_reset_password_key_done(request):
+    return redirect('/password/reset/key/done')
 
 class AuthAccountAdapter(DefaultAccountAdapter):
     def get_login_redirect_url(self, request):
+        path = "/dashboard"
+        return path
+    
+    def get_signup_redirect_url(self, request):
         path = "/dashboard"
         return path
 
