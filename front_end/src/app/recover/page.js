@@ -75,8 +75,7 @@ export default function ForgotPassword() {
       </form>
       
       <p className={styles.return}>
-        Return to 
-        <Link className={styles.a} href="/"> Login</Link>
+        Return to <Link className={styles.a} href="/">Login</Link>
       </p>
       </div>
       <footer>
