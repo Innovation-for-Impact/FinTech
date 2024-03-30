@@ -1,3 +1,13 @@
+/* HOME PAGE */
+.homeMain{
+  background-color: white;
+}
+
+.homeHeader{
+  background-color: #15253aff;
+}
+
+/* LOGIN AND SIGNUP */
 .login {
   background-color: #FFFFFF;
   border: solid 0em;
