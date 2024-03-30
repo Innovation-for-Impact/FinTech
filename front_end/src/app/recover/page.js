@@ -11,40 +11,41 @@ export default function ForgotPassword() {
   const [email, setEmail] = useState('');
   const [submitted, setSubmitted] = useState(false);
 
-  // Function to validate email format
+  // helper function to validate email using regEx
   const validateEmail = (email) => {
-    // Use a regular expression to validate email format
     const re = /\S+@\S+\.\S+/;
     return re.test(email);
   };
 
+  // incorporate submission logic
   const handleSubmit = (e) => {
+    // TODO @backend --> send email to user
+    
     e.preventDefault();
     setSubmitted(true);
 
-    // Handle submission logic here 
-    // TODO @backend --> send email to user
-
-    //Validate email format
+    // validate email format
     if(!validateEmail(email)){
-      //Potential error message to the user: 
+      // TODO Arleen: set error message
       return;
     }
-    //send request to backend server (don't know how to handle this yet)
+    // TODO backend: send request for recovery email backend server
     try{
       // const response = await fetch(,{
 
-      // }); //need to add api stuff
+      // }); // TODO api: add api stuff
+
+      // if password link was went successfully
       if(response.ok){
-        //password reset was successful 
-        //display success message to user 
+        // TODO: display success message to user 
+        // TODO: return them to login page?
       }
       else{
-        //something went wrong
+        // TODO: display error message, instruct them to re-request link
       }
     }
+    // handle network error
     catch (error) {
-      //handle network error
       console.error('Error: ', error);
     }
   };
@@ -52,36 +53,45 @@ export default function ForgotPassword() {
   return (
     <main className={styles.main}>
       <div className={specificStyles.forgot}>
-        
-      <h1>FORGOT PASSWORD?</h1>
-      <div>
-      {/* <img src={MailboxIcon} alt="Mailbox Icon"/> */}
+        <h1>FORGOT PASSWORD?</h1>
+      
+        {/* <img src={MailboxIcon} alt="Mailbox Icon"/> */}
+
         <p>
           Please provide the email address associated with your account and we will share a link to reset your password!
         </p>
+
+        {/* accept user input (email address) through a form */}
+        <form onSubmit={handleSubmit}>
+          <input
+            className={`${specificStyles.input} ${submitted && email.length === 0 && styles.error}`}
+            placeholder="youremail@domain.com"
+            name="email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            // TODO Arleen: remove the "required" below and 
+            // incorporate an error message if the input is not 
+            // a valid email
+            required
+          />
+
+          {/* allow user to submit the form */}
+          <button type="submit">
+            Submit
+          </button>
+
+          {/* allow user to log in (redirect to LOGIN) */}
+          <p className={`${styles.noAccountForgot} ${styles.a}`}>
+            Return to <Link href="/signup">Login</Link>
+          </p>
+          
+        </form>
       </div>
-      <form onSubmit={handleSubmit}>
-        <input
-          className={`${specificStyles.input} ${submitted && email.length === 0 && styles.error}`}
-          type="email"
-          placeholder="youremail@domain.com"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-          required
-          name="email"
-        />
-        <button type="submit">
-          Submit
-        </button>
-      </form>
       
-      <p className={styles.noAccount}>
-        Return to{" "}<Link className={styles.a} href="/">Login</Link>
-      </p>
-      </div>
+      {/* include copyright footer */}
       <footer>
         <p>&copy; Innovation for Impact 2024</p>
-        </footer>
+      </footer>
     </main>
   );
 }

@@ -1,104 +1,121 @@
-/* .skip a {
-    position: absolute;
-    top: -40px;
-}
-  
-.skip a:focus {
-    top: 20px;
-} */
-
-/* desktop view */
-/* NAVIGATION BAR */
+/* Desktop View at min-width of 1024px */
 @media screen and (min-width: 1024px){
+    /* NAVIGATION BAR */
+    /* hides hamburger icon */
     .hamburger{
         display: none;
     }
 
+    /* styles are the navigation bar */
     .homeNavbar{
+        /* uses flex to display items */
         display: flex;
-        list-style-type: none;
+        /* sets the top margin to 2em so that there is spacing */
         margin-top: 2em;
-        /* changes the entire page to white not sure why?? */
-        /* margin-bottom: 100%; */
+        /* hides content that overflows */
         overflow: hidden;
+        /* centers the items */
         justify-content: center;
     }
 
+    /* gives each item a margin of 50px to the right for better spacing */
     .nav_item{
         margin-right: 50px;
     }
 
+    /* styles the items */
     .nav_item p{
+        /* displays items on one line */
         display: inline-block; 
+        /* add padding */
         padding: 16px 16px;
+        /* increase font size */
         font-size: 15px;
+        /* changes font color to white */
         color: #ffffff;
     }
 
+    /* shows which page the user is on  */
     .active{
+        /* adds a border under the active item */
         border-bottom: 10px solid #c5c7cb;
+        /* add padding */
         padding-bottom: 10px;
     }
 
-    .nav_item p:hover:not(.active){
+    /* when item is hovered, make it bolder */
+    .nav_item p:hover{
         font-weight: bolder;
     }
 
+    /* styles the logo/icon */
     .img{
+        /* position is absolute and we position it on the top left corner*/
         position: absolute;
         top: 8px;
         left: 16px;
     }
 }
 
-/* Tablet View */
+/* Tablet View at max-width of 768px */
 @media screen and (max-width: 768px){
-    .body {
-        background-color: white; 
-    }
 
+    /* sets the margin so that the hamburger menu is not covering content */
     .homePage{
         margin-left: 70px;
     }
 
+    /* styles navigation menu (default) */
     .nav_menu {
+        /* hides the nagivation menu */
         display: none; 
+        /* sets position to be fixed so that menu can be seen correctly when toggled */
         position: fixed;
+        /* set left and top position so that hamburger icon is shown */
         top: 0;
         left: 60px; 
+        /* set width and height for styling */
         width: 200px; 
         height: 100vh; 
+        /* set background color to #15253aff */
         background-color: #15253aff; 
+        /* ensures that the navigation menu is shown on top */
         z-index: 1000;
     }
-      
+     
+    /* when hamburger icon is toggled (open), then display items as block */
     .open {
         display: block; 
     }  
     
+    /* styles the navigation items: display as block and set padding */
     .nav_item{
         padding: 20px;
         display: block;
     }
 
+    /* styles the navigation item text to have color white */
     .nav_item p{
         color: white;
     }
 
+    /* styles the hamburger icon */
     .hamburger{
+        /* sets color to white */
         color: white;  
+        /* position is fixed */
         position: fixed;
+        /* adds width and height */
         width: 60px;
         height: 100vh; 
+        /* sets the background color to #15253aff */
         background-color: #15253aff; 
+        /* ensures that that hamburger icon is shown on top */
         z-index: 1000; 
     }
 }
 
-/* Tablet View */
+/* Mobile View */
 @media screen and (max-width: 425px){
-    .homeNavbar{
-        background-color: rgb(126, 37, 164);
-    }
     
 }

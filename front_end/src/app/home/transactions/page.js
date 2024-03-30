@@ -1,8 +1,9 @@
 "use client";
 import styles from "../../../app/css/page.module.css";
-import Link from 'next/link';
 import React, { useState } from "react";
-import {Icon} from 'react-icons-kit';
+
+// This page is currently not in progress
+// it will be a future assignment - Julia 3/30
 
 export default function Home() {
   return (
