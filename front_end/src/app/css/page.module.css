@@ -63,6 +63,27 @@
   color: black;
 } 
 
+/* adds margin to text under login button */
+.noAccount {
+  margin-top: 2vh;
+} 
+
+/* centers everything inside of login page background */
+.info {
+  align-content: center;
+  margin: 10% 7%;
+}
+
+/* positions the forgot password link */
+.forgot { 
+  /* sets margins */
+  margin-top: 1.5vh;
+  margin-bottom: 2vh;
+  margin-right: 1.1vw;
+  /* positions it to the right */
+  float: right;
+}
+
 /* -------------------------------------------------------------- */
 /* SIGNUP PAGE */
 /* styles the signup page */
@@ -220,27 +241,12 @@
   font-weight: 350;
 }
 
-/* adds margin to text under login button */
-.noAccount {
-  margin-top: 2vh;
-} 
-
-/* centers everything inside of login page background */
-.info {
-  align-content: center;
-  margin: 10% 7%;
+/* positions the logo to be relative */
+.logo {
+  position: relative;
 }
 
-/*  */
-.forgot { 
-  margin-top: 1.5vh;
-  margin-bottom: 2vh;
-  margin-right: 1.1vw;
-  float: right;
-}
-
-/* PROVIDED CONTENT FROM BELOW */
-
+/* PROVIDED CONTENT FROM BELOW - We did not write this! It came with the CSS file */
 .main {
   display: flex;
   flex-direction: column;
@@ -347,9 +353,6 @@
   transform: translateZ(0);
 }
 
-.logo {
-  position: relative;
-}
 /* Enable hover only on non-touch devices */
 @media (hover: hover) and (pointer: fine) {
   .card:hover {
