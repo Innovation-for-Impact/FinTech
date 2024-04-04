@@ -1,7 +1,6 @@
 import http.client
 import json
 
-# Constants
 file = open("keys.txt")
 keys = file.read().split()
 
@@ -15,8 +14,8 @@ headers = {
   'Content-Type': 'application/json'
 }
 
-# Create the token
-createToken = json.dumps({
+# Create token
+payload = json.dumps({
   "client_id": client_id,
   "secret": secret,
   "institution_id": "ins_20",
@@ -27,45 +26,36 @@ createToken = json.dumps({
     "webhook": "https://www.genericwebhookurl.com/webhook"
   }
 })
-
-conn.request("POST", "/sandbox/public_token/create", createToken, headers)
+conn.request("POST", "/sandbox/public_token/create", payload, headers)
 res = conn.getresponse()
 data = res.read()
 
 data_json = json.loads(data)
+publicToken = data_json["public_token"]
 
-publicToken = data_json['public_token']
-print(data.decode("utf-8"))
-
-# Exchange the token
-exchangeToken = json.dumps({
+# Exchange token for key
+payload = json.dumps({
   "client_id": client_id,
   "secret": secret,
   "public_token": publicToken
 })
-conn.request("POST", "/item/public_token/exchange", exchangeToken, headers)
+
+conn.request("POST", "/item/public_token/exchange", payload, headers)
 res = conn.getresponse()
 data = res.read()
 
 data_json = json.loads(data)
-accessToken = data_json['access_token']
-print(data.decode("utf-8"))
+accessToken = data_json["access_token"]
 
-# Retrieve the balance
-balance = json.dumps({
+
+payload = json.dumps({
   "client_id": client_id,
   "secret": secret,
-  "access_token": accessToken,
+  "access_token": accessToken
 })
-conn.request("POST", "/accounts/balance/get", balance, headers)
+
+conn.request("POST", "/auth/get", payload, headers)
 res = conn.getresponse()
 data = res.read()
+print(data.decode("utf-8"))
 
-data_json = json.loads(data)
-print('\n')
-
-for elt in data_json['accounts']:
-    if(elt['subtype'] == "savings"):
-        print(elt)
-
-#print(data.decode("utf-8"))
