@@ -1,15 +1,11 @@
 "use client";
-import Image from "next/image";
 import styles from "../app/css/page.module.css";
-import logo from '../app/images/icon_transparent.png';
 import Link from 'next/link';
 import React, { useState } from "react";
 import {Icon} from 'react-icons-kit';
 import {eyeOff} from 'react-icons-kit/feather/eyeOff';
 import {eye} from 'react-icons-kit/feather/eye';
-
-// https://stackoverflow.com/questions/74965849/youre-importing-a-component-that-needs-usestate-it-only-works-in-a-client-comp
-// https://dev.to/annaqharder/hideshow-password-in-react-513a
+import {x} from 'react-icons-kit/feather/x';
 
 export default function Home() {
   const [username, setUsername] = useState('');
@@ -17,11 +13,14 @@ export default function Home() {
   const [errorMessage, setErrorMessage] = useState('');
   const [type, setType] = useState('password');
   const [icon, setIcon] = useState(eyeOff);
+  const [XIcon, setXIcon] = useState(x);
   const [submitted, setSubmitted] = useState(false);
 
+  // show or hide password based on user preference
+  // (ie. eye toggle button)
   const handleToggle = () => {
     if (type==='password'){
-       setIcon(eye);
+       setIcon(eye)
        setType('text')
     } else {
        setIcon(eyeOff)
@@ -29,19 +28,34 @@ export default function Home() {
     }
   } // handleToggle
 
+  // hide the error message based on user preference 
   const handleXtoggle = () => {
-    if (errorMessage !==''){
-       setErrorMessage('');
+    if (errorMessage !== '') {
+      setErrorMessage('');
+      setXIcon(x);
     }
   } // handleToggle
 
+  // allow keyboard access to 'login' button
+  const handleKeyClick = (e, handler) => {
+    if (e.key === 'Enter') {
+      e.preventDefault();
+      handler();
+    }
+  } // handleKeyClick
+
+  // handle error messages and username/password when user submits
   const handleSubmit = (e) => {
     e.preventDefault();
     setSubmitted(true);
 
     setErrorMessage('');
 
-    // add further username validation here  
+    // TODO backend: 
+    //  - add further username validation here 
+    //  - also edit: form > input > username/password "className" attribute
+    
+    // if there is an error, create an error message
     if (!username || !password) {
       setErrorMessage('Error: All fields are required!');
     } else if (username.length < 4 || password.length < 8) {
@@ -52,35 +66,11 @@ export default function Home() {
       } else if (password.length < 8) {
         setErrorMessage('Error: Invalid password');
       }
+    } // if there are no errors (login successful), redirect to home page
+    else { 
+      window.location.href = '/home';
     }
-  } // handleSubit
-
-
-  // const handleLogin = async () => {
-  //   const response = await fetch('/login/', {
-  //       method: 'POST',
-  //       headers: {
-  //           'Content-Type': 'application/x-www-form-urlencoded',
-  //       },
-  //       body: new URLSearchParams({
-  //           'username': 'your_username',  // Update with actual username
-  //           'password': password,
-  //       }),
-  //   });
-  //   const data = await response.json();
-  //   if (data.success) {
-  //       alert('Login successful!');
-  //   } else {
-  //       alert('Login failed. ' + data.error);
-  //   }
-  // }
-  // return (
-  //     // ... (your existing JSX)
-  //     <button onClick={handleLogin}>LOGIN</button>
-  //     // ... (your existing JSX)
-  // );
-
-
+  } // handleSubmit
 
   return (
     <main className={styles.main}>
@@ -88,70 +78,89 @@ export default function Home() {
       <img
         className={styles.img}
         src="/_next/static/media/icon_transparent.e1a2640c.png"
-        alt="Innovation for Impact Logos" 
+        alt="Innovation for Impact logo" 
       />
+
       <div class={styles.title}>
-      <h1>WELCOME BACK!</h1>
+        <h1>WELCOME BACK!</h1>
       </div>
+
       <form onSubmit={handleSubmit}>
         <div className={styles.info}>
-            <input 
-              className={`${styles.input} ${submitted && username.length < 4   && styles.error}`}
-              type="text" 
-              name="username" 
-              placeholder="Username"
-              value={username}
-              onChange={(e) => setUsername(e.target.value)}
-              // required
-              />
+          {/* accept USERNAME */}
+          <input 
+            className= {`${styles.input} ${submitted && username.length < 4 && styles.error}`}
+            placeholder="Username" // placeholder word (ie. shows up in gray-ed out font)
+            name="username"  // allow auto-fill
+            value={username} // save input to variable
+            onChange={(e) => setUsername(e.target.value)}
+          />
 
-            <input
-              className={`${styles.input} ${submitted && password.length < 8 && styles.error}`}
-              style={{marginLeft: '1vw'}}
-                type={type}
-                name="password"
-                placeholder="Password"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-                autoComplete="current-password"
-                // required
-             />
+          {/* accept PASSWORD */}
+          <input
+            className={`${styles.input} ${submitted && password.length < 8 && styles.error}`}
+            style={{marginLeft: '1vw'}}
+            type={type}
+            placeholder="Password"
+            name="password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            autoComplete="current-password"
+          />
 
-             <span className={styles.eye} onClick={handleToggle}>
-              <Icon icon={icon} size={"1vw"}/>
-             </span>
+          {/* include eye icon for PASSWORD toggle */}
+          <span
+            className={styles.eye}
+            tabIndex="0"
+            onClick={handleToggle}
+            onKeyDown={(e) => handleKeyClick(e, handleToggle)}
+          >
+            <Icon icon={icon} size={"1vw"}/>
+          </span>
 
+          {/* provide link to recover account (redirect to RECOVER)*/}
           <p className={styles.forgot}>
             <Link href="/recover">
                 Forgot Password?
             </Link>
           </p>
 
+          {/* incorporate error message based on USERNAME/PASSWORD */}
           { errorMessage && (
             <div>          
             <p className={styles.errorMessage}>
               {errorMessage}
-              <span className={styles.x} onClick={handleXtoggle}>
-                <Icon icon={icon} size={"1vw"}/>
+              
+              {/* include X for hiding error message */}
+              <span
+                className={styles.x}
+                tabIndex="0"
+                onClick={handleXtoggle}
+                onKeyDown={(e) => handleKeyClick(e, handleXtoggle)}
+              >
+                <Icon icon={XIcon} size={"1vw"}/>
               </span>
             </p>
             </div>
           )}
 
+          {/* allow user to submit the form */}
           <button> 
-            LOGIN 
+              LOGIN
           </button>
 
+          {/* allow user to create an account (redirect to SIGN UP) */}
           <p className={styles.noAccount}>
               Don't have an account?{" "}  
-                <Link className={styles.a} href="/signup">
-                  Sign Up
-                </Link>
-            </p>
+              <Link className={styles.a} href="/signup">
+                Sign Up
+              </Link>
+          </p>
         </div>
       </form>
     </div>
 
+    {/* include copyright footer */}
     <footer>	
       <p>&copy; Innovation for Impact 2024</p>	
     </footer>	
