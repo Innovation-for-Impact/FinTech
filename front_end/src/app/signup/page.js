@@ -106,7 +106,8 @@ export default function Home() {
     <div className={styles.signup}>
       <img
         className={styles.img}
-        src="/_next/static/media/icon_transparent.e1a2640c.png"
+        // src="/_next/static/media/icon_transparent.e1a2640c.png"
+        src="/_next/static/media/icon_transparent.png"
         alt="Innovation for Impact logo" 
       />
 
