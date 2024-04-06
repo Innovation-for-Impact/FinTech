@@ -448,8 +448,66 @@
   }
 }
 
+/* TEMPORARY Mobile */
+@media (min-width: 1px) and (max-width: 800px) {
+  .grid {
+    grid-template-columns: repeat(2, 50%);
+  }
+
+  /* LOGIN PAGE */
+  /* styles the background box of login page */
+  .login {
+    width: 80%;
+  }
+
+  /* styles the title of login page */
+  .title h1 {
+    /* margin-top: 0.5em; */
+    margin-bottom: -2em;
+    font-size: 4vw; /* FIX THIS */
+  }
+
+  /* styles the input boxes of login page */
+  .input {
+    width: 95%;
+    font-size: 2.8vw;
+  }
+
+  /* adds margin to text under login button */
+  .noAccount {
+    margin-top: 1vh;
+  } 
+
+  /* centers everything inside of login page background */
+  .info {
+    align-content: center;
+    margin: 10% 0;
+  }
+
+  .input {
+    padding: 0.01 em;
+    /* TODO: edit later */
+  }
+
+  /* positions the forgot password link */
+  .forgot { 
+    /* sets margins */
+    margin-bottom: 1vh;
+  }
+
+  /* styles the login page button */
+  .login button {
+    /* adjusts width and height */
+    width: 90%;
+    height: auto;
+    padding: 0.65em;
+    /* styles the font in login button */
+    font-size: 2.8vw; 
+  }
+}
+
 /* Tablet and Smaller Desktop */
-@media (min-width: 701px) and (max-width: 1120px) {
+@media (min-width: 801px) and (max-width: 1120px) {
   .grid {
     grid-template-columns: repeat(2, 50%);
   }
