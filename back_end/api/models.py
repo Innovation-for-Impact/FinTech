@@ -13,7 +13,7 @@ class FintechUserManager(BaseUserManager):
             raise ValueError('Users must have an email address')
 
         user = self.model(
-            email=FintechUserManager.normalize_email(email),
+            email=FintechUserManager.normalize_email(email).lower(),
             first_name=first_name,
             last_name=last_name
         )
