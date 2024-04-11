@@ -104,10 +104,10 @@ export default function Home() {
   return (
   <main className={styles.main}>
     <div className={styles.signup}>
-      <img
+    <img
         className={styles.img}
         src="/_next/static/media/icon_transparent.e1a2640c.png"
-        alt="Innovation for Impact logo" 
+        alt="Innovation for Impact Logos" 
       />
 
       <div className={signupStyles.title}>
