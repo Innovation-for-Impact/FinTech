@@ -138,9 +138,8 @@ export default function Home() {
                 onClick={handleXtoggle}
                 onKeyDown={(e) => handleKeyClick(e, handleXtoggle)}
               >
-                {/* <Icon icon={XIcon} className={styles.icon}/> */}
-                <Icon icon={XIcon} size={"25px"}/>
-                {/* size={"1vw"}/> */}
+                <Icon icon={XIcon} className={styles.icon} font-size={"1vw"}/>
+                {/* <Icon icon={XIcon} size={"20px"}/> */}
               </span>
             </p>
             </div>

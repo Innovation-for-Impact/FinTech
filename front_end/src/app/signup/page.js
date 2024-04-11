@@ -1,6 +1,8 @@
 "use client";
+import Image from "next/image";
 import styles from "../css/page.module.css";
 import signupStyles from "../css/signup.module.css";
+import logo from '../images/icon_transparent.png';
 import Link from 'next/link';
 import React, { useState } from "react";
 import {Icon} from 'react-icons-kit';
@@ -105,10 +107,10 @@ export default function Home() {
   <main className={styles.main}>
     <div className={styles.signup}>
     <img
-        className={styles.img}
-        src="/_next/static/media/icon_transparent.e1a2640c.png"
-        alt="Innovation for Impact Logos" 
-      />
+      className={styles.img}
+      src="/_next/static/media/icon_transparent.e1a2640c.png"
+      alt="Innovation for Impact Logos" 
+    />
 
       <div className={signupStyles.title}>
         <h1>Sign Up</h1>

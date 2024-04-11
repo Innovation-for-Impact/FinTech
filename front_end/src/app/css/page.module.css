@@ -521,14 +521,12 @@
 
   /* resizes the eye icon in password input fields */
   .eye {
-    width: 1vw;
     border: 2px solid fuchsia;
   }
 
-  /* adjust the size of the eye icon */
-  .icon {
-    width: 4vw;
-    height: 4vw;
+  /* adjust the size of the X icon */
+  .x {
+    font-size: 20px;
   }
 }
 
