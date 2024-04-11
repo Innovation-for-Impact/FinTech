@@ -115,7 +115,7 @@ export default function Home() {
             onClick={handleToggle}
             onKeyDown={(e) => handleKeyClick(e, handleToggle)}
           >
-            <Icon icon={icon} size={"1vw"}/>
+            <Icon icon={icon} font-size={"1vw"}/>
           </span>
 
           {/* provide link to recover account (redirect to RECOVER)*/}
@@ -139,7 +139,6 @@ export default function Home() {
                 onKeyDown={(e) => handleKeyClick(e, handleXtoggle)}
               >
                 <Icon icon={XIcon} className={styles.icon} font-size={"1vw"}/>
-                {/* <Icon icon={XIcon} size={"20px"}/> */}
               </span>
             </p>
             </div>

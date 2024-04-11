@@ -82,7 +82,7 @@ export default function ForgotPassword() {
 
           {/* allow user to log in (redirect to LOGIN) */}
           <p className={`${styles.noAccountForgot} ${styles.a}`}>
-            Return to <Link href="/signup">Login</Link>
+            Return to <Link href="/">Login</Link>
           </p>
           
         </form>
