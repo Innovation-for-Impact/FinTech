@@ -14,7 +14,7 @@ body {
 /* styles the links */
 a:link { 
   /* change the color */
-  color: #8d8b8b; 
+  color: #707070; 
   /* removes underline */
   text-decoration: none;
   /* changes weight of font */
@@ -23,7 +23,8 @@ a:link {
 
 /* when the links are clicked, set the color to #55677e93 */
 a:visited {
-  color: #55677e93; 
+  /* color: #15253aff; */
+  color: #41506493; 
 }
 
 /* add an underline to the links when hovered on */
@@ -45,16 +46,24 @@ footer p {
   text-align: center;
   /* style the text */
   font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
-  font-size: 0.85vw;
+  font-size: 2.3vw;
+  font-weight: 150;
   color: white;
 }
 
-/* TEMPORARY Mobile */
-@media (min-width: 1px) and (max-width: 800px) {
+/* Tablet Styling */
+@media (min-width: 768px) {
   /* styles the footer paragraph */
   footer p {
-    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
-    font-size: 2.3vw;
-    color: white;
+    font-weight: 300;
+    font-size: 1.25vw;
+  }
+}
+
+/* Desktop Styling */
+@media (min-width: 1024px) {
+  /* styles the footer paragraph */
+  footer p {
+    font-size: 0.85vw;
   }
 }

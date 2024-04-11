@@ -92,6 +92,7 @@ export default function Home() {
             className= {`${styles.input} ${submitted && username.length < 4 && styles.error}`}
             placeholder="Username" // placeholder word (ie. shows up in gray-ed out font)
             name="username"  // allow auto-fill
+            aria-label="username"
             value={username} // save input to variable
             onChange={(e) => setUsername(e.target.value)}
           />
@@ -103,6 +104,7 @@ export default function Home() {
             type={type}
             placeholder="Password"
             name="password"
+            aria-label="password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
             autoComplete="current-password"
@@ -138,7 +140,7 @@ export default function Home() {
                 onClick={handleXtoggle}
                 onKeyDown={(e) => handleKeyClick(e, handleXtoggle)}
               >
-                <Icon icon={XIcon} className={styles.icon} font-size={"1vw"}/>
+                <Icon icon={XIcon} font-size={"1vw"}/>
               </span>
             </p>
             </div>
