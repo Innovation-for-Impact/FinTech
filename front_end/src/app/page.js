@@ -1,6 +1,7 @@
 "use client";
 import styles from "../app/css/page.module.css";
 import Link from 'next/link';
+import logo from '../app/images/icon_transparent.png';
 import React, { useState } from "react";
 import {Icon} from 'react-icons-kit';
 import {eyeOff} from 'react-icons-kit/feather/eyeOff';
@@ -16,7 +17,7 @@ export default function Home() {
   const [XIcon, setXIcon] = useState(x);
   const [submitted, setSubmitted] = useState(false);
 
-  // show or hide password based on user preference
+  // show or hide password based on user preference 
   // (ie. eye toggle button)
   const handleToggle = () => {
     if (type==='password'){

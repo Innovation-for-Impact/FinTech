@@ -131,6 +131,7 @@ export default function Home() {
                 type={firstNameType}
                 name="firstName" 
                 value={firstName}
+                aria-label="first name"
                 onChange={(e) => setFirst(e.target.value)}
               />
             </div>
@@ -145,6 +146,7 @@ export default function Home() {
                 type={lastNameType}
                 name="lastName" 
                 value={lastName}
+                aria-label="last name"
                 onChange={(e) => setLast(e.target.value)}
               />
             </div>
@@ -162,6 +164,7 @@ export default function Home() {
                 type={emailType}
                 name="email" 
                 value={email}
+                aria-label="email"
                 onChange={(e) => setEmail(e.target.value)}
               />
             </div>
@@ -176,6 +179,7 @@ export default function Home() {
                 type={passwordType}
                 name="password"
                 value={password}
+                aria-label="password"
                 onChange={(e) => setPassword(e.target.value)}
               />
               
@@ -186,7 +190,7 @@ export default function Home() {
                 onClick={handlePasswordToggle}
                 onKeyDown={(e) => handleKeyClick(e, handlePasswordToggle)}
               >
-                <Icon icon={passwordIcon} size={"1vw"}/>
+                <Icon icon={passwordIcon} font-size={"1vw"}/>
               </span>
             </div>
 
@@ -199,6 +203,7 @@ export default function Home() {
                   type={confirmPasswordType}
                   name="confirmPassword"
                   value={confirmPassword}
+                  aria-label="confirm password"
                   onChange={(e) => setConfirmPassword(e.target.value)}
               />
 
@@ -209,7 +214,7 @@ export default function Home() {
                 onClick={handleConfirmPasswordToggle}
                 onKeyDown={(e) => handleKeyClick(e, handleConfirmPasswordToggle)}
               >
-                <Icon icon={confirmPasswordIcon} size={"1vw"}/>
+                <Icon icon={confirmPasswordIcon} font-size={"1vw"}/>
               </span>
             </div>
           </div>
@@ -225,7 +230,7 @@ export default function Home() {
             />
             <label htmlFor="termsCheckbox">
               I agree to the {" "}
-              <Link style={{ color: 'grey' }} href="https://maizepages.umich.edu/organization/innovationforimpact">
+              <Link href="https://maizepages.umich.edu/organization/innovationforimpact">
                 Terms and Conditions
               </Link>
             </label>
@@ -234,7 +239,7 @@ export default function Home() {
           {/* incorporate error message based on user input */}
           { errorMessage && (
             <div>          
-            <p className={styles.errorMessage}>
+            <p className={styles.errorMessageSignup}>
               {errorMessage}
 
               {/* include X for hiding error message */}
@@ -244,7 +249,7 @@ export default function Home() {
                 onClick={handleXtoggle}
                 onKeyDown={(e) => handleKeyClick(e, handleXtoggle)}
               >
-                <Icon icon={XIcon} size={"1vw"}/>
+                <Icon icon={XIcon} font-size={"1vw"}/>
               </span>
             </p>
             </div>

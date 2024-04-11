@@ -67,6 +67,7 @@
 .noAccount {
   font-size: 2vw;
   margin-top: 2vh;
+  color: #676666 !important;
 } 
 
 /* centers everything inside of login page background */
@@ -95,7 +96,7 @@
   /* rounds the edges of the border */
   border-radius: 1.5vh; 
   /* changes the width and height */
-  width: 29vw;
+  width: 80vw;
   height: auto;
   /* position is absolute and sets top and left positioning */
   position:absolute;
@@ -105,6 +106,7 @@
   text-align: center;
   /* sets padding */
   padding-bottom: 2%;
+  padding-top: 2%;
   transform: translate(-50%, -50%); 
 }
 
@@ -145,7 +147,26 @@
   /* changes the font and text color */
   font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande';
   font-weight: bold;
-  font-size: 1vw; 
+  color: rgb(13, 22, 35) !important;
+}
+
+/* styles error messages specifically on Signup Page */
+.errorMessageSignup {
+  /* sets the margin to be at correct spot*/
+  margin: 1vh auto 1vh auto;
+  /* sets background color and curves the edges of the box */
+  background-color: rgba(255, 200, 210, 0.748);
+  border-radius: 0.5em;
+  /* add width and height */
+  width: 90%;
+  height: auto;
+  /* add padding */
+  padding: 0.65em;
+  /* align text to start on left */
+  text-align: left;
+  /* changes the font and text color */
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande';
+  font-weight: bold;
   color: rgb(13, 22, 35) !important;
 }
 
@@ -170,9 +191,8 @@
   /* position is absolute */
   position: absolute;
   /* sets the location of x icon */
-  right: 4vw;
-  margin-top: auto;
-  margin-bottom: auto;
+  right: 5vw;
+  top: 61.7%;
 }
 
 /* positions the x icon in error messages on signup page */
@@ -180,7 +200,7 @@
   /* position is absolute */
   position: absolute;
   /* sets the location of x icon */
-  right: 2vw;
+  right: 6vw;
   margin-top: auto;
   margin-bottom: auto;
 }
@@ -193,6 +213,7 @@
   font-size: 2.8vw;
   font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Verdana, sans-serif;
   font-weight: 350;
+  padding-bottom: 1vh;
 }
 
 /* sets the color of the input placeholder text to #a8a8a8 */
@@ -232,7 +253,7 @@
   /* styles the font in signup button */
   font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Verdana, sans-serif;
   font-weight: bold;
-  font-size: 1vw; 
+  font-size: 3.2vw;
   color: #15253A;
   /* add a margin since there is text under button */
   margin-bottom: 5%;
@@ -274,17 +295,30 @@
     margin-left: 10px;
   }
 
-  .singup p, .login p {
+  .form label, .form p, .signup p, .login p {
     font-size: 1.8vw;
   }
 
-  .login button {
-    font-size: 2.5vw;
+  .login button, .signup button {
+    font-size: 2vw;
   }
 
   .img {
     border-width: 0.16vw;
-    width: 20vw;
+    width: 15vw;
+  }
+
+  .x {
+    right: 4vw;
+    top: 64.2%;
+  }
+
+  .signup {
+    width: 55vw;
+  }
+
+  .x_signup {
+    right: 4vw;
   }
 }
 
@@ -318,7 +352,7 @@
     margin-bottom: 2vh;
   }
 
-  .singup p, .login p {
+  .form label, .form p, .singup p, .login p {
     font-size: 1vw;
   }
 
@@ -331,8 +365,24 @@
     font-size: 1vw;
   }
 
+  .signup button {
+    font-size: 1vw; 
+  }
+
   .img {
     border-width: 0.1vw;
     width: 10vw;
+  }
+
+  .x {
+    top: 66.5%;
+  }
+
+  .signup {
+    width: 35vw;
+  }
+
+  .x_signup {
+    right: 2vw;
   }
 }
