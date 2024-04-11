@@ -246,6 +246,12 @@
   position: relative;
 }
 
+/* adjust the size of the eye icon */
+.icon {
+  width: 1vw;
+  height: 1vw;
+}
+
 /* PROVIDED CONTENT FROM BELOW - We did not write this! It came with the CSS file */
 .main {
   display: flex;
@@ -473,8 +479,10 @@
     font-size: 2.8vw;
   }
 
-  /* adds margin to text under login button */
+  /* shifts and resizes noAccount text */
   .noAccount {
+    border: 2px solid fuschia;
+    font-size: 2vw;
     margin-top: 1vh;
   } 
 
@@ -489,10 +497,16 @@
     /* TODO: edit later */
   }
 
-  /* positions the forgot password link */
+  /* positions and ressizes the forgot password link */
   .forgot { 
+    font-size: 2vw;
     /* sets margins */
     margin-bottom: 1vh;
+  }
+
+  /* resize the font */
+  .signup p, .login p {
+    font-size: 2.8vw;
   }
 
   /* styles the login page button */
@@ -502,7 +516,19 @@
     height: auto;
     padding: 0.65em;
     /* styles the font in login button */
-    font-size: 2.8vw; 
+    font-size: 3.2vw; 
+  }
+
+  /* resizes the eye icon in password input fields */
+  .eye {
+    width: 1vw;
+    border: 2px solid fuchsia;
+  }
+
+  /* adjust the size of the eye icon */
+  .icon {
+    width: 4vw;
+    height: 4vw;
   }
 }
 
