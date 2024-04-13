@@ -68,10 +68,10 @@ export default function Home() {
         </div>
       </div>
 
-      <form onSubmit={handleSubmit}>
+      <form>
         <label>Income (After Tax):+</label><br/>
         <label>Work:</label>
-        <input type="number" name="work" /><br/>
+        <input type="number" name="work" /><br/><br/>
 
         <label>Part-Time:</label>
         <input type="number" name="Part-Time" /><br/><br/>
