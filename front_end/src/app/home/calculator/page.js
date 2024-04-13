@@ -10,7 +10,6 @@ import { ic_close } from 'react-icons-kit/md/ic_close';
 export default function Home() {
   const [isOpen, setIsOpen] = useState(false);
 
-  // MENU functions
   const toggleMenu = () => {
     setIsOpen(!isOpen);
   };
@@ -23,53 +22,44 @@ export default function Home() {
     e.stopPropagation(); 
     toggleMenu();
   };
-  // end MENU functions
 
   return (
     <main className={`${styles.homeMain} ${homeStyles.body}`} >
-        
-        {/* display menu (hamburger menu for mobile/tablet) */}
         <header className={styles.homeHeader}>
           {/* <a href = "#main"  className={homeStyles.skip}>Skip to Main Content</a> */}
           <div className={homeStyles.hamburger} onClick={handleIconClick}>
             {isOpen ? <Icon icon={ic_close} size={55} /> : <Icon icon={ic_menu} size={55} />}
           </div>
-
-          {/* display navigation links */}
           <div className={homeStyles.homeContainer}>
-            <div className={homeStyles.homeSubcontainer}>
-              <nav className={homeStyles.homeNavbar}>
-                {/* <a href="#" className={homeStyles.nav_branding}>Menu</a> */}
-                <ul className={`${homeStyles.nav_menu} ${isOpen ? homeStyles.open : ''}`}>
-                  <Link className={homeStyles.nav_item} href = "profile/.." onClick={handleLinkClick}>
-                    <p>Home</p>
-                  </Link>
-                  <Link className={homeStyles.nav_item} href = "profile/../goals" onClick={handleLinkClick}>
-                    <p>Goals</p>
-                  </Link>
-                  <Link className={`${homeStyles.nav_item} ${homeStyles.active}`} href = "profile/../calculator" onClick={handleLinkClick}>
-                    <p>Calculator</p>
-                  </Link>
-                  <Link className={homeStyles.nav_item} href = "profile/../friends" onClick={handleLinkClick}>
-                    <p>Friends</p>
-                  </Link>
-                  <Link className={homeStyles.nav_item} href = "profile" onClick={handleLinkClick}>
-                    <p>Profile</p>
-                  </Link>
-                </ul>
-
-                {/* display IFI logo */}
-                <img className={homeStyles.img}
-                  src="/_next/static/media/icon_transparent.e1a2640c.png"
-                  alt="Innovation for Impact logo" 
-                  width="4.5%"
-                />
-              </nav>
-            </div>
+              <div className={homeStyles.homeSubcontainer}>
+                  <nav className={homeStyles.homeNavbar}>
+                      {/* <a href="#" className={homeStyles.nav_branding}>Menu</a> */}
+                      <ul className={`${homeStyles.nav_menu} ${isOpen ? homeStyles.open : ''}`}>
+                          <Link className={homeStyles.nav_item} href = "calculator/.." onClick={handleLinkClick}>
+                            <p>Home</p>
+                          </Link>
+                          <Link className={homeStyles.nav_item} href = "calculator/../goals" onClick={handleLinkClick}>
+                            <p>Goals</p>
+                          </Link>
+                          <Link  className={`${homeStyles.nav_item} ${homeStyles.active}`} href = "calculator" onClick={handleLinkClick}>
+                            <p>Calculator</p>
+                          </Link>
+                          <Link  className={homeStyles.nav_item} href = "calculator/../friends" onClick={handleLinkClick}>
+                            <p>Friends</p>
+                          </Link>
+                          <Link  className={homeStyles.nav_item} href = "calculator/../profile" onClick={handleLinkClick}>
+                            <p>Profile</p>
+                          </Link>
+                      </ul>
+                      <img className={homeStyles.img}
+                        src="/_next/static/media/icon_transparent.e1a2640c.png"
+                        alt="Innovation for Impact Logos" 
+                        width="4.5%"
+                      />
+                  </nav>
+              </div>
           </div>
         </header>
-      
-      {/* header for current page */}
       <div className={homeStyles.homePage}>
         <div class={styles.homeTitle}>
           <h1 style={{color:'#32415e'}}>
@@ -78,26 +68,35 @@ export default function Home() {
         </div>
       </div>
 
-      {/* TODO Chiho: add form here
-          
-          advice from Julia
-          - create a form like line 88 (<form onSubmit...) of the login page
+      <form onSubmit={handleSubmit}>
+        <label>Income (After Tax):+</label><br/>
+        <label>Work:</label>
+        <input type="number" name="work" /><br/>"use client";
 
-          - pay careful attention to how varaibles are declared (use ctrl + f to explore this)
-          
-          - pay attention to how things are 'sandwiched' in the html (ie. the <form> tag will be like the bun, each individual input will be like a hamburger topping) 
+        <label>Part-Time:</label>
+        <input type="number" name="Part-Time" /><br/><br/>
 
-          - if you have HTML quesitons in general, check out w3schools.com (look up "w3schools input" or "w3schools form" and it will take you to a great page)
+        <label>Savings:</label>
+        <input type="number" name="Savings" /><br/><br/>
 
-          - don't worry about how the styling looks (ie. colors, cute boxes, etc.) - just get the boxes to show up
+        <label>Expenses:+</label><br/>
+        <label>Tuition:</label>
+        <input type="number" name="Tuition" /><br/><br/>
 
-          - send me a screenshot of your code with literally (and I really mean that) ANY question
+        <label>Rent:</label>
+        <input type="number" name="Rent" /><br/><br/>
 
-          - when you want to make a comment, do "command + /" on Mac or "ctrl + /" on Windows
-      
-      */}
+        <label>Groceries:</label>
+        <input type="number" name="Groceries" /><br/><br/>
 
+        <label>Transportation:</label>
+        <input type="number" name="Transportation" /><br/><br/>
 
-  </main>
+        <label>Discretionary Spending:</label>
+        <input type="number" name="DiscretionarySpending" /><br/><br/>
+
+        <input type="submit" value="Submit" />
+      </form>
+    </main>
   );
 }
