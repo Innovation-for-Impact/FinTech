@@ -69,34 +69,34 @@ export default function Home() {
       </div>
 
       <form>
-        <label>Income (After Tax):+</label><br/>
-        <label>Work:</label>
-        <input type="number" name="work" /><br/><br/>
+      <label>Income (After Tax):+</label><br/>
+      <label>Work:</label>
+      <input type="text" name="work" pattern="[0-9]+(\.[0-9]+)?" /><br/><br/>
 
-        <label>Part-Time:</label>
-        <input type="number" name="Part-Time" /><br/><br/>
+      <label>Part-Time:</label>
+      <input type="text" name="Part-Time" pattern="[0-9]+(\.[0-9]+)?" /><br/><br/>
 
-        <label>Savings:</label>
-        <input type="number" name="Savings" /><br/><br/>
+      <label>Savings:</label>
+      <input type="text" name="Savings" pattern="[0-9]+(\.[0-9]+)?" /><br/><br/>
 
-        <label>Expenses:+</label><br/>
-        <label>Tuition:</label>
-        <input type="number" name="Tuition" /><br/><br/>
+      <label>Expenses:+</label><br/>
+      <label>Tuition:</label>
+      <input type="text" name="Tuition" pattern="[0-9]+(\.[0-9]+)?" /><br/><br/>
 
-        <label>Rent:</label>
-        <input type="number" name="Rent" /><br/><br/>
+      <label>Rent:</label>
+      <input type="text" name="Rent" pattern="[0-9]+(\.[0-9]+)?" /><br/><br/>
 
-        <label>Groceries:</label>
-        <input type="number" name="Groceries" /><br/><br/>
+      <label>Groceries:</label>
+      <input type="text" name="Groceries" pattern="[0-9]+(\.[0-9]+)?" /><br/><br/>
 
-        <label>Transportation:</label>
-        <input type="number" name="Transportation" /><br/><br/>
+      <label>Transportation:</label>
+      <input type="text" name="Transportation" pattern="[0-9]+(\.[0-9]+)?" /><br/><br/>
 
-        <label>Discretionary Spending:</label>
-        <input type="number" name="DiscretionarySpending" /><br/><br/>
+      <label>Discretionary Spending:</label>
+      <input type="text" name="DiscretionarySpending" pattern="[0-9]+(\.[0-9]+)?" /><br/><br/>
 
-        <input type="submit" value="Submit" />
-      </form>
+      <input type="submit" value="Submit" />
+    </form>
     </main>
   );
 }
