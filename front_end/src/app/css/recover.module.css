@@ -88,6 +88,20 @@
   color: rgb(13, 22, 35) !important;
 }
 
+.errorMessage{
+  margin: -0.8vh auto 2vh auto;
+  background-color: rgb(255, 200, 210, 0.748);
+  border-radius: 0.5em;
+  width: 90%;
+  height: auto;
+  padding: 0.65em;
+  text-align: left;
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande';
+  /* font-weight: bold; */
+  font-size: 2.8vw; 
+  color: rgb(13, 22, 35) !important;
+}
+
 /* highlights the x icon (in error/success messages) so that tab works and user knows where they are */
 .x:hover, .x:focus {
   outline: 1px solid blue; 
@@ -155,6 +169,10 @@
     font-size: 1.8vw;
   }
 
+  .errorMessage {
+    font-size: 1.8vw;
+  }
+
   .forgot p {
     font-size: 1.8vw;
   }
@@ -184,6 +202,11 @@
   }
 
   .successMessage {
+    font-size: 1vw;
+    width: 88%;
+  }
+
+  .errorMessage {
     font-size: 1vw;
     width: 88%;
   }
