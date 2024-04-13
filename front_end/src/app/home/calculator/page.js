@@ -71,7 +71,7 @@ export default function Home() {
       <form onSubmit={handleSubmit}>
         <label>Income (After Tax):+</label><br/>
         <label>Work:</label>
-        <input type="number" name="work" /><br/>"use client";
+        <input type="number" name="work" /><br/>
 
         <label>Part-Time:</label>
         <input type="number" name="Part-Time" /><br/><br/>
