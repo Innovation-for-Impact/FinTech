@@ -67,7 +67,6 @@ export default function Home() {
           </h1>
         </div>
       </div>
-
       <form>
       <label>Income (After Tax):+</label><br/>
       <label>Work:</label>
