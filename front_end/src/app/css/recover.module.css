@@ -5,7 +5,7 @@
   border: solid 0em;
   border-radius: 1.5vh; 
   /* width is set for outer box and height is auto */
-  width: 35vw;
+  width: 80%;
   height: auto;
   /* position is absolute and the text will be aligned to the center */
   position:absolute;
@@ -15,6 +15,7 @@
   left: 50vw;
   transform: translate(-50%, -50%); 
 }
+
 /*elements of the header FORGOT PASSWORD*/
 .forgot h1 {
   /*colors and font type of header*/
@@ -24,7 +25,7 @@
   margin-top: 2em;
   margin-bottom: 1em;
   /*font size of the header*/
-  font-size: 1.2vw;
+  font-size: 3.4vw;
 }
   
 /* formatting for box where email would be inputted */
@@ -38,14 +39,11 @@
   height: auto;
   /* padding on all sides of box and margins for spacing */
   margin-top: 10px; 
-  margin-bottom: 25px; 
-  padding-left: 0.6em; 
-  padding-right: 0.6em; 
-  padding-bottom: 0.6em; 
-  padding-top: 0.6em; 
+  margin-bottom: 2vh; 
+  padding: 0.6em; 
   /* color, size, and font type for box to input email */
   font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
-  font-size: 1vw;
+  font-size: 2.8vw;
   color: black;
 } 
 
@@ -64,23 +62,61 @@
     height: auto;
     /* padding and margin in between submit button for spacing */
     padding: 0.65em;
-    margin-bottom: 10px; 
+    margin-bottom: 0.5vh; 
     /* font type and sizes, as well as color for text in button */
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande';
     font-weight: bold;
-    font-size: 1vw; 
+    font-size: 3.1vw;
     color: #15253A;
 }
+
+.error, .forgot .error_forgot{
+  border-color: #aedea0;
+}
+
+.successMessage{
+  margin: -0.8vh auto 2vh auto;
+  background-color: rgb(226, 245, 221);
+  border-radius: 0.5em;
+  width: 90%;
+  height: auto;
+  padding: 0.65em;
+  text-align: left;
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande';
+  /* font-weight: bold; */
+  font-size: 2.8vw; 
+  color: rgb(13, 22, 35) !important;
+}
+
+/* highlights the x icon (in error/success messages) so that tab works and user knows where they are */
+.x:hover, .x:focus {
+  outline: 1px solid blue; 
+}
+
+.x {
+  height: 20px;
+  width: auto;
+  position: absolute; 
+  right: 5vw; 
+  margin-top: -0.2vw; 
+  margin-bottom: auto;
+}
+
+.successMessage:hover .closeButton {
+  display: block;
+}
+
 /* features for hovering for submit button on forgot password page */
 .forgot button:hover {
   background-color: #aedea0;
   cursor: pointer;
 }
+
 /* takes care of text and spacing for return to login part of forgot password page */
 .forgot p {
   /* color and font size of text */
   color: #8d8b8b;
-  font-size: 1vw;
+  font-size: 2.8vw;
   /* padding for right amount of spacing between button and bottom of large box */
   padding-bottom: 20px; 
   padding-left: 25px; 
@@ -90,4 +126,79 @@
   font-weight: 350;
 }
 
+/* changes the instruction color */
+.instruction {
+  margin-bottom: -2vh;
+  color: #676666 !important;
+}
 
+/* Tablet Styling */
+@media (min-width: 768px) {
+  .forgot {
+    width: 57%;
+  }
+
+  .forgot h1 {
+    font-size: 2.5vw;
+  }
+
+  .input {
+    font-size: 1.8vw;
+  }
+
+  .forgot button {
+    margin-bottom: 0; 
+    font-size: 1.8vw;
+  }
+
+  .successMessage {
+    font-size: 1.8vw;
+  }
+
+  .forgot p {
+    font-size: 1.8vw;
+  }
+
+  .x {
+    height: 2.5vw;
+    right: 4vw;
+  }
+}
+
+/* Desktop Styling */
+@media (min-width: 1024px) {
+  .forgot {
+    width: 35vw;
+  }
+
+  .forgot h1 {
+    font-size: 1.25vw;
+  }
+
+  .input {
+    font-size: 1vw;
+  }
+
+  .forgot button {
+    font-size: 1vw;
+  }
+
+  .successMessage {
+    font-size: 1vw;
+    width: 88%;
+  }
+
+  .forgot p {
+    font-size: 1vw;
+  }
+
+  .x {
+    height: 1.5vw;
+    right: 3vw;
+    margin-bottom: 40%;
+  }
+
+  .instruction {
+    margin-bottom: -1vh;
+  }
+}

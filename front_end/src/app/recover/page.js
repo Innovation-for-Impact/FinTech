@@ -3,6 +3,8 @@ import React, { useState } from "react";
 import styles from "../css/page.module.css";
 import specificStyles from "../css/recover.module.css";
 import Link from 'next/link';
+import {Icon} from 'react-icons-kit';
+import {x} from 'react-icons-kit/feather/x';
 // import MailboxIcon from "../images/icons8-mail-48.png"
 
 console.log("this is the forgot password page");
@@ -10,88 +12,101 @@ console.log("this is the forgot password page");
 export default function ForgotPassword() {
   const [email, setEmail] = useState('');
   const [submitted, setSubmitted] = useState(false);
+  const [showSuccessMessage, setShowSuccessMessage] = useState(false);
+  const [XIcon, setXIcon] = useState(x);
 
-  // helper function to validate email using regEx
+  // Function to validate email format
   const validateEmail = (email) => {
+    // Use a regular expression to validate email format
     const re = /\S+@\S+\.\S+/;
     return re.test(email);
   };
 
-  // incorporate submission logic
   const handleSubmit = (e) => {
-    // TODO @backend --> send email to user
-    
     e.preventDefault();
     setSubmitted(true);
 
-    // validate email format
+    // Handle submission logic here 
+    // TODO @backend --> send email to user
+
+    //Validate email format
     if(!validateEmail(email)){
-      // TODO Arleen: set error message
+      //Potential error message to the user: 
       return;
     }
-    // TODO backend: send request for recovery email backend server
+    //send request to backend server (don't know how to handle this yet)
     try{
       // const response = await fetch(,{
-
-      // }); // TODO api: add api stuff
-
-      // if password link was went successfully
+      setShowSuccessMessage(true);
+      // }); //need to add api stuff
       if(response.ok){
-        // TODO: display success message to user 
-        // TODO: return them to login page?
+        //password reset was successful 
+        //display success message to user 
       }
       else{
-        // TODO: display error message, instruct them to re-request link
+        //something went wrong
       }
     }
-    // handle network error
     catch (error) {
+      //handle network error
       console.error('Error: ', error);
     }
   };
+
+  const handleXtoggle = () => {
+      setShowSuccessMessage(false);
+      setXIcon(x);
+  } // handleToggle
 
   return (
     <main className={styles.main}>
       <div className={specificStyles.forgot}>
         <h1>FORGOT PASSWORD?</h1>
-      
-        {/* <img src={MailboxIcon} alt="Mailbox Icon"/> */}
+        <div>
+          {!showSuccessMessage && (
+            <p className={specificStyles.instruction}>
+              Provide the email address associated with your account and we will share a link to reset your password!
+            </p>
+          )}
 
-        <p>
-          Please provide the email address associated with your account and we will share a link to reset your password!
-        </p>
-
-        {/* accept user input (email address) through a form */}
         <form onSubmit={handleSubmit}>
           <input
             className={`${specificStyles.input} ${submitted && email.length === 0 && styles.error}`}
+            type="email"
             placeholder="youremail@domain.com"
-            name="email"
             value={email}
+            aria-label="email"
             onChange={(e) => setEmail(e.target.value)}
-            // TODO Arleen: remove the "required" below and 
-            // incorporate an error message if the input is not 
-            // a valid email
             required
-          />
+            name="email"
+            />
 
-          {/* allow user to submit the form */}
+          {showSuccessMessage && (
+            <div className={specificStyles.successMessage}>
+              Email sent! Please check your inbox.
+                  <span
+                    className={specificStyles.x}
+                    tabIndex="0"
+                    onClick={handleXtoggle}
+                    onKeyDown={(e) => handleKeyClick(e, handleXtoggle)}
+                  >
+                    <Icon icon={XIcon} font-size={"1vw"} />
+                  </span>
+            </div>
+          )}
+            
           <button type="submit">
-            Submit
+            SUBMIT
           </button>
-
-          {/* allow user to log in (redirect to LOGIN) */}
-          <p className={`${styles.noAccountForgot} ${styles.a}`}>
-            Return to <Link href="/signup">Login</Link>
-          </p>
-          
         </form>
+        </div>
+        <p className={styles.noAccount}>
+          Return to{" "}<Link className={styles.a} href="/">Login</Link>
+        </p>
       </div>
-      
-      {/* include copyright footer */}
       <footer>
         <p>&copy; Innovation for Impact 2024</p>
       </footer>
     </main>
-  );
+  );  
 }
