@@ -13,7 +13,9 @@ export default function ForgotPassword() {
   const [email, setEmail] = useState('');
   const [submitted, setSubmitted] = useState(false);
   const [showSuccessMessage, setShowSuccessMessage] = useState(false);
+  const [errorMessage, setErrorMessage] = useState('');
   const [XIcon, setXIcon] = useState(x);
+  const [errorXIcon, setErrorXIcon] = useState(x);
 
   // Function to validate email format
   const validateEmail = (email) => {
@@ -25,20 +27,21 @@ export default function ForgotPassword() {
   const handleSubmit = (e) => {
     e.preventDefault();
     setSubmitted(true);
-
+    setErrorMessage('');
     // Handle submission logic here 
     // TODO @backend --> send email to user
 
     //Validate email format
     if(!validateEmail(email)){
       //Potential error message to the user: 
-      return;
+      setErrorMessage('Please submit a valid email!');
+      return; 
     }
     //send request to backend server (don't know how to handle this yet)
     try{
-      // const response = await fetch(,{
-      setShowSuccessMessage(true);
-      // }); //need to add api stuff
+        // const response = await fetch(,{
+        setShowSuccessMessage(true);
+        // }); //need to add api stuff
       if(response.ok){
         //password reset was successful 
         //display success message to user 
@@ -58,6 +61,15 @@ export default function ForgotPassword() {
       setXIcon(x);
   } // handleToggle
 
+  const handleErrorToggle = () => {
+    if (errorMessage !== '') {
+      setErrorMessage('');
+      setErrorXIcon(x);
+    }
+  } // handleToggle
+
+
+
   return (
     <main className={styles.main}>
       <div className={specificStyles.forgot}>
@@ -69,6 +81,7 @@ export default function ForgotPassword() {
             </p>
           )}
 
+        {/* User clicks submits and gets a success message or error message */}
         <form onSubmit={handleSubmit}>
           <input
             className={`${specificStyles.input} ${submitted && email.length === 0 && styles.error}`}
@@ -77,9 +90,8 @@ export default function ForgotPassword() {
             value={email}
             aria-label="email"
             onChange={(e) => setEmail(e.target.value)}
-            required
             name="email"
-            />
+          />
 
           {showSuccessMessage && (
             <div className={specificStyles.successMessage}>
@@ -94,7 +106,26 @@ export default function ForgotPassword() {
                   </span>
             </div>
           )}
-            
+
+          {/* incorporate error message based */}
+          { errorMessage && (
+            <div>          
+            <p className={specificStyles.errorMessage}>
+              {errorMessage}
+              
+              {/* include X for hiding error message */}
+              <span
+                className={specificStyles.x}
+                tabIndex="0"
+                onClick={handleErrorToggle}
+                onKeyDown={(e) => handleKeyClick(e, handleErrorToggle)}
+              >
+                <Icon icon={errorXIcon} font-size={"1vw"}/>
+              </span>
+            </p>
+            </div>
+          )}
+  
           <button type="submit">
             SUBMIT
           </button>
