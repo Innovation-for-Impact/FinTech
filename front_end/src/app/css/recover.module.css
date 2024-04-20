@@ -49,7 +49,7 @@
 
 /* placeholder color for email input text */
 .forgot input::placeholder{
-  color: #a8a8a8;
+  color: #868686;
 }
 
 /* styles of the submit button */
@@ -129,7 +129,7 @@
 /* takes care of text and spacing for return to login part of forgot password page */
 .forgot p {
   /* color and font size of text */
-  color: #8d8b8b;
+  color: #716f6f;
   font-size: 2.8vw;
   /* padding for right amount of spacing between button and bottom of large box */
   padding-bottom: 20px; 
