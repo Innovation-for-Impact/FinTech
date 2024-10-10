@@ -3,12 +3,9 @@ import React, { useState } from "react";
 import styles from "../css/page.module.css";
 import specificStyles from "../css/recover.module.css";
 import Link from 'next/link';
-<<<<<<< HEAD
 import { useCookies } from 'next-client-cookies';
-=======
 import {Icon} from 'react-icons-kit';
 import {x} from 'react-icons-kit/feather/x';
->>>>>>> 061c0135da9c24931b68ebd99e8c8e08f435b176
 // import MailboxIcon from "../images/icons8-mail-48.png"
 
 console.log("this is the forgot password page");
@@ -16,14 +13,11 @@ console.log("this is the forgot password page");
 export default function ForgotPassword() {
   const [email, setEmail] = useState('');
   const [submitted, setSubmitted] = useState(false);
-<<<<<<< HEAD
   const cookies = useCookies();
-=======
   const [showSuccessMessage, setShowSuccessMessage] = useState(false);
   const [errorMessage, setErrorMessage] = useState('');
   const [XIcon, setXIcon] = useState(x);
   const [errorXIcon, setErrorXIcon] = useState(x);
->>>>>>> 061c0135da9c24931b68ebd99e8c8e08f435b176
 
   // Function to validate email format
   const validateEmail = (email) => {
@@ -45,9 +39,9 @@ export default function ForgotPassword() {
       setErrorMessage('Please submit a valid email!');
       return; 
     }
-<<<<<<< HEAD
     // TODO backend: send request for recovery email backend server
     const data = new FormData(e.currentTarget)
+    console.log(e.currentTarget.action)
     fetch(e.currentTarget.action, {
       method: "post",
       body: data
@@ -59,29 +53,10 @@ export default function ForgotPassword() {
     }).then(json => {
       if(!json.ok)
         throw new Error(json);
-      console.log("EMAIL SENT")
+      setShowSuccessMessage(true);
     }).catch(err => {
       console.error(err);
     })
-=======
-    //send request to backend server (don't know how to handle this yet)
-    try{
-        // const response = await fetch(,{
-        setShowSuccessMessage(true);
-        // }); //need to add api stuff
-      if(response.ok){
-        //password reset was successful 
-        //display success message to user 
-      }
-      else{
-        //something went wrong
-      }
-    }
-    catch (error) {
-      //handle network error
-      console.error('Error: ', error);
-    }
->>>>>>> 061c0135da9c24931b68ebd99e8c8e08f435b176
   };
 
   const handleXtoggle = () => {
@@ -96,8 +71,6 @@ export default function ForgotPassword() {
     }
   } // handleToggle
 
-
-
   return (
     <main className={styles.main}>
       <div className={specificStyles.forgot}>
@@ -108,18 +81,10 @@ export default function ForgotPassword() {
               Provide the email address associated with your account and we will share a link to reset your password!
             </p>
           )}
-
-<<<<<<< HEAD
-        <p>
-          Please provide the email address associated with your account and we will share a link to reset your password!
-        </p>
-
         {/* accept user input (email address) through a form */}
-        <form onSubmit={handleSubmit} action="/api/account/reset_password/" method="POST">
-=======
+        
         {/* User clicks submits and gets a success message or error message */}
-        <form onSubmit={handleSubmit}>
->>>>>>> 061c0135da9c24931b68ebd99e8c8e08f435b176
+        <form onSubmit={handleSubmit} action="/api/account/reset_password/" method="POST">
           <input
             className={`${specificStyles.input} ${submitted && email.length === 0 && styles.error}`}
             type="email"
@@ -129,8 +94,8 @@ export default function ForgotPassword() {
             onChange={(e) => setEmail(e.target.value)}
             name="email"
           />
+        
 
-<<<<<<< HEAD
           <input 
             className="hidden"
             name="csrfmiddlewaretoken"
@@ -142,7 +107,6 @@ export default function ForgotPassword() {
           <button type="submit">
             Submit
           </button>
-=======
           {showSuccessMessage && (
             <div className={specificStyles.successMessage}>
               Email sent! Please check your inbox.
@@ -156,7 +120,6 @@ export default function ForgotPassword() {
                   </span>
             </div>
           )}
->>>>>>> 061c0135da9c24931b68ebd99e8c8e08f435b176
 
           {/* incorporate error message based */}
           { errorMessage && (
@@ -176,10 +139,6 @@ export default function ForgotPassword() {
             </p>
             </div>
           )}
-  
-          <button type="submit">
-            SUBMIT
-          </button>
         </form>
         </div>
         <p className={styles.noAccount}>
