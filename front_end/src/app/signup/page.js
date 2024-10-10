@@ -123,11 +123,12 @@ export default function Home() {
   return (
   <main className={styles.main}>
     <div className={styles.signup}>
-    <img
-      className={styles.img}
-      src="/_next/static/media/icon_transparent.e1a2640c.png"
-      alt="Innovation for Impact Logos" 
-    />
+      <img
+        className={styles.img}
+        // src="/_next/static/media/icon_transparent.e1a2640c.png"
+        src="/_next/static/media/icon_transparent.png"
+        alt="Innovation for Impact logo" 
+      />
 
       <div className={signupStyles.title}>
         <h1>Sign Up</h1>

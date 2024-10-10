@@ -1,4 +1,4 @@
-/* styles the logo */
+/* styling the logo */
 .img {
   background-color: #15253aff;
   border-radius: 100%;
@@ -19,14 +19,14 @@
   margin-left: 7%;
 }
 
-/* positions the name input boxes */
+/* positions the last name input box */
 .inputName {
   display: flex;
   flex-direction: row;
   margin-top: 5%;
 }
 
-/* styles the first name label */
+/* styling for first name label */
 .inputBox1{
   font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Verdana, sans-serif;
   text-align: left;
@@ -35,7 +35,7 @@
   font-size: 2.8vw;
 }
 
-/* positions the first name input box */
+/* positions/styles the first name input box */
 .inputBox1 input{
   background-color: white;
   border: 0.06em solid #b3b2b2; 
@@ -46,7 +46,7 @@
   padding: 0.6em;
 }
 
-/* styles last name label */
+/* styling for last name label */
 .inputBox2{
   font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Verdana, sans-serif;
   text-align: left;
@@ -54,7 +54,7 @@
   font-size: 2.8vw;
 }
 
-/* positions the last name input box */
+/* positions/styles the last name input box */
 .inputBox2 input{
   background-color: white;
   border: 0.06em solid #b3b2b2; 
@@ -66,7 +66,14 @@
   margin-bottom: 1em; 
 }
 
-/* styles the email, password, and password confirmation labels */
+/* styles email and passwords labels */
+.inputInfo{
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Verdana, sans-serif;
+  display: flex;
+  flex-direction: column;
+}
+
+/* positions email and passwords input boxes */
 .inputBox, .inputBoxPass{
   font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Verdana, sans-serif;
   text-align: left;
@@ -75,7 +82,7 @@
   font-size: 2.8vw;
 }
 
-/* positions email input box */
+/* adds space between the input boxes */
 .inputBox input{
   display: block;
   background-color: white;
@@ -88,7 +95,7 @@
   padding: 0.6em;
 }
 
-/* positions password, password confirmation input boxes */
+/* adds space between the input boxes */
 .inputBoxPass input{
   background-color: white;
   border: 0.06em solid #b3b2b2; 
@@ -100,7 +107,7 @@
   padding: 0.6em;
 }
 
-/* styles the text by the checkbox */
+/* styles checkbox text */
 .checkbox label {
   font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Verdana, sans-serif;
   color: #676666;
@@ -108,7 +115,7 @@
   font-size: 2.8vw; 
 }
 
-/* positions the checkbox text */
+/* positions checkbox */
 .checkbox{
   margin-bottom: 5%;
 }
