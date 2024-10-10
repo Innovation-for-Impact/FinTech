@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import styles from "../css/page.module.css";
 import specificStyles from "../css/recover.module.css";
 import Link from 'next/link';
+import { useCookies } from 'next-client-cookies';
 // import MailboxIcon from "../images/icons8-mail-48.png"
 
 console.log("this is the forgot password page");
@@ -10,6 +11,7 @@ console.log("this is the forgot password page");
 export default function ForgotPassword() {
   const [email, setEmail] = useState('');
   const [submitted, setSubmitted] = useState(false);
+  const cookies = useCookies();
 
   // helper function to validate email using regEx
   const validateEmail = (email) => {
@@ -30,24 +32,22 @@ export default function ForgotPassword() {
       return;
     }
     // TODO backend: send request for recovery email backend server
-    try{
-      // const response = await fetch(,{
-
-      // }); // TODO api: add api stuff
-
-      // if password link was went successfully
-      if(response.ok){
-        // TODO: display success message to user 
-        // TODO: return them to login page?
-      }
-      else{
-        // TODO: display error message, instruct them to re-request link
-      }
-    }
-    // handle network error
-    catch (error) {
-      console.error('Error: ', error);
-    }
+    const data = new FormData(e.currentTarget)
+    fetch(e.currentTarget.action, {
+      method: "post",
+      body: data
+    })
+    .then(res => {
+      if(!res.ok)
+        throw new Error(res);
+      return res.json();
+    }).then(json => {
+      if(!json.ok)
+        throw new Error(json);
+      console.log("EMAIL SENT")
+    }).catch(err => {
+      console.error(err);
+    })
   };
 
   return (
@@ -62,7 +62,7 @@ export default function ForgotPassword() {
         </p>
 
         {/* accept user input (email address) through a form */}
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={handleSubmit} action="/api/account/reset_password/" method="POST">
           <input
             className={`${specificStyles.input} ${submitted && email.length === 0 && styles.error}`}
             placeholder="youremail@domain.com"
@@ -73,6 +73,13 @@ export default function ForgotPassword() {
             // incorporate an error message if the input is not 
             // a valid email
             required
+          />
+
+          <input 
+            className="hidden"
+            name="csrfmiddlewaretoken"
+            value={cookies.get("csrftoken")}
+            readOnly={true}
           />
 
           {/* allow user to submit the form */}

@@ -1,3 +1,4 @@
+
 from django.urls import path
 from .views.index import index
 from .views.account.views import account_login, account_signup, account_reset_password, account_reset_password_done, account_reset_password_key, account_reset_password_key_done

@@ -13,15 +13,24 @@ def auth_login(request):
         try:
             user = FintechUser.objects.get(email=username)
             if not user.check_password(password):
-                return http.HttpResponseNotFound("Invalid username or password")
+                return http.JsonResponse({
+                    "code": "400",
+                    "error": "Invalid username or password"
+                })
         except:
-            return http.HttpResponseNotFound('Invalid username or password')
+            return http.JsonResponse({
+                "code": "400",
+                "error": "Invalid username or password"
+            })
 
         res = authviews.login(request)
         if(res.status_code == 200):
-           return redirect('/')
+           return http.JsonResponse({
+                "code": "400",
+                "error": "Invalid username or password"
+            })
         return res
-    return redirect('/account/login')
+    return redirect('/')
 
 def auth_signup(request):
     if request.method == "POST":
@@ -32,16 +41,25 @@ def auth_signup(request):
         # Check if user already exists
         try:
             FintechUser.objects.get(email=username)
-            return http.HttpResponseBadRequest('A user with this email already exists')
+            return http.JsonResponse({
+                "code": "400",
+                "error": "A user with this email already exists."
+            })
         except:
             pass
         
         if password1 != password2:
-            return http.HttpResponseBadRequest('Passwords do not match')
+            return http.JsonResponse({
+                "code": "400",
+                "error": "Passwords do not match"
+            })
 
         res = authviews.signup(request)
         if(res.status_code == 200):
-           return redirect('/signup')
+           return http.JsonResponse({
+                "code": "400",
+                "error": res.getvalue()
+            })
         return res
     return redirect('/signup')
 
