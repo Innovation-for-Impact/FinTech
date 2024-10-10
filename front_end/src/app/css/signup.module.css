@@ -10,10 +10,10 @@
 }
 
 /* styling of the title of the text on signup page */
-.title{
+.title {
   font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Verdana, sans-serif;
   color: #15253aff;
-  font-size: 0.8vw;
+  font-size: 3.0vw;
   text-align: left;
   margin-top: -10%;
   margin-left: 7%;
@@ -31,7 +31,8 @@
   font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Verdana, sans-serif;
   text-align: left;
   margin-left: 7%;
-  color: #b3b2b2; 
+  color: #676666;
+  font-size: 2.8vw;
 }
 
 /* positions/styles the first name input box */
@@ -49,7 +50,8 @@
 .inputBox2{
   font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Verdana, sans-serif;
   text-align: left;
-  color: #b3b2b2; 
+  color: #676666;
+  font-size: 2.8vw;
 }
 
 /* positions/styles the last name input box */
@@ -76,11 +78,13 @@
   font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Verdana, sans-serif;
   text-align: left;
   margin-left: 7%;
-  color: #b3b2b2; 
+  color: #676666;
+  font-size: 2.8vw;
 }
 
 /* adds space between the input boxes */
 .inputBox input{
+  display: block;
   background-color: white;
   border: 0.06em solid #b3b2b2; 
   border-radius: 0.5em;
@@ -106,11 +110,84 @@
 /* styles checkbox text */
 .checkbox label {
   font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Verdana, sans-serif;
-  color: #b3b2b2; 
+  color: #676666;
   margin-left: 5%;
+  font-size: 2.8vw; 
 }
 
 /* positions checkbox */
 .checkbox{
   margin-bottom: 5%;
 }
+
+/* Tablet Styling */
+@media (min-width: 768px) {
+  .title {
+    margin-top: -5%;
+    font-size: 1.8vw;
+  }
+
+  .checkbox label {
+    font-size: 1.8vw;
+  }
+
+  .inputName {
+    font-size: 1vw;
+  }
+
+  .inputBox1 input, .inputBox2 input, .inputBox input, .inputBoxPass input {
+    margin-left: -0.2vw;
+    margin-bottom: 1vw;
+  }
+}
+
+/* Desktop Styling */
+@media (min-width: 1024px) {
+  /* fix zooming in and input boxes getting messed up issue */
+  .title {
+    margin-top: -10%;
+    font-size: 1vw;
+  }
+
+  .checkbox label {
+    font-size: 1vw;
+  }
+
+  .inputName {
+    font-size: 1vw;
+    margin-bottom: -1vw;
+  }
+
+  .inputBox1 label{
+  }
+
+}
+
+/* Desktop Styling */
+  /* .signup {
+    width: 45vw;
+  }
+
+  .inputBox1, .inputBox2, .inputBox, .inputBoxPass {
+    margin-bottom: 1.5vw;
+  }
+
+  .checkbox {
+    margin-bottom: 2vw;
+  }
+
+  .inputBox1 input, .inputBox2 input, .inputBox input, .inputBoxPass input {
+    margin-left: -0.2vw;
+    margin-bottom: 1.2vw;
+  }
+
+  .errorMessageSignup {
+    margin: 1.5vw auto;
+    padding: 1vw;
+    font-size: 1.5vw;
+  }
+
+  .x_signup {
+    right: 2vw;
+  }
+} */

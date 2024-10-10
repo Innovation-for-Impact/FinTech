@@ -42,22 +42,33 @@ export default function Home() {
         <nav className={homeStyles.homeNavbar}>
           {/* <a href="#" className={homeStyles.nav_branding}>Menu</a> */}
           <ul className={`${homeStyles.nav_menu} ${isOpen ? homeStyles.open : ''}`}>
-            <Link className={`${homeStyles.nav_item} ${homeStyles.active}`} href = "home" onClick={handleLinkClick}>
-              <p>Home</p>
-            </Link>
-            <Link className={homeStyles.nav_item} href = "home/goals" onClick={handleLinkClick}>
-              <p>Goals</p>
-            </Link>
-            <Link  className={homeStyles.nav_item} href = "home/calculator" onClick={handleLinkClick}>
-              <p>Calculator</p>
-            </Link>
-            <Link  className={homeStyles.nav_item} href = "home/friends" onClick={handleLinkClick}>
-              <p>Friends</p>
-            </Link>
-            <Link  className={homeStyles.nav_item} href = "home/profile" onClick={handleLinkClick}>
-              <p>Profile</p>
-            </Link>
+            <li>
+              <Link className={`${homeStyles.nav_item} ${homeStyles.active}`} href="home" onClick={handleLinkClick}>
+                <p>Home</p>
+              </Link>
+            </li>
+            <li>
+              <Link className={homeStyles.nav_item} href="home/goals" onClick={handleLinkClick}>
+                <p>Goals</p>
+              </Link>
+            </li>
+            <li>
+              <Link className={homeStyles.nav_item} href="home/calculator" onClick={handleLinkClick}>
+                <p>Calculator</p>
+              </Link>
+            </li>
+            <li>
+              <Link className={homeStyles.nav_item} href="home/friends" onClick={handleLinkClick}>
+                <p>Friends</p>
+              </Link>
+            </li>
+            <li>
+              <Link className={homeStyles.nav_item} href="home/profile" onClick={handleLinkClick}>
+                <p>Profile</p>
+              </Link>
+            </li>
           </ul>
+
 
           {/* display IFI logo */}
           <img className={homeStyles.img}

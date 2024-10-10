@@ -1,11 +1,13 @@
 "use client";
 import styles from "../app/css/page.module.css";
 import Link from 'next/link';
+import logo from '../app/images/icon_transparent.png';
 import React, { useState } from "react";
 import {Icon} from 'react-icons-kit';
 import {eyeOff} from 'react-icons-kit/feather/eyeOff';
 import {eye} from 'react-icons-kit/feather/eye';
 import {x} from 'react-icons-kit/feather/x';
+import { useCookies } from 'next-client-cookies';
 
 export default function Home() {
   const [username, setUsername] = useState('');
@@ -15,8 +17,9 @@ export default function Home() {
   const [icon, setIcon] = useState(eyeOff);
   const [XIcon, setXIcon] = useState(x);
   const [submitted, setSubmitted] = useState(false);
+  const cookies = useCookies();
 
-  // show or hide password based on user preference
+  // show or hide password based on user preference 
   // (ie. eye toggle button)
   const handleToggle = () => {
     if (type==='password'){
@@ -50,7 +53,6 @@ export default function Home() {
     setSubmitted(true);
 
     setErrorMessage('');
-
     // TODO backend: 
     //  - add further username validation here 
     //  - also edit: form > input > username/password "className" attribute
@@ -66,9 +68,21 @@ export default function Home() {
       } else if (password.length < 8) {
         setErrorMessage('Error: Invalid password');
       }
-    } // if there are no errors (login successful), redirect to home page
-    else { 
-      window.location.href = '/home';
+    } else {
+      const data = new FormData(e.currentTarget)
+      fetch(e.currentTarget.action, {
+        method: "post",
+        body: data
+      }).then(res => {
+        return res.json();
+      }).then(json => {
+        if(json["code"] === "400")
+          setErrorMessage(json["error"]);
+        else
+          console.log(json);
+      }).catch(err => {
+        console.error(err);
+      })
     }
   } // handleSubmit
 
@@ -78,20 +92,20 @@ export default function Home() {
       <img
         className={styles.img}
         src="/_next/static/media/icon_transparent.e1a2640c.png"
-        alt="Innovation for Impact logo" 
+        alt="Innovation for Impact Logos" 
       />
 
-      <div class={styles.title}>
+      <div className={styles.title}>
         <h1>WELCOME BACK!</h1>
       </div>
 
-      <form onSubmit={handleSubmit}>
+      <form action="/api/account/login/" method="POST" onSubmit={handleSubmit}>
         <div className={styles.info}>
           {/* accept USERNAME */}
           <input 
             className= {`${styles.input} ${submitted && username.length < 4 && styles.error}`}
-            placeholder="Username" // placeholder word (ie. shows up in gray-ed out font)
-            name="username"  // allow auto-fill
+            placeholder="Email" // placeholder word (ie. shows up in gray-ed out font)
+            name="login"  // allow auto-fill
             value={username} // save input to variable
             onChange={(e) => setUsername(e.target.value)}
           />
@@ -100,11 +114,20 @@ export default function Home() {
           <input
             className={`${styles.input} ${submitted && password.length < 8 && styles.error}`}
             style={{marginLeft: '1vw'}}
+            type={type}
             placeholder="Password"
             name="password"
+            aria-label="password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
             autoComplete="current-password"
+          />
+
+          <input 
+            className="hidden"
+            name="csrfmiddlewaretoken"
+            value={cookies.get("csrftoken")}
+            readOnly={true}
           />
 
           {/* include eye icon for PASSWORD toggle */}
@@ -114,7 +137,7 @@ export default function Home() {
             onClick={handleToggle}
             onKeyDown={(e) => handleKeyClick(e, handleToggle)}
           >
-            <Icon icon={icon} size={"1vw"}/>
+            <Icon icon={icon} font-size={"1vw"}/>
           </span>
 
           {/* provide link to recover account (redirect to RECOVER)*/}
@@ -137,7 +160,7 @@ export default function Home() {
                 onClick={handleXtoggle}
                 onKeyDown={(e) => handleKeyClick(e, handleXtoggle)}
               >
-                <Icon icon={XIcon} size={"1vw"}/>
+                <Icon icon={XIcon} font-size={"1vw"}/>
               </span>
             </p>
             </div>

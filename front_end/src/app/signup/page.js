@@ -1,12 +1,15 @@
 "use client";
+import Image from "next/image";
 import styles from "../css/page.module.css";
 import signupStyles from "../css/signup.module.css";
+import logo from '../images/icon_transparent.png';
 import Link from 'next/link';
 import React, { useState } from "react";
 import {Icon} from 'react-icons-kit';
 import {eyeOff} from 'react-icons-kit/feather/eyeOff';
 import {eye} from 'react-icons-kit/feather/eye';
 import {x} from 'react-icons-kit/feather/x';
+import { useCookies } from "next-client-cookies";
 
 export default function Home() {
   const [firstName, setFirst] = useState('');
@@ -26,6 +29,7 @@ export default function Home() {
   const [confirmPasswordIcon, setConfirmPasswordIcon] = useState(eyeOff);
   const [XIcon, setXIcon] = useState(x);
   const [submitted, setSubmitted] = useState(false);
+  const cookies = useCookies();
 
   // show or hide password based on user preference
   // (ie. eye toggle button)
@@ -73,8 +77,6 @@ export default function Home() {
 
     setErrorMessage('');
 
-    // TODO backend: add further username validation here  
-
     // if there is an error, create an error message
     if (!firstName || !lastNameType || !password || !confirmPassword || !email) {
       setErrorMessage('Error: All fields are required!');
@@ -88,15 +90,32 @@ export default function Home() {
         setErrorMessage('Error: Invalid password');
       }
     } // if password confirmation and password are not identical
-    else if (confirmPassword != password) {
-      setErrorMessage('Error: Password confirmation does not match');
-    } // if user has not agreed to terms and conditions
     else if (document.getElementById("termsCheckbox").checked==false) {
       setErrorMessage('Error: Did not check Terms and Conditions');
     } // if there are no errors (sign up successful), redriect to the verify page
     else { 
+      const data = new FormData(e.currentTarget);
+      fetch(e.currentTarget.action, {
+        method: e.currentTarget.method,
+        body: data
+      })
+      .then(res => {
+        if(!res.ok)
+          throw new Error(res);
+        return res.json();
+      })
+      .then(json => {
+        if(json["code"] === "400") {
+          setErrorMessage(json["error"])
+          return;
+        }
+      })
+      .catch(err => {
+        console.log(err);
+        setErrorMessage("Encountered an error")
+      })
       // make sure to include "email" data
-      window.location.href = `/signup/verify?email=${encodeURIComponent(email)}`;
+      //window.location.href = `/signup/verify?email=${encodeURIComponent(email)}`;
       // window.location.href = '/signup/verify';
     }
   } // handleSubmit
@@ -115,7 +134,7 @@ export default function Home() {
         <h1>Sign Up</h1>
       </div>
       
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={handleSubmit} method="post" action="/api/account/signup/">
         <div className={styles.form}>
 
           {/* accept FIRST and LAST NAME input */}
@@ -130,6 +149,7 @@ export default function Home() {
                 type={firstNameType}
                 name="firstName" 
                 value={firstName}
+                aria-label="first name"
                 onChange={(e) => setFirst(e.target.value)}
               />
             </div>
@@ -144,6 +164,7 @@ export default function Home() {
                 type={lastNameType}
                 name="lastName" 
                 value={lastName}
+                aria-label="last name"
                 onChange={(e) => setLast(e.target.value)}
               />
             </div>
@@ -161,20 +182,22 @@ export default function Home() {
                 type={emailType}
                 name="email" 
                 value={email}
+                aria-label="email"
                 onChange={(e) => setEmail(e.target.value)}
               />
             </div>
 
             {/* accept PASSWORD */}
             <div className={signupStyles.inputBoxPass}>
-              <label htmlFor="Password">
+              <label htmlFor="password1">
                 Password
               </label>
               <input
                 className={`${styles.input} ${submitted && password.length < 8 && styles.error_signup}`}
                 type={passwordType}
-                name="password"
+                name="password1"
                 value={password}
+                aria-label="password"
                 onChange={(e) => setPassword(e.target.value)}
               />
               
@@ -185,19 +208,20 @@ export default function Home() {
                 onClick={handlePasswordToggle}
                 onKeyDown={(e) => handleKeyClick(e, handlePasswordToggle)}
               >
-                <Icon icon={passwordIcon} size={"1vw"}/>
+                <Icon icon={passwordIcon} font-size={"1vw"}/>
               </span>
             </div>
 
             <div className={signupStyles.inputBoxPass}>
-              <label htmlFor="confirmPassword">
+              <label htmlFor="password2">
                 Password Confirmation
               </label>
               <input
                   className={`${styles.input} ${submitted && (confirmPassword !== password || !confirmPassword) && styles.error_signup}`}
                   type={confirmPasswordType}
-                  name="confirmPassword"
+                  name="password2"
                   value={confirmPassword}
+                  aria-label="confirm password"
                   onChange={(e) => setConfirmPassword(e.target.value)}
               />
 
@@ -208,7 +232,7 @@ export default function Home() {
                 onClick={handleConfirmPasswordToggle}
                 onKeyDown={(e) => handleKeyClick(e, handleConfirmPasswordToggle)}
               >
-                <Icon icon={confirmPasswordIcon} size={"1vw"}/>
+                <Icon icon={confirmPasswordIcon} font-size={"1vw"}/>
               </span>
             </div>
           </div>
@@ -224,7 +248,7 @@ export default function Home() {
             />
             <label htmlFor="termsCheckbox">
               I agree to the {" "}
-              <Link style={{ color: 'grey' }} href="https://maizepages.umich.edu/organization/innovationforimpact">
+              <Link href="https://maizepages.umich.edu/organization/innovationforimpact">
                 Terms and Conditions
               </Link>
             </label>
@@ -233,7 +257,7 @@ export default function Home() {
           {/* incorporate error message based on user input */}
           { errorMessage && (
             <div>          
-            <p className={styles.errorMessage}>
+            <p className={styles.errorMessageSignup}>
               {errorMessage}
 
               {/* include X for hiding error message */}
@@ -243,11 +267,18 @@ export default function Home() {
                 onClick={handleXtoggle}
                 onKeyDown={(e) => handleKeyClick(e, handleXtoggle)}
               >
-                <Icon icon={XIcon} size={"1vw"}/>
+                <Icon icon={XIcon} font-size={"1vw"}/>
               </span>
             </p>
             </div>
           )}
+
+          <input 
+            className="hidden"
+            name="csrfmiddlewaretoken"
+            value={cookies.get("csrftoken")}
+            readOnly={true}
+          />
 
           {/* allow user to submit the form */}
           <button> 

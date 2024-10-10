@@ -44,6 +44,7 @@ export default function ForgotPassword() {
           className={`${specificStyles.input} ${submitted}`}
           placeholder="123-456"
           value={code}
+          aria-label="input"
           onChange={(e) => setCode(e.target.value)}
           // TODO Arleen: remove the "required" below and 
           // incorporate an error message if the input is not 

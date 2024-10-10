@@ -2,8 +2,13 @@ import http.client
 import json
 
 # Constants
-client_id = "secret"
-secret = "also_secret"
+file = open("keys.txt")
+keys = file.read().split()
+
+client_id = keys[0]
+secret = keys[1]
+
+file.close()
 
 conn = http.client.HTTPSConnection("sandbox.plaid.com")
 headers = {
