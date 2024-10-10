@@ -1,6 +1,7 @@
 "use client";
 import styles from "../app/css/page.module.css";
 import Link from 'next/link';
+import logo from '../app/images/icon_transparent.png';
 import React, { useState } from "react";
 import {Icon} from 'react-icons-kit';
 import {eyeOff} from 'react-icons-kit/feather/eyeOff';
@@ -18,7 +19,7 @@ export default function Home() {
   const [submitted, setSubmitted] = useState(false);
   const cookies = useCookies();
 
-  // show or hide password based on user preference
+  // show or hide password based on user preference 
   // (ie. eye toggle button)
   const handleToggle = () => {
     if (type==='password'){
@@ -91,7 +92,7 @@ export default function Home() {
       <img
         className={styles.img}
         src="/_next/static/media/icon_transparent.e1a2640c.png"
-        alt="Innovation for Impact logo" 
+        alt="Innovation for Impact Logos" 
       />
 
       <div className={styles.title}>
@@ -103,8 +104,14 @@ export default function Home() {
           {/* accept USERNAME */}
           <input 
             className= {`${styles.input} ${submitted && username.length < 4 && styles.error}`}
+<<<<<<< HEAD
             placeholder="Email" // placeholder word (ie. shows up in gray-ed out font)
             name="login"  // allow auto-fill
+=======
+            placeholder="Username" // placeholder word (ie. shows up in gray-ed out font)
+            name="username"  // allow auto-fill
+            aria-label="username"
+>>>>>>> 061c0135da9c24931b68ebd99e8c8e08f435b176
             value={username} // save input to variable
             onChange={(e) => setUsername(e.target.value)}
           />
@@ -116,6 +123,7 @@ export default function Home() {
             type={type}
             placeholder="Password"
             name="password"
+            aria-label="password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
             autoComplete="current-password"
@@ -135,7 +143,7 @@ export default function Home() {
             onClick={handleToggle}
             onKeyDown={(e) => handleKeyClick(e, handleToggle)}
           >
-            <Icon icon={icon} size={"1vw"}/>
+            <Icon icon={icon} font-size={"1vw"}/>
           </span>
 
           {/* provide link to recover account (redirect to RECOVER)*/}
@@ -158,7 +166,7 @@ export default function Home() {
                 onClick={handleXtoggle}
                 onKeyDown={(e) => handleKeyClick(e, handleXtoggle)}
               >
-                <Icon icon={XIcon} size={"1vw"}/>
+                <Icon icon={XIcon} font-size={"1vw"}/>
               </span>
             </p>
             </div>

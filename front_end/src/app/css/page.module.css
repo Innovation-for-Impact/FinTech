@@ -20,7 +20,7 @@
   /* round the edges of background box */
   border-radius: 1.5vh; 
   /* change width and height of background box */
-  width: 29vw;
+  width: 80%;
   height: auto;
   /* position is absolute and sets top and left positioning */
   position: absolute;
@@ -38,10 +38,10 @@
   /* color is #15253A */
   color: #15253A;
   /* sets the margins */
-  margin-top: 1em;
-  margin-bottom: -1em;
+  margin-top: 0.5em;
+  margin-bottom: -1.7em;
   /* changes font-size */
-  font-size: 2.1vw;
+  font-size: 4.2vw;
 }
 
 /* using https://www.w3schools.com/css/tryit.asp?filename=trycss_forms */
@@ -53,32 +53,35 @@
   border: 0.06em solid #b3b2b2; 
   border-radius: 0.5em;
   /* adjust sizing of the input boxes */
-  width: 90%;
+  width: 95%;
   height: auto;
   margin-top: 1em; 
   padding: 0.6em;
   /* adjusts the text when user types in the input boxes */
   font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Verdana, sans-serif;
-  font-size: 1vw;
+  font-size: 2.8vw;
   color: black;
 } 
 
 /* adds margin to text under login button */
 .noAccount {
+  font-size: 2vw;
   margin-top: 2vh;
+  color: #676666 !important;
 } 
 
 /* centers everything inside of login page background */
 .info {
   align-content: center;
-  margin: 10% 7%;
+  margin: 10% 0%;
 }
 
 /* positions the forgot password link */
 .forgot { 
+  /* font-size: 2vw??  */
   /* sets margins */
   margin-top: 1.5vh;
-  margin-bottom: 2vh;
+  margin-bottom: 1vh;
   margin-right: 1.1vw;
   /* positions it to the right */
   float: right;
@@ -93,7 +96,7 @@
   /* rounds the edges of the border */
   border-radius: 1.5vh; 
   /* changes the width and height */
-  width: 29vw;
+  width: 80vw;
   height: auto;
   /* position is absolute and sets top and left positioning */
   position:absolute;
@@ -103,6 +106,7 @@
   text-align: center;
   /* sets padding */
   padding-bottom: 2%;
+  padding-top: 2%;
   transform: translate(-50%, -50%); 
 }
 
@@ -114,9 +118,9 @@
   /* rounds the edges all the way so that it is a circle */
   border-radius: 100%;
   /* adjusts sizing */
-  width: 10vw;
+  width: 25vw;
   /* add a white border */
-  border: solid white 0.1vw;
+  border: solid white 0.08vw;
   /* sets margin at top */
   margin-top: -20%;
 }
@@ -131,7 +135,7 @@
   /* sets the margin to be at correct spot*/
   margin: 5vh auto 1vh auto;
   /* sets background color and curves the edges of the box */
-  background-color: rgb(255, 200, 210);
+  background-color: rgba(255, 200, 210, 0.748);
   border-radius: 0.5em;
   /* add width and height */
   width: 90%;
@@ -143,8 +147,27 @@
   /* changes the font and text color */
   font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande';
   font-weight: bold;
-  font-size: 1vw; 
-  color: #7b7b7b !important;
+  color: rgb(13, 22, 35) !important;
+}
+
+/* styles error messages specifically on Signup Page */
+.errorMessageSignup {
+  /* sets the margin to be at correct spot*/
+  margin: 1vh auto 1vh auto;
+  /* sets background color and curves the edges of the box */
+  background-color: rgba(255, 200, 210, 0.748);
+  border-radius: 0.5em;
+  /* add width and height */
+  width: 90%;
+  height: auto;
+  /* add padding */
+  padding: 0.65em;
+  /* align text to start on left */
+  text-align: left;
+  /* changes the font and text color */
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande';
+  font-weight: bold;
+  color: rgb(13, 22, 35) !important;
 }
 
 /* positions the eye icon in password input fields */
@@ -154,6 +177,7 @@
   /* sets the location of eye icon */
   right: 2vw;
   margin-top: auto;
+  margin-left: -1em;
   margin-bottom: auto;
 }
 
@@ -167,9 +191,8 @@
   /* position is absolute */
   position: absolute;
   /* sets the location of x icon */
-  right: 4vw;
-  margin-top: auto;
-  margin-bottom: auto;
+  right: 5vw;
+  top: 61.7%;
 }
 
 /* positions the x icon in error messages on signup page */
@@ -177,9 +200,20 @@
   /* position is absolute */
   position: absolute;
   /* sets the location of x icon */
-  right: 2vw;
+  right: 6vw;
   margin-top: auto;
   margin-bottom: auto;
+}
+
+/* styles the line under signup and login button */
+.signup p, .login p {
+  /* change color to #8d8b8b */
+  color: #707070;
+  /* adjust font */
+  font-size: 2.8vw;
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Verdana, sans-serif;
+  font-weight: 350;
+  padding-bottom: 1vh;
 }
 
 /* sets the color of the input placeholder text to #a8a8a8 */
@@ -195,13 +229,13 @@
   /* curves edges of the button */
   border-radius: 0.5em;
   /* adjusts width and height */
-  width: 83%;
+  width: 90%;
   height: auto;
   padding: 0.65em;
   /* styles the font in login button */
   font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Verdana, sans-serif;
   font-weight: bold;
-  font-size: 1vw; 
+  font-size: 3.2vw; 
   color: #15253A;
 }
 
@@ -219,7 +253,7 @@
   /* styles the font in signup button */
   font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Verdana, sans-serif;
   font-weight: bold;
-  font-size: 1vw; 
+  font-size: 3.2vw;
   color: #15253A;
   /* add a margin since there is text under button */
   margin-bottom: 5%;
@@ -231,245 +265,124 @@
   cursor: pointer;
 }
 
-/* styles the line under signup and login button */
-.signup p, .login p {
-  /* change color to #8d8b8b */
-  color: #8d8b8b;
-  /* adjust font */
-  font-size: 1vw;
-  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Verdana, sans-serif;
-  font-weight: 350;
-}
-
 /* positions the logo to be relative */
 .logo {
   position: relative;
 }
 
-/* PROVIDED CONTENT FROM BELOW - We did not write this! It came with the CSS file */
-.main {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  align-items: center;
-  padding: 6rem;
-  min-height: 100vh;
+/* adjust the size of the eye icon */
+.icon {
+  width: 1vw;
+  height: 1vw;
+  margin-left: -1em;
 }
 
-.description {
-  display: inherit;
-  justify-content: inherit;
-  align-items: inherit;
-  font-size: 0.85rem;
-  max-width: var(--max-width);
-  width: 100%;
-  font-family: var(--font-mono);
-}
-
-.description a {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 0.5rem;
-}
-
-.description p {
-  position: relative;
-  margin: 0;
-  padding: 1rem;
-  background-color: rgba(var(--callout-rgb), 0.5);
-  border: 1px solid rgba(var(--callout-border-rgb), 0.3);
-  border-radius: var(--border-radius);
-}
-
-.code {
-  font-weight: 700;
-  font-family: var(--font-mono);
-}
-
-.grid {
-  display: grid;
-  grid-template-columns: repeat(4, minmax(25%, auto));
-  max-width: 100%;
-  width: var(--max-width);
-}
-
-.card {
-  padding: 1rem 1.2rem;
-  border-radius: var(--border-radius);
-  background: rgba(var(--card-rgb), 0);
-  border: 1px solid rgba(var(--card-border-rgb), 0);
-  transition: background 200ms, border 200ms;
-}
-
-.card span {
-  display: inline-block;
-  transition: transform 200ms;
-}
-
-.card h2 {
-  font-weight: 600;
-  margin-bottom: 0.7rem;
-}
-
-.card p {
-  margin: 0;
-  opacity: 0.6;
-  font-size: 0.9rem;
-  line-height: 1.5;
-  max-width: 30ch;
-  text-wrap: balance;
-}
-
-.center {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  position: relative;
-  padding: 4rem 0;
-}
-
-.center::before {
-  background: var(--secondary-glow);
-  border-radius: 50%;
-  width: 480px;
-  height: 360px;
-  margin-left: -400px;
-}
-
-.center::after {
-  background: var(--primary-glow);
-  width: 240px;
-  height: 180px;
-  z-index: -1;
-}
-
-.center::before,
-.center::after {
-  content: "";
-  left: 50%;
-  position: absolute;
-  filter: blur(45px);
-  transform: translateZ(0);
-}
-
-/* Enable hover only on non-touch devices */
-@media (hover: hover) and (pointer: fine) {
-  .card:hover {
-    background: rgba(var(--card-rgb), 0.1);
-    border: 1px solid rgba(var(--card-border-rgb), 0.15);
+/* Tablet Styling */
+@media (min-width: 768px) {
+  .login {
+    width: 50%;
   }
 
-  .card:hover span {
-    transform: translateX(4px);
+  .title h1 {
+    margin-top: 1em;
+    margin-bottom: -1.7em;
+    font-size: 2.7vw;
+  }
+
+  .input {
+    font-size: 1.8vw;
+    width: 90%;
+    margin-left: 10px;
+  }
+
+  .form label, .form p, .signup p, .login p {
+    font-size: 1.8vw;
+  }
+
+  .login button, .signup button {
+    font-size: 2vw;
+  }
+
+  .img {
+    border-width: 0.16vw;
+    width: 15vw;
+  }
+
+  .x {
+    right: 4vw;
+    top: 64.2%;
+  }
+
+  .signup {
+    width: 55vw;
+  }
+
+  .x_signup {
+    right: 4vw;
   }
 }
 
-@media (prefers-reduced-motion) {
-  .card:hover span {
-    transform: none;
-  }
-}
-
-/* Mobile */
-@media (max-width: 700px) {
-  .content {
-    padding: 4rem;
+/* Desktop Styling */
+@media (min-width: 1024px) {
+  /* Flora move desktop styling HERE */
+  .login {
+    width: 29vw;
   }
 
-  .grid {
-    grid-template-columns: 1fr;
-    margin-bottom: 120px;
-    max-width: 320px;
-    text-align: center;
+  .title h1 {
+    margin-bottom: -1em;
+    font-size: 2vw;
   }
 
-  .card {
-    padding: 1rem 2.5rem;
+  .input {
+    width: 90%;
+    font-size: 1vw;
+    margin-left: -2px;
   }
 
-  .card h2 {
-    margin-bottom: 0.5rem;
+  .noAccount {
+    margin-top: 1vw;
   }
 
-  .center {
-    padding: 8rem 0 6rem;
+  .info {
+    margin: 10% 7%;
   }
 
-  .center::before {
-    transform: none;
-    height: 300px;
+  .forgot {
+    margin-bottom: 2vh;
   }
 
-  .description {
-    font-size: 0.8rem;
+  .form label, .form p, .singup p, .login p {
+    font-size: 1vw;
   }
 
-  .description a {
-    padding: 1rem;
+  .eye {
+    margin-left: -2px;
   }
 
-  .description p,
-  .description div {
-    display: flex;
-    justify-content: center;
-    position: fixed;
-    width: 100%;
+  .login button {
+    width: 83%;
+    font-size: 1vw;
   }
 
-  .description p {
-    align-items: center;
-    inset: 0 0 auto;
-    padding: 2rem 1rem 1.4rem;
-    border-radius: 0;
-    border: none;
-    border-bottom: 1px solid rgba(var(--callout-border-rgb), 0.25);
-    background: linear-gradient(
-      to bottom,
-      rgba(var(--background-start-rgb), 1),
-      rgba(var(--callout-rgb), 0.5)
-    );
-    background-clip: padding-box;
-    backdrop-filter: blur(24px);
+  .signup button {
+    font-size: 1vw; 
   }
 
-  .description div {
-    align-items: flex-end;
-    pointer-events: none;
-    inset: auto 0 0;
-    padding: 2rem;
-    height: 200px;
-    background: linear-gradient(
-      to bottom,
-      transparent 0%,
-      rgb(var(--background-end-rgb)) 40%
-    );
-    z-index: 1;
-  }
-}
-
-/* Tablet and Smaller Desktop */
-@media (min-width: 701px) and (max-width: 1120px) {
-  .grid {
-    grid-template-columns: repeat(2, 50%);
-  }
-}
-
-@media (prefers-color-scheme: dark) {
-  .ifiLogo {
-    filter: invert(1);
+  .img {
+    border-width: 0.1vw;
+    width: 10vw;
   }
 
-  .logo {
-    filter: invert(1) drop-shadow(0 0 0.3rem #ffffff70);
+  .x {
+    top: 66.5%;
   }
-}
 
-@keyframes rotate {
-  from {
-    transform: rotate(360deg);
+  .signup {
+    width: 35vw;
   }
-  to {
-    transform: rotate(0deg);
+
+  .x_signup {
+    right: 2vw;
   }
 }
