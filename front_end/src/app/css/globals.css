@@ -51,10 +51,12 @@ footer p {
   color: white;
 }
 
-<<<<<<< HEAD
 .hidden {
-  display: none;
-=======
+  opacity: 0;
+  visibility: hidden;
+  position: absolute;
+}
+
 /* Tablet Styling */
 @media (min-width: 768px) {
   /* styles the footer paragraph */
@@ -70,5 +72,4 @@ footer p {
   footer p {
     font-size: 0.85vw;
   }
->>>>>>> 061c0135da9c24931b68ebd99e8c8e08f435b176
 }

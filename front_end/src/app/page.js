@@ -104,14 +104,8 @@ export default function Home() {
           {/* accept USERNAME */}
           <input 
             className= {`${styles.input} ${submitted && username.length < 4 && styles.error}`}
-<<<<<<< HEAD
             placeholder="Email" // placeholder word (ie. shows up in gray-ed out font)
             name="login"  // allow auto-fill
-=======
-            placeholder="Username" // placeholder word (ie. shows up in gray-ed out font)
-            name="username"  // allow auto-fill
-            aria-label="username"
->>>>>>> 061c0135da9c24931b68ebd99e8c8e08f435b176
             value={username} // save input to variable
             onChange={(e) => setUsername(e.target.value)}
           />
