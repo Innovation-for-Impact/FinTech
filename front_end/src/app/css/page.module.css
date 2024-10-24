@@ -99,9 +99,9 @@
   width: 80vw;
   height: auto;
   /* position is absolute and sets top and left positioning */
-  position:absolute;
+  position: absolute;
   top: 48vh;
-  left: 50vw;
+  left: 50vw; 
   /* aligns text to be centered */
   text-align: center;
   /* sets padding */
