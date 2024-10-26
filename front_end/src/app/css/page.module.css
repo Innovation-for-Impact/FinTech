@@ -379,7 +379,8 @@
   }
 
   .signup {
-    width: 35vw;
+    width: 35vw; 
+    margin-top: 3em;
   }
 
   .x_signup {
