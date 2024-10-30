@@ -7,6 +7,7 @@ import {Icon} from 'react-icons-kit';
 import { ic_menu } from 'react-icons-kit/md/ic_menu';
 import { ic_close } from 'react-icons-kit/md/ic_close';
 import { ic_search } from 'react-icons-kit/md/ic_search';
+import { ic_person } from 'react-icons-kit/md/ic_person';
 
 export default function Friends() {
   const [isOpen, setIsOpen] = useState(false);
