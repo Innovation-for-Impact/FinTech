@@ -136,7 +136,6 @@
 
 /* Desktop Styling */
 @media (min-width: 1024px) {
-  
   /* fix zooming in and input boxes getting messed up issue */
   .title {
     margin-top: -10%;
@@ -146,9 +145,10 @@
   .checkbox label {
     font-size: 1vw;
   }
-  
-  .inputBox input {
-    margin-top: 1.2em;
+
+  .inputName {
+    font-size: 1vw;
+    margin-bottom: -1vw;
   }
 
 }
