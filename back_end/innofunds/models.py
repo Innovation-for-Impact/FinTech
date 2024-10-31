@@ -5,7 +5,7 @@ from django.contrib.auth.models import BaseUserManager, AbstractUser
 
 # USER
 class FintechUserManager(BaseUserManager):
-    def create_user(self, email, first_name, password=None):
+    def create_user(self, email, first_name, last_name, password=None):
         """
         Creates and saves a User with the given email, first name
         and password.
@@ -17,14 +17,15 @@ class FintechUserManager(BaseUserManager):
 
         user = self.model(
             email=self.normalize_email(email),
-            first_name=first_name
+            first_name=first_name,
+            last_name = last_name
         )
 
         user.set_password(password)
         user.save(using=self._db)
         return user
 
-    def create_superuser(self, email, first_name, password=None):
+    def create_superuser(self, email, first_name, last_name, password=None):
         """
         Creates and saves a superuser with the given email, first name
         and password.
@@ -32,6 +33,7 @@ class FintechUserManager(BaseUserManager):
         user = self.create_user(
             email,
             first_name=first_name,
+            last_name = last_name,
             password=password,
         )
         user.is_admin = True
@@ -45,10 +47,11 @@ class FintechUser(AbstractUser):
         unique=True,
     )
     first_name = models.CharField(max_length=32)
+    last_name = models.CharField(max_length=32)
     is_active = models.BooleanField(default=True)
     is_admin = models.BooleanField(default=False)
     
-    REQUIRED_FIELDS=["first_name"]
+    REQUIRED_FIELDS=["first_name", "last_name"]
     USERNAME_FIELD = "email"
     objects = FintechUserManager()
 

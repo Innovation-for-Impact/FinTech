@@ -8,9 +8,9 @@ class FintechUserDetailsSerializer(UserDetailsSerializer):
     """
     class Meta:
         model = FintechUser
-        fields = ["id", "email", "first_name"]
+        fields = ["id", "email", "first_name", "last_name"]
 
 class UserSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = FintechUser
-        fields = ["id", "email", "first_name"]
+        fields = ["id", "email", "first_name", "last_name"]
