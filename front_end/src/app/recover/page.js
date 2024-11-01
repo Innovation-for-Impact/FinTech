@@ -41,8 +41,7 @@ export default function ForgotPassword() {
     }
     // TODO backend: send request for recovery email backend server
     const data = new FormData(e.currentTarget)
-    console.log(e.currentTarget.action)
-    fetch(e.currentTarget.action, {
+    fetch(e.target.action, {
       method: "post",
       body: data
     })
@@ -84,7 +83,7 @@ export default function ForgotPassword() {
         {/* accept user input (email address) through a form */}
         
         {/* User clicks submits and gets a success message or error message */}
-        <form onSubmit={handleSubmit} action="/api/account/reset_password/" method="POST">
+        <form onSubmit={handleSubmit} action="/api/auth/password/reset/" method="POST">
           <input
             className={`${specificStyles.input} ${submitted && email.length === 0 && styles.error}`}
             type="email"
