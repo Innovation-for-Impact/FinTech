@@ -25,8 +25,16 @@ SECRET_KEY = 'django-insecure-%$qe$b%#hz^t2=1j7#r0f&eqba1+e)t&xj*!et+#%qa$$4)euw
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
 
+ALLOWED_HOSTS = ["localhost", "127.0.0.1"]
+
+CORS_ALLOWED_ORIGINS = [
+    "http://localhost:3000",
+    "http://127.0.0.1:3000",
+    "http://0.0.0.0"
+]
+
+CORS_ALLOW_CREDENTIALS = True
 
 # Application definition
 
@@ -47,6 +55,8 @@ INSTALLED_APPS = [
     'dj_rest_auth.registration',
     'innofunds'
 ]
+
+SITE_ID = 1
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
