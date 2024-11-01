@@ -70,7 +70,7 @@ export default function Home() {
       }
     } else {
       const data = new FormData(e.currentTarget)
-      fetch(e.currentTarget.action, {
+      fetch(e.target.action, {
         method: "post",
         body: data
       }).then(res => {
@@ -99,13 +99,13 @@ export default function Home() {
         <h1>WELCOME BACK!</h1>
       </div>
 
-      <form action="/api/account/login/" method="POST" onSubmit={handleSubmit}>
+      <form action="/api/auth/login/" method="POST" onSubmit={handleSubmit}>
         <div className={styles.info}>
           {/* accept USERNAME */}
           <input 
             className= {`${styles.input} ${submitted && username.length < 4 && styles.error}`}
             placeholder="Email" // placeholder word (ie. shows up in gray-ed out font)
-            name="login"  // allow auto-fill
+            name="email"  // allow auto-fill
             value={username} // save input to variable
             onChange={(e) => setUsername(e.target.value)}
           />
@@ -137,7 +137,7 @@ export default function Home() {
             onClick={handleToggle}
             onKeyDown={(e) => handleKeyClick(e, handleToggle)}
           >
-            <Icon icon={icon} font-size={"1vw"}/>
+            <Icon icon={icon} fontSize={"1vw"}/>
           </span>
 
           {/* provide link to recover account (redirect to RECOVER)*/}

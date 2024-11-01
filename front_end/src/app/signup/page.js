@@ -95,8 +95,8 @@ export default function Home() {
     } // if there are no errors (sign up successful), redriect to the verify page
     else { 
       const data = new FormData(e.currentTarget);
-      fetch(e.currentTarget.action, {
-        method: e.currentTarget.method,
+      fetch(e.target.action, {
+        method: "post",
         body: data
       })
       .then(res => {
@@ -134,7 +134,7 @@ export default function Home() {
         <h1>Sign Up</h1>
       </div>
       
-      <form onSubmit={handleSubmit} method="post" action="/api/account/signup/">
+      <form onSubmit={handleSubmit} method="POST" action="/api/auth/registration/">
         <div className={styles.form}>
 
           {/* accept FIRST and LAST NAME input */}
