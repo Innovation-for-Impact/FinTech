@@ -163,7 +163,7 @@ export default function Home() {
             onChange={(e) => setPassword(e.target.value)}
             aria-label="password"
           />
-          <Icon icon={passwordIcon} onClick={handlePasswordToggle} className={styles.eye} />
+          <Icon icon={passwordIcon} onClick={handlePasswordToggle} className={styles.eye} tabIndex={0}/>
         </Form.Group>
 
         {/* accept CONFIRM PASSWORD */}
@@ -176,7 +176,7 @@ export default function Home() {
             onChange={(e) => setConfirmPassword(e.target.value)}
             aria-label="confirm password"
           />
-          <Icon icon={confirmPasswordIcon} onClick={handleConfirmPasswordToggle} className={styles.eye} />
+          <Icon icon={confirmPasswordIcon} onClick={handleConfirmPasswordToggle} className={styles.eye} tabIndex={0}/>
         </Form.Group>
 
         {/* checkbox to allow user to accept TERMS */}
