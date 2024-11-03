@@ -1,7 +1,8 @@
 "use client";
 import styles from "../app/css/page.module.css";
 import Link from 'next/link';
-import logo from '../app/images/icon_transparent.png';
+import Image from 'next/image';
+import logo from '../../public/innofunds-logo-transparent.png';
 import React, { useState } from "react";
 import {Icon} from 'react-icons-kit';
 import {eyeOff} from 'react-icons-kit/feather/eyeOff';
@@ -76,11 +77,12 @@ export default function Home() {
   return (
     <main className={styles.main}>
     <div className={styles.login}>
-      <img
-        className={styles.img}
-        src="/_next/static/media/icon_transparent.e1a2640c.png"
-        alt="Innovation for Impact Logos" 
-      />
+    <Image 
+      className={styles.img}
+      src={logo}
+      alt="Innofunds Logo"
+      layout="intrinsic"
+    />
 
       <div class={styles.title}>
         <h1>WELCOME BACK!</h1>
