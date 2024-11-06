@@ -99,9 +99,9 @@
   width: 80vw;
   height: auto;
   /* position is absolute and sets top and left positioning */
-  position:absolute;
+  position: absolute;
   top: 48vh;
-  left: 50vw;
+  left: 50vw; 
   /* aligns text to be centered */
   text-align: center;
   /* sets padding */
@@ -119,6 +119,7 @@
   border-radius: 100%;
   /* adjusts sizing */
   width: 25vw;
+  height: auto; /* Maintain aspect ratio */
   /* add a white border */
   border: solid white 0.08vw;
   /* sets margin at top */
@@ -175,10 +176,10 @@
   /* relative position */
   position: relative;
   /* sets the location of eye icon */
-  right: 2vw;
+  right: 1.5em;
   margin-top: auto;
-  margin-left: -1em;
   margin-bottom: auto;
+  font-size: 1em;
 }
 
 /* highlights the eye icon and x icon (in error messages) so that tab works and user knows where they are */
@@ -224,8 +225,8 @@
 /* styles the login page button */
 .login button {
   /* sets background color and border of login button to #BBEEAB*/
-  background-color: #BBEEAB;
-  border: 0px solid #BBEEAB;
+  background-color: #BDCFCC;
+  border: 0px solid #BDCFCC;
   /* curves edges of the button */
   border-radius: 0.5em;
   /* adjusts width and height */
@@ -242,8 +243,8 @@
 /* styles signup page button */
 .signup button {
   /* sets background color and border of login button to #BBEEAB*/
-  background-color: #BBEEAB;
-  border: 0px solid #BBEEAB;  
+  background-color: #BDCFCC;
+  border: 0px solid #BDCFCC;  
   /* curves edges of the button */
   border-radius: 0.5em;
   /* adjusts width and height */
@@ -261,7 +262,7 @@
 
 /* when login + signup button is hovered, change the color and cursor */
 .login button:hover, .signup button:hover {
-  background-color: #aedea0;
+  background-color: #699385;
   cursor: pointer;
 }
 
@@ -320,6 +321,10 @@
   .x_signup {
     right: 4vw;
   }
+
+  .eye {
+    right: 1.5em; 
+  }
 }
 
 /* Desktop Styling */
@@ -357,7 +362,7 @@
   }
 
   .eye {
-    margin-left: -2px;
+    right: 2em;
   }
 
   .login button {
