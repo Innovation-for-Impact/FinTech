@@ -1,25 +1,50 @@
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
-## Getting Started
-
-First, run the development server:
-
+# Setup
+### Install Node
+**MacOS:**
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+$ brew install node
+$ node -v
+v22.11.0
+$ npm -v
+10.9.0
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+**Linux:**
+```bash
+$ sudo apt update
+$ sudo apt install nodejs npm
+$ node -v
+v22.11.0
+$ npm -v
+10.9.0
+```
+
+### Install Project Dependencies
+```bash
+$ pwd
+/FinTech/front_end
+$ npm install
+```
+
+### Run the development server:
+
+```bash
+$ pwd
+/FinTech/front_end
+$ npm run dev
+```
+
+The server is now hosted on [http://localhost:3000](http://localhost:3000)
+
+### Development
 
 You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
 
 This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
 
+Fetch data from the back-end API from `localhost:8000`. View API specifications in `/FinTech/back_end/README.md`
 ## Learn More
 
 To learn more about Next.js, take a look at the following resources:
