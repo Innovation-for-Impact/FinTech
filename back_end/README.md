@@ -41,9 +41,10 @@ $ pip install -r requirements.txt
 
 ### Create Django Database
 ```bash
-$ python3 manage.py makemigrations
+$ python3 manage.py makemigrations innofunds
 $ python3 manage.py migrate
 ```
+This looks for custom models defined in `/FinTech/back_end/innofunds/models.py` and imports them into the database
 
 ### Running the Python Backend
 ```bash
@@ -56,6 +57,12 @@ The server is now hosted on [http://localhost:8000](http://localhost:8000)
 $ deactivate
 ```
 **Note:** the virtual environment needs to be activated when running the backend server
+
+### Optional
+```bash
+$ python3 manage.py createsuperuser
+```
+Creates an admin account. Follow the prompts and then go to `localhost:8000/admin/` and log in with the credentials.
 
 ### Development
 Add Development instructions here
