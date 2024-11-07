@@ -8,6 +8,7 @@ import {Icon} from 'react-icons-kit';
 import {eyeOff} from 'react-icons-kit/feather/eyeOff';
 import {eye} from 'react-icons-kit/feather/eye';
 import {x} from 'react-icons-kit/feather/x';
+import Head from 'next/head';
 
 export default function Home() {
   const [username, setUsername] = useState('');
@@ -76,6 +77,10 @@ export default function Home() {
 
   return (
     <main className={styles.main}>
+      <Head>
+        <title>InnoFunds</title>
+        <link rel="icon" href="../../public/favicon.ico"/>
+      </Head>
     <div className={styles.login}>
     <Image 
       className={styles.img}

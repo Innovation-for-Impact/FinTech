@@ -6,6 +6,8 @@ import React, { useState } from "react";
 import {Icon} from 'react-icons-kit';
 import { ic_menu } from 'react-icons-kit/md/ic_menu';
 import { ic_close } from 'react-icons-kit/md/ic_close';
+import Image from 'next/image';
+import logo from '../../../public/innofunds-logo-transparent.png';
 
 export default function Home() {
   const [isOpen, setIsOpen] = useState(false);
@@ -37,49 +39,50 @@ export default function Home() {
         </div>
         
         {/* display navigation links */}
-        <div className={homeStyles.homeContainer}>
-        <div className={homeStyles.homeSubcontainer}>
-        <nav className={homeStyles.homeNavbar}>
-          {/* <a href="#" className={homeStyles.nav_branding}>Menu</a> */}
-          <ul className={`${homeStyles.nav_menu} ${isOpen ? homeStyles.open : ''}`}>
-            <li>
-              <Link className={`${homeStyles.nav_item} ${homeStyles.active}`} href="home" onClick={handleLinkClick}>
-                <p>Home</p>
-              </Link>
-            </li>
-            <li>
-              <Link className={homeStyles.nav_item} href="home/goals" onClick={handleLinkClick}>
-                <p>Goals</p>
-              </Link>
-            </li>
-            <li>
-              <Link className={homeStyles.nav_item} href="home/calculator" onClick={handleLinkClick}>
-                <p>Calculator</p>
-              </Link>
-            </li>
-            <li>
-              <Link className={homeStyles.nav_item} href="home/friends" onClick={handleLinkClick}>
-                <p>Friends</p>
-              </Link>
-            </li>
-            <li>
-              <Link className={homeStyles.nav_item} href="home/profile" onClick={handleLinkClick}>
-                <p>Profile</p>
-              </Link>
-            </li>
-          </ul>
+          <div className={homeStyles.homeContainer}>
+            <div className={homeStyles.homeSubcontainer}>
+              <nav className={homeStyles.homeNavbar}>
+                {/* <a href="#" className={homeStyles.nav_branding}>Menu</a> */}
+                <ul className={`${homeStyles.nav_menu} ${isOpen ? homeStyles.open : ''}`}>
+                  <li>
+                    <Link className={`${homeStyles.nav_item} ${homeStyles.active}`} href="home" onClick={handleLinkClick}>
+                      <p>Home</p>
+                    </Link>
+                  </li>
+                  <li>
+                    <Link className={homeStyles.nav_item} href="home/goals" onClick={handleLinkClick}>
+                      <p>Goals</p>
+                    </Link>
+                  </li>
+                  <li>
+                    <Link className={homeStyles.nav_item} href="home/calculator" onClick={handleLinkClick}>
+                      <p>Calculator</p>
+                    </Link>
+                  </li>
+                  <li>
+                    <Link className={homeStyles.nav_item} href="home/friends" onClick={handleLinkClick}>
+                      <p>Friends</p>
+                    </Link>
+                  </li>
+                  <li>
+                    <Link className={homeStyles.nav_item} href="home/profile" onClick={handleLinkClick}>
+                      <p>Profile</p>
+                    </Link>
+                  </li>
+                </ul>
 
 
-          {/* display IFI logo */}
-          <img className={homeStyles.img}
-            src="/_next/static/media/icon_transparent.e1a2640c.png"
-            alt="Innovation for Impact logo" 
-            width="4.5%"
-          />
-        </nav>
-      </div>
-      </div>
-    </header>
+                {/* display logo */}
+                <Image 
+                  className={homeStyles.img}
+                  src={logo}
+                  alt="Innofunds Logo"
+                  layout="intrinsic"
+                />
+              </nav>
+          </div>
+        </div>
+      </header>
 
     {/* header for current page */}
     <div className={homeStyles.homePage}>

@@ -59,6 +59,12 @@
     width:fit-content;
 }
 
+/* styles logo */
+.img {
+    width: 6.5vw;
+    height: auto;
+}
+
 /* Tablet View at max-width of 768px */
 @media (min-width: 768px) {
     /* sets the margin so that the hamburger menu is not covering content */
@@ -139,8 +145,6 @@
     .homeNavbar li{
         /* uses flex to display items */
         display: inline-block;
-        /* sets the top margin to 2em so that there is spacing */
-        margin-top: 2em;
         /* hides content that overflows */
         overflow: hidden;
         /* centers the items */
