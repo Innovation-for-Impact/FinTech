@@ -19,6 +19,7 @@ $ python3 --version
 If none of the `python` commands work, replace with `python3`.
 
 **Create the Python virtual environment:**
+
 Make sure you are in the backend folder when you creat the virtual environment.
 ```bash
 $ pwd
