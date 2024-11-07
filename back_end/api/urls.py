@@ -26,5 +26,7 @@ urlpatterns = [
     path('api/v1/auth/registration/', include('dj_rest_auth.registration.urls')),
     re_path(r'^password-reset/confirm/(?P<uidb64>[0-9A-Za-z_\-]+)/(?P<token>[0-9A-Za-z]{1,13}-[0-9A-Za-z]{1,32})/$',
         TemplateView.as_view(template_name="password_reset_confirm.html"),
-        name='password_reset_confirm')
+        name='password_reset_confirm'
+    ),
+    path("", include("index.urls"))
 ]
