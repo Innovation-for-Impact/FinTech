@@ -2,7 +2,7 @@
 ### Install Python
 **MacOS:**
 ```bash
-$ brew install python
+$ brew install python@3.12
 $ python3 --version
 3.12.3
 ```
