@@ -74,6 +74,19 @@ Creates an admin account. Follow the prompts and then go to `localhost:8000/admi
 Add Development instructions here
 
 ## API
-`/api/v1/users` - Functionality
+### Users: `/api/v1/users`
+A **GET** request returns information about a user. If the user is an admin, it returns all suer data
 
-Add all API endpoints and their specifications here
+### Authentication: `api/v1/auth/...`
+This is the authentication input. All specifications are [here](https://django-rest-auth.readthedocs.io/en/latest/api_endpoints.html) with some minor exceptions given below:
+* `rest_auth` is replaced simply with `auth`.
+* The application just uses email, **NOT** usernames.
+* Registration takes in `first_name` and `last_name`.
+* There is a password reset confirmation URL (that **isn't** specified in the linked specification) that will server a *static* HTML page provided by the backend. I.e. the frontend need not do anything with this endpoint.
+
+### Add any additional endpoints here...
+
+> Add all API endpoints and their specifications here
+
+## Conclusion
+If anything about this document is unclear, please make an issue on Github or bring it up in the Slack.
