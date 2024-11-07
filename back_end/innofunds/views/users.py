@@ -27,6 +27,9 @@ class UserViewPermission(permissions.BasePermission):
 
 
 class FintechUserViewSet(viewsets.ModelViewSet):
+    """
+    Gets all users; limited by UserViewPermission
+    """
     queryset = FintechUser.objects.all()
     serializer_class = UserSerializer
     permission_classes = [UserViewPermission]

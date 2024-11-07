@@ -19,6 +19,7 @@ $ python3 --version
 If none of the `python` commands work, replace with `python3`.
 
 **Create the Python virtual environment:**
+Make sure you are in the backend folder when you creat the virtual environment.
 ```bash
 $ pwd
 /FinTech/back_end
@@ -50,7 +51,11 @@ This looks for custom models defined in `/FinTech/back_end/innofunds/models.py` 
 ```bash
 $ python3 manage.py runserver
 ```
-The server is now hosted on [http://localhost:8000](http://localhost:8000)
+The server is now hosted on [http://localhost:8000](http://localhost:8000). To change the port the server is specified on, you can do:
+```bash
+$ python3 manage.py runserver <IP:PORT> 
+```
+For example, `<IP:PORT>=0.0.0.0:8080`, runs the server at IP `0.0.0.0` and port `8080`.
 
 **Deactivate the virtual environment:**
 ```bash
@@ -58,7 +63,8 @@ $ deactivate
 ```
 **Note:** the virtual environment needs to be activated when running the backend server
 
-### Optional
+### (Optional) Creating a Super User for Testing
+An admin account is useful for debugging. To create one,
 ```bash
 $ python3 manage.py createsuperuser
 ```
