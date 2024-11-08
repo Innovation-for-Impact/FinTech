@@ -11,6 +11,8 @@ import {x} from 'react-icons-kit/feather/x';
 import { useCookies } from 'next-client-cookies';
 import Head from 'next/head';
 
+const backend_url = "http://localhost:8000"
+
 export default function Home() {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
@@ -55,18 +57,19 @@ export default function Home() {
     e.preventDefault();
     setSubmitted(true);
     const data = new FormData(e.currentTarget)
-    data.append("csrfmiddlewaretoken", cookies.get("csrftoken"))
-    console.log(data)
+    // data.append("csrfmiddlewaretoken", cookies.get("csrftoken"))
+    const dataJson = Object.fromEntries(data.entries());
+    const dataJsonString = JSON.stringify(dataJson);
+    console.log(dataJsonString);
 
     fetch (e.target.action, {
       method: 'POST',
-      body: data
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: dataJsonString
     })
-
     .then(response => {
-      if(!response.ok) {
-        throw new Error("Network response was not okay");
-      }
       return response.json();
     })
     .then(data => {
@@ -95,7 +98,7 @@ export default function Home() {
         <h1>WELCOME BACK!</h1>
       </div>
 
-      <form action="/api/auth/login/" method="POST" onSubmit={handleSubmit}>
+      <form action={`${backend_url}/api/v1/auth/login/`} method="POST" onSubmit={handleSubmit}>
         <div className={styles.info}>
           {/* accept USERNAME */}
           <input 
