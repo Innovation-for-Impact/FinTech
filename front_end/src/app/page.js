@@ -57,10 +57,16 @@ export default function Home() {
     e.preventDefault();
     setSubmitted(true);
     const data = new FormData(e.currentTarget)
-    // data.append("csrfmiddlewaretoken", cookies.get("csrftoken"))
     const dataJson = Object.fromEntries(data.entries());
     const dataJsonString = JSON.stringify(dataJson);
     console.log(dataJsonString);
+
+    //TODO: error check here (empty fields etc before sending fetch request)
+    // user authentication done by back end
+
+    // Find auth api info here https://django-rest-auth.readthedocs.io/en/latest/api_endpoints.html
+    // Mess around with different api requests on localhost:8000/api/v1/<api endpoint>
+      // once you start the backend server
 
     fetch (e.target.action, {
       method: 'POST',
@@ -74,6 +80,27 @@ export default function Home() {
     })
     .then(data => {
       console.log(data);
+      if(data.access) {
+        // successfully logged in
+        // set cookie to data.access
+        localStorage.setItem('access', data.access);
+        window.location.href= '/home';
+      }
+      else {
+        // error messages
+        if (data.email) {
+          setErrorMessage(data.email);
+        }
+        else if (data.password) {
+          setErrorMessage("Password may not be blank");
+        }
+        else if(data.non_field_errors) {
+          setErrorMessage(data.non_field_errors);
+        }
+        else {
+          setErrorMessage("You goofed up");
+        }
+      }
     })
     .catch(error => {
       console.error("error", error);
