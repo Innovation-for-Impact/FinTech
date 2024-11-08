@@ -71,6 +71,7 @@ export default function Home() {
       }
     } else {
       const data = new FormData(e.currentTarget)
+      data.
       fetch(e.target.action, {
         method: "post",
         body: data

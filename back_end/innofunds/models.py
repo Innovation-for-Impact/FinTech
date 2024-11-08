@@ -3,6 +3,11 @@ from django.db import models
 from django.db import models
 from django.contrib.auth.models import BaseUserManager, AbstractUser
 
+class FintechGroup(models.Model):
+    id = models.BigAutoField(unique=True, primary_key=True)
+    name = models.CharField(max_length = 255)
+    description = models.CharField(max_length = 1000)
+
 # USER
 class FintechUserManager(BaseUserManager):
     def create_user(self, email, first_name, last_name, password=None):
@@ -41,6 +46,8 @@ class FintechUserManager(BaseUserManager):
         return user
 
 class FintechUser(AbstractUser):
+    # ADD ANY FIELDS YOU NEED HERE
+    # !!! you will need to update the database after you make any changes here !!! 
     email = models.EmailField(
         verbose_name="email address",
         max_length=255,
@@ -50,7 +57,10 @@ class FintechUser(AbstractUser):
     last_name = models.CharField(max_length=32)
     is_active = models.BooleanField(default=True)
     is_admin = models.BooleanField(default=False)
-    
+
+    # users can be in many groups, and groups can have many users
+    groups = models.ManyToManyField(FintechGroup)
+
     REQUIRED_FIELDS=["first_name", "last_name"]
     USERNAME_FIELD = "email"
     objects = FintechUserManager()
