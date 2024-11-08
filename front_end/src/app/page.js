@@ -47,32 +47,35 @@ export default function Home() {
     }
   } // handleKeyClick
 
-  // handle error messages and username/password when user submits
+  // handle error messages and username/password when user submits 
+  // note: fetch (url) 
   const handleSubmit = (e) => {
     e.preventDefault();
     setSubmitted(true);
 
-    setErrorMessage('');
+    fetch ('http://localhost:8000/api/v1/auth/login', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify ({
+        "email": username,
+        "password": password
+      })
+    })
 
-    // TODO backend: 
-    //  - add further username validation here 
-    //  - also edit: form > input > username/password "className" attribute
-    
-    // if there is an error, create an error message
-    if (!username || !password) {
-      setErrorMessage('Error: All fields are required!');
-    } else if (username.length < 4 || password.length < 8) {
-      if (username.length < 4 && password.length < 8) {
-        setErrorMessage('Error: Invalid username and password');
-      } else if (username.length < 4) {
-        setErrorMessage('Error: Invalid username');
-      } else if (password.length < 8) {
-        setErrorMessage('Error: Invalid password');
+    .then(response => {
+      if(!response.ok) {
+        throw new Error("Network response was not okay");
       }
-    } // if there are no errors (login successful), redirect to home page
-    else { 
-      window.location.href = '/home';
-    }
+      return response.json();
+    })
+    .then(data => {
+      console.log(data);
+    })
+    .catch(error => {
+      console.error("error", error);
+    })
   } // handleSubmit
 
   return (
