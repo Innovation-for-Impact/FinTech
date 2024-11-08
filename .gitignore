@@ -1,2 +1,5 @@
 **/__pycache__
 api/plaid/keys.txt
+back_end/db.sqlite3
+back_end/venv
+back_end/env

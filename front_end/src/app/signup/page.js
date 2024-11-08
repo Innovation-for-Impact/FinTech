@@ -9,6 +9,7 @@ import {Icon} from 'react-icons-kit';
 import {eyeOff} from 'react-icons-kit/feather/eyeOff';
 import {eye} from 'react-icons-kit/feather/eye';
 import {x} from 'react-icons-kit/feather/x';
+import { useCookies } from "next-client-cookies";
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 
@@ -26,6 +27,7 @@ export default function Home() {
   const [confirmPasswordIcon, setConfirmPasswordIcon] = useState(eyeOff);
   const [XIcon, setXIcon] = useState(x);
   const [submitted, setSubmitted] = useState(false);
+  const cookies = useCookies();
 
   // show or hide password based on user preference
   // (ie. eye toggle button)
@@ -73,8 +75,6 @@ export default function Home() {
 
     setErrorMessage('');
 
-    // TODO backend: add further username validation here  
-
     // if there is an error, create an error message
     if (!firstName || !lastName || !password || !confirmPassword || !email) {
       setErrorMessage('Error: All fields are required!');
@@ -95,8 +95,28 @@ export default function Home() {
       setErrorMessage('Error: Did not check Terms and Conditions');
     } // if there are no errors (sign up successful), redriect to the verify page
     else { 
+      const data = new FormData(e.currentTarget);
+      fetch(e.target.action, {
+        method: "post",
+        body: data
+      })
+      .then(res => {
+        if(!res.ok)
+          throw new Error(res);
+        return res.json();
+      })
+      .then(json => {
+        if(json["code"] === "400") {
+          setErrorMessage(json["error"])
+          return;
+        }
+      })
+      .catch(err => {
+        console.log(err);
+        setErrorMessage("Encountered an error")
+      })
       // make sure to include "email" data
-      window.location.href = `/signup/verify?email=${encodeURIComponent(email)}`;
+      //window.location.href = `/signup/verify?email=${encodeURIComponent(email)}`;
       // window.location.href = '/signup/verify';
     }
   } // handleSubmit

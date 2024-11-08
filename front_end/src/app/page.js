@@ -8,6 +8,7 @@ import {Icon} from 'react-icons-kit';
 import {eyeOff} from 'react-icons-kit/feather/eyeOff';
 import {eye} from 'react-icons-kit/feather/eye';
 import {x} from 'react-icons-kit/feather/x';
+import { useCookies } from 'next-client-cookies';
 import Head from 'next/head';
 
 export default function Home() {
@@ -18,6 +19,7 @@ export default function Home() {
   const [icon, setIcon] = useState(eyeOff);
   const [XIcon, setXIcon] = useState(x);
   const [submitted, setSubmitted] = useState(false);
+  const cookies = useCookies();
 
   // show or hide password based on user preference 
   // (ie. eye toggle button)
@@ -52,16 +54,13 @@ export default function Home() {
   const handleSubmit = (e) => {
     e.preventDefault();
     setSubmitted(true);
+    const data = new FormData(e.currentTarget)
+    data.append("csrfmiddlewaretoken", cookies.get("csrftoken"))
+    console.log(data)
 
-    fetch ('http://localhost:8000/api/v1/auth/login', {
+    fetch (e.target.action, {
       method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify ({
-        "email": username,
-        "password": password
-      })
+      body: data
     })
 
     .then(response => {
@@ -92,18 +91,17 @@ export default function Home() {
       layout="intrinsic"
     />
 
-      <div class={styles.title}>
+      <div className={styles.title}>
         <h1>WELCOME BACK!</h1>
       </div>
 
-      <form onSubmit={handleSubmit}>
+      <form action="/api/auth/login/" method="POST" onSubmit={handleSubmit}>
         <div className={styles.info}>
           {/* accept USERNAME */}
           <input 
             className= {`${styles.input} ${submitted && username.length < 4 && styles.error}`}
-            placeholder="Username" // placeholder word (ie. shows up in gray-ed out font)
-            name="username"  // allow auto-fill
-            aria-label="username"
+            placeholder="Email" // placeholder word (ie. shows up in gray-ed out font)
+            name="email"  // allow auto-fill
             value={username} // save input to variable
             onChange={(e) => setUsername(e.target.value)}
           />
@@ -121,6 +119,13 @@ export default function Home() {
             autoComplete="current-password"
           />
 
+          {/* <input 
+            className="hidden"
+            name="csrfmiddlewaretoken"
+            value={cookies.get("csrftoken")}
+            readOnly={true}
+          /> */}
+
           {/* include eye icon for PASSWORD toggle */}
           <span
             className={styles.eye}
@@ -128,7 +133,7 @@ export default function Home() {
             onClick={handleToggle}
             onKeyDown={(e) => handleKeyClick(e, handleToggle)}
           >
-            <Icon icon={icon} font-size={"1vw"}/>
+            <Icon icon={icon} fontSize={"1vw"}/>
           </span>
 
           {/* provide link to recover account (redirect to RECOVER)*/}
