@@ -20,11 +20,13 @@ from django.views.generic import TemplateView
 
 urlpatterns = [
     # Password resetting is weird
-    re_path(r'^password-reset/confirm/(?P<uidb64>[0-9A-Za-z_\-]+)/(?P<token>[0-9A-Za-z]{1,13}-[0-9A-Za-z]{1,32})/$',
-        TemplateView.as_view(template_name="password_reset_confirm.html"),
-        name='password_reset_confirm'),
     path('api/v1/', include("innofunds.urls")),
     path('admin/', admin.site.urls),
     path('api/v1/auth/', include('dj_rest_auth.urls')),
-    path('api/v1/auth/registration/', include('dj_rest_auth.registration.urls'))
+    path('api/v1/auth/registration/', include('dj_rest_auth.registration.urls')),
+    re_path(r'^password-reset/confirm/(?P<uidb64>[0-9A-Za-z_\-]+)/(?P<token>[0-9A-Za-z]{1,13}-[0-9A-Za-z]{1,32})/$',
+        TemplateView.as_view(template_name="password_reset_confirm.html"),
+        name='password_reset_confirm'
+    ),
+    path("", include("index.urls"))
 ]
