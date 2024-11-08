@@ -79,7 +79,7 @@ export default function Home() {
     <main className={styles.main}>
       <Head>
         <title>InnoFunds</title>
-        <link rel="icon" href="../../public/favicon.ico"/>
+        <link rel="icon" href="../../public/innofunds-logo-transparent.png"/>
       </Head>
     <div className={styles.login}>
     <Image 
