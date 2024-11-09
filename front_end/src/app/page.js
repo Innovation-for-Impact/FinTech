@@ -8,7 +8,8 @@ import {Icon} from 'react-icons-kit';
 import {eyeOff} from 'react-icons-kit/feather/eyeOff';
 import {eye} from 'react-icons-kit/feather/eye';
 import {x} from 'react-icons-kit/feather/x';
-import Head from 'next/head';
+import Button from 'react-bootstrap/Button';
+import Form from 'react-bootstrap/Form';
 
 export default function Home() {
   const [username, setUsername] = useState('');
@@ -77,10 +78,6 @@ export default function Home() {
 
   return (
     <main className={styles.main}>
-      <Head>
-        <title>InnoFunds</title>
-        <link rel="icon" href="../../public/innofunds-logo-transparent.png"/>
-      </Head>
     <div className={styles.login}>
     <Image 
       className={styles.img}
@@ -93,41 +90,37 @@ export default function Home() {
         <h1>WELCOME BACK!</h1>
       </div>
 
-      <form onSubmit={handleSubmit}>
+      <Form onSubmit={handleSubmit}>
         <div className={styles.info}>
           {/* accept USERNAME */}
-          <input 
-            className= {`${styles.input} ${submitted && username.length < 4 && styles.error}`}
-            placeholder="Username" // placeholder word (ie. shows up in gray-ed out font)
-            name="username"  // allow auto-fill
-            aria-label="username"
-            value={username} // save input to variable
-            onChange={(e) => setUsername(e.target.value)}
-          />
+          <Form.Group>
+            <Form.Control
+              className= {`${styles.input} ${submitted && username.length < 4 && styles.error}`}
+              placeholder="Email" // placeholder word (ie. shows up in gray-ed out font)
+              name="Email"  // allow auto-fill
+              aria-label="Email"
+              value={username} // save input to variable
+              onChange={(e) => setUsername(e.target.value)}
+            />
+          </Form.Group>
 
           {/* accept PASSWORD */}
-          <input
-            className={`${styles.input} ${submitted && password.length < 8 && styles.error}`}
-            style={{marginLeft: '1vw'}}
-            type={type}
-            placeholder="Password"
-            name="password"
-            aria-label="password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            autoComplete="current-password"
-          />
-
-          {/* include eye icon for PASSWORD toggle */}
-          <span
-            className={styles.eye}
-            tabIndex="0"
-            onClick={handleToggle}
-            onKeyDown={(e) => handleKeyClick(e, handleToggle)}
-          >
-            <Icon icon={icon} font-size={"1vw"}/>
-          </span>
-
+          <Form.Group className={styles.input_password}>
+            <Form.Control
+              className={`${styles.input} ${submitted && password.length < 8 && styles.error}`}
+              style={{marginLeft: '1vw'}}
+              type={type}
+              placeholder="Password"
+              name="password"
+              aria-label="password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              autoComplete="current-password"
+            />
+            {/* include eye icon for PASSWORD toggle */}
+            <Icon icon={icon} onClick={handleToggle} className={styles.eye_login} tabIndex={0}/>
+          </Form.Group>
+          
           {/* provide link to recover account (redirect to RECOVER)*/}
           <p className={styles.forgot}>
             <Link href="/recover">
@@ -155,9 +148,9 @@ export default function Home() {
           )}
 
           {/* allow user to submit the form */}
-          <button> 
-              LOGIN
-          </button>
+          <Button variant="primary" type="submit"> 
+            LOGIN
+          </Button>
 
           {/* allow user to create an account (redirect to SIGN UP) */}
           <p className={styles.noAccount}>
@@ -167,7 +160,7 @@ export default function Home() {
               </Link>
           </p>
         </div>
-      </form>
+      </Form>
     </div>
 
     {/* include copyright footer */}

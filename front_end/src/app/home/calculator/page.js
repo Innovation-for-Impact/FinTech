@@ -6,6 +6,9 @@ import React, { useState } from "react";
 import {Icon} from 'react-icons-kit';
 import { ic_menu } from 'react-icons-kit/md/ic_menu';
 import { ic_close } from 'react-icons-kit/md/ic_close';
+import Image from 'next/image';
+import logo from '../../../../public/innofunds-logo-transparent.png';
+import { Navbar, Nav, Button, ModalFooter } from 'react-bootstrap';
 
 export default function Home() {
   const [isOpen, setIsOpen] = useState(false);
@@ -38,45 +41,42 @@ export default function Home() {
           {/* display navigation links */}
           <div className={homeStyles.homeContainer}>
             <div className={homeStyles.homeSubcontainer}>
-              <nav className={homeStyles.homeNavbar}>
-                {/* <a href="#" className={homeStyles.nav_branding}>Menu</a> */}
+              <Navbar className={homeStyles.homeNavbar}>
+                <Navbar.Brand>
+                  {/* display logo */}
+                  <Image 
+                    className={homeStyles.img}
+                    src={logo}
+                    alt="Innofunds Logo"
+                    layout="intrinsic"
+                  />
+                </Navbar.Brand>
                 <ul className={`${homeStyles.nav_menu} ${isOpen ? homeStyles.open : ''}`}>
                   <li>
-                    <Link className={homeStyles.nav_item} href = "profile/.." onClick={handleLinkClick}>
-                      <p>Home</p>
-                    </Link>
+                    <Nav.Link className={`${homeStyles.nav_item} ${homeStyles.link_background}`} href="calculator/..">Home</Nav.Link>
                   </li>
                   <li>
-                    <Link className={homeStyles.nav_item} href = "profile/../goals" onClick={handleLinkClick}>
-                      <p>Goals</p>
-                    </Link>
+                    <Nav.Link className={`${homeStyles.nav_item} ${homeStyles.link_background}`} href="calculator/../goals">Goals</Nav.Link>
                   </li>
                   <li>
-                    <Link className={`${homeStyles.nav_item} ${homeStyles.active}`} href = "profile/../calculator" onClick={handleLinkClick}>
-                      <p>Calculator</p>
-                    </Link>
+                    <Nav.Link className={`${homeStyles.nav_item} ${homeStyles.link_background} ${homeStyles.active}`} href="calculator">Calculator</Nav.Link>
                   </li>
                   <li>
-                    <Link className={homeStyles.nav_item} href = "profile/../friends" onClick={handleLinkClick}>
-                      <p>Friends</p>
-                    </Link>
+                    <Nav.Link className={`${homeStyles.nav_item} ${homeStyles.link_background}`} href="calculator/../friends">Friends</Nav.Link>
                   </li>
                   <li>
-                    <Link className={homeStyles.nav_item} href = "profile" onClick={handleLinkClick}>
-                      <p>Profile</p>
-                    </Link>
+                    <Nav.Link className={`${homeStyles.nav_item} ${homeStyles.link_background}`} href="calculator/../profile">Profile</Nav.Link>
+                  </li>
+                  <li>
+                    {/* LOG OUT */}
+                    <Button className={`${homeStyles.button_style} ${homeStyles.link_background}`} variant="primary" type="submit"> 
+                      Log Out 
+                    </Button>
                   </li>
                 </ul>
-
-                {/* display IFI logo */}
-                <img className={homeStyles.img}
-                  src="/_next/static/media/icon_transparent.e1a2640c.png"
-                  alt="Innovation for Impact logo" 
-                  width="4.5%"
-                />
-              </nav>
-            </div>
+              </Navbar>
           </div>
+        </div>
         </header>
       
       {/* header for current page */}
@@ -107,7 +107,9 @@ export default function Home() {
       
       */}
 
-
+    <ModalFooter className={homeStyles.footer}>
+      <h1 className={homeStyles.footer_text} >InnoFunds</h1>
+    </ModalFooter>
   </main>
   );
 }

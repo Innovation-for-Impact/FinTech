@@ -10,7 +10,6 @@
 .homeHeader{
   background-color: #15253aff;
 }
-
 /* -------------------------------------------------------------- */
 /* LOGIN PAGE */
 /* styles the background box of login page */
@@ -20,7 +19,7 @@
   /* round the edges of background box */
   border-radius: 1.5vh; 
   /* change width and height of background box */
-  width: 80%;
+  width: 80vw;
   height: auto;
   /* position is absolute and sets top and left positioning */
   position: absolute;
@@ -182,8 +181,20 @@
   font-size: 1em;
 }
 
+/* positions the eye icon in password input fields on login page */
+.eye_login {
+  /* relative position */
+  position: relative;
+  /* sets the location of eye icon */
+  right: -8em;
+  top: -1.5em;
+  margin-top: auto;
+  margin-bottom: auto;
+  font-size: 1em;
+}
+
 /* highlights the eye icon and x icon (in error messages) so that tab works and user knows where they are */
-.eye:hover, .eye:focus, .eyeoff:hover, .eyeoff:focus, .x:hover, .x:focus, .x_signup:hover, .x_signup:focus {
+.eye:hover, .eye_login:hover, .eye:focus, .eye_login:focus, .eyeoff:hover, .eyeoff:focus, .x:hover, .x:focus, .x_signup:hover, .x_signup:focus {
   outline: 1px solid blue; 
 }
 
@@ -296,6 +307,11 @@
     margin-left: 10px;
   }
 
+  .input_password {
+    margin-left: 10px;
+    width: 100%;
+  }
+
   .form label, .form p, .signup p, .login p {
     font-size: 1.8vw;
   }
@@ -325,13 +341,19 @@
   .eye {
     right: 1.5em; 
   }
+
+  .eye_login {
+    right: 1.5em;
+    top: 0em;
+  }
 }
 
 /* Desktop Styling */
 @media (min-width: 1024px) {
   /* Flora move desktop styling HERE */
   .login {
-    width: 29vw;
+    width: 30vw;
+    height: auto;
   }
 
   .title h1 {
@@ -343,6 +365,11 @@
     width: 90%;
     font-size: 1vw;
     margin-left: -2px;
+  }
+
+  .input_password {
+    margin-left: -2px;
+    width: 100%;
   }
 
   .noAccount {
