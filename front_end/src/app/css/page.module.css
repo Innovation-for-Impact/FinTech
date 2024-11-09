@@ -6,10 +6,6 @@
   background-color: white;
 }
 
-/* sets the header of the home page to #15253aff */
-.homeHeader{
-  background-color: #15253aff;
-}
 /* -------------------------------------------------------------- */
 /* LOGIN PAGE */
 /* styles the background box of login page */
@@ -416,5 +412,10 @@
 
   .x_signup {
     right: 2vw;
+  }
+
+  /* sets the header of the home page to #15253aff */
+  .homeHeader{
+    background-color: #15253aff;
   }
 }
