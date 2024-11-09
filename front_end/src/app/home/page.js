@@ -6,6 +6,9 @@ import React, { useState } from "react";
 import {Icon} from 'react-icons-kit';
 import { ic_menu } from 'react-icons-kit/md/ic_menu';
 import { ic_close } from 'react-icons-kit/md/ic_close';
+import Image from 'next/image';
+import logo from '../../../public/innofunds-logo-transparent.png';
+import { Navbar, Nav, Button, ModalFooter } from 'react-bootstrap';
 
 export default function Home() {
   const [isOpen, setIsOpen] = useState(false);
@@ -37,49 +40,45 @@ export default function Home() {
         </div>
         
         {/* display navigation links */}
-        <div className={homeStyles.homeContainer}>
-        <div className={homeStyles.homeSubcontainer}>
-        <nav className={homeStyles.homeNavbar}>
-          {/* <a href="#" className={homeStyles.nav_branding}>Menu</a> */}
-          <ul className={`${homeStyles.nav_menu} ${isOpen ? homeStyles.open : ''}`}>
-            <li>
-              <Link className={`${homeStyles.nav_item} ${homeStyles.active}`} href="home" onClick={handleLinkClick}>
-                <p>Home</p>
-              </Link>
-            </li>
-            <li>
-              <Link className={homeStyles.nav_item} href="home/goals" onClick={handleLinkClick}>
-                <p>Goals</p>
-              </Link>
-            </li>
-            <li>
-              <Link className={homeStyles.nav_item} href="home/calculator" onClick={handleLinkClick}>
-                <p>Calculator</p>
-              </Link>
-            </li>
-            <li>
-              <Link className={homeStyles.nav_item} href="home/friends" onClick={handleLinkClick}>
-                <p>Friends</p>
-              </Link>
-            </li>
-            <li>
-              <Link className={homeStyles.nav_item} href="home/profile" onClick={handleLinkClick}>
-                <p>Profile</p>
-              </Link>
-            </li>
-          </ul>
-
-
-          {/* display IFI logo */}
-          <img className={homeStyles.img}
-            src="/_next/static/media/icon_transparent.e1a2640c.png"
-            alt="Innovation for Impact logo" 
-            width="4.5%"
-          />
-        </nav>
-      </div>
-      </div>
-    </header>
+          <div className={homeStyles.homeContainer}>
+            <div className={homeStyles.homeSubcontainer}>
+              <Navbar className={homeStyles.homeNavbar}>
+                <Navbar.Brand>
+                  {/* display logo */}
+                  <Image 
+                    className={homeStyles.img}
+                    src={logo}
+                    alt="Innofunds Logo"
+                    layout="intrinsic"
+                  />
+                </Navbar.Brand>
+                <ul className={`${homeStyles.nav_menu} ${isOpen ? homeStyles.open : ''}`}>
+                  <li>
+                    <Nav.Link className={`${homeStyles.nav_item} ${homeStyles.link_background} ${homeStyles.active}`} href="home">Home</Nav.Link>
+                  </li>
+                  <li>
+                    <Nav.Link className={`${homeStyles.nav_item} ${homeStyles.link_background}`} href="home/goals">Goals</Nav.Link>
+                  </li>
+                  <li>
+                    <Nav.Link className={`${homeStyles.nav_item} ${homeStyles.link_background}`} href="home/calculator">Calculator</Nav.Link>
+                  </li>
+                  <li>
+                    <Nav.Link className={`${homeStyles.nav_item} ${homeStyles.link_background}`} href="home/friends">Friends</Nav.Link>
+                  </li>
+                  <li>
+                    <Nav.Link className={`${homeStyles.nav_item} ${homeStyles.link_background}`} href="home/profile">Profile</Nav.Link>
+                  </li>
+                  <li>
+                    {/* LOG OUT */}
+                    <Button className={`${homeStyles.button_style} ${homeStyles.link_background}`} variant="primary" type="submit"> 
+                      Log Out 
+                    </Button>
+                  </li>
+                </ul>
+              </Navbar>
+          </div>
+        </div>
+      </header>
 
     {/* header for current page */}
     <div className={homeStyles.homePage}>
@@ -91,8 +90,9 @@ export default function Home() {
     </div>
 
     {/* TODO: add page content here */}
-
-    {/* TODO:  */}
+    <ModalFooter className={homeStyles.footer}>
+      <h1 className={homeStyles.footer_text} >InnoFunds</h1>
+    </ModalFooter>
     
   </main>
   );
