@@ -55,8 +55,8 @@
 /* styles of the submit button */
 .forgot button {
   /* color of the button and border size below */
-    background-color: #BBEEAB;
-    border: 0px solid #BBEEAB;  /* 0.06em */
+    background-color: #BDCFCC;
+    border: 0px solid #BDCFCC;  /* 0.06em */
     border-radius: 0.5em;
     width: 83%;
     height: auto;
@@ -122,7 +122,7 @@
 
 /* features for hovering for submit button on forgot password page */
 .forgot button:hover {
-  background-color: #aedea0;
+  background-color: #699385;
   cursor: pointer;
 }
 

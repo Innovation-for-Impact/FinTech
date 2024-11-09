@@ -1,12 +1,14 @@
 "use client";
 import styles from "../app/css/page.module.css";
 import Link from 'next/link';
-import logo from '../app/images/icon_transparent.png';
+import Image from 'next/image';
+import logo from '../../public/innofunds-logo-transparent.png';
 import React, { useState } from "react";
 import {Icon} from 'react-icons-kit';
 import {eyeOff} from 'react-icons-kit/feather/eyeOff';
 import {eye} from 'react-icons-kit/feather/eye';
 import {x} from 'react-icons-kit/feather/x';
+import { useCookies } from 'next-client-cookies';
 
 export default function Home() {
   const [username, setUsername] = useState('');
@@ -16,6 +18,7 @@ export default function Home() {
   const [icon, setIcon] = useState(eyeOff);
   const [XIcon, setXIcon] = useState(x);
   const [submitted, setSubmitted] = useState(false);
+  const cookies = useCookies();
 
   // show or hide password based on user preference 
   // (ie. eye toggle button)
@@ -51,7 +54,6 @@ export default function Home() {
     setSubmitted(true);
 
     setErrorMessage('');
-
     // TODO backend: 
     //  - add further username validation here 
     //  - also edit: form > input > username/password "className" attribute
@@ -67,33 +69,45 @@ export default function Home() {
       } else if (password.length < 8) {
         setErrorMessage('Error: Invalid password');
       }
-    } // if there are no errors (login successful), redirect to home page
-    else { 
-      window.location.href = '/home';
+    } else {
+      const data = new FormData(e.currentTarget)
+      fetch(e.target.action, {
+        method: "post",
+        body: data
+      }).then(res => {
+        return res.json();
+      }).then(json => {
+        if(json["code"] === "400")
+          setErrorMessage(json["error"]);
+        else
+          console.log(json);
+      }).catch(err => {
+        console.error(err);
+      })
     }
   } // handleSubmit
 
   return (
     <main className={styles.main}>
     <div className={styles.login}>
-      <img
-        className={styles.img}
-        src="/_next/static/media/icon_transparent.e1a2640c.png"
-        alt="Innovation for Impact Logos" 
-      />
+    <Image 
+      className={styles.img}
+      src={logo}
+      alt="Innofunds Logo"
+      layout="intrinsic"
+    />
 
-      <div class={styles.title}>
+      <div className={styles.title}>
         <h1>WELCOME BACK!</h1>
       </div>
 
-      <form onSubmit={handleSubmit}>
+      <form action="/api/auth/login/" method="POST" onSubmit={handleSubmit}>
         <div className={styles.info}>
           {/* accept USERNAME */}
           <input 
             className= {`${styles.input} ${submitted && username.length < 4 && styles.error}`}
-            placeholder="Username" // placeholder word (ie. shows up in gray-ed out font)
-            name="username"  // allow auto-fill
-            aria-label="username"
+            placeholder="Email" // placeholder word (ie. shows up in gray-ed out font)
+            name="email"  // allow auto-fill
             value={username} // save input to variable
             onChange={(e) => setUsername(e.target.value)}
           />
@@ -111,6 +125,13 @@ export default function Home() {
             autoComplete="current-password"
           />
 
+          <input 
+            className="hidden"
+            name="csrfmiddlewaretoken"
+            value={cookies.get("csrftoken")}
+            readOnly={true}
+          />
+
           {/* include eye icon for PASSWORD toggle */}
           <span
             className={styles.eye}
@@ -118,7 +139,7 @@ export default function Home() {
             onClick={handleToggle}
             onKeyDown={(e) => handleKeyClick(e, handleToggle)}
           >
-            <Icon icon={icon} font-size={"1vw"}/>
+            <Icon icon={icon} fontSize={"1vw"}/>
           </span>
 
           {/* provide link to recover account (redirect to RECOVER)*/}
