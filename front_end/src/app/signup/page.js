@@ -105,7 +105,7 @@ export default function Home() {
       }
       console.log(formData);
       fetch(e.target.action, {
-        method: "post",
+        method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
@@ -119,18 +119,20 @@ export default function Home() {
         if(data.access) {
           // successfully registered
           // set cookie to data.access
+          localStorage.setItem('access', data.access);
+          window.location.href = '/signup/verify';
         }
         else {
           // print any error message
+          setErrorMessage("Signup failed. Please check your input.");
         }
-        
       })
       .catch(err => {
         console.log(err);
         setErrorMessage("Encountered an error")
       })
       // make sure to include "email" data
-      //window.location.href = `/signup/verify?email=${encodeURIComponent(email)}`;
+      // window.location.href = `/signup/verify?email=${encodeURIComponent(email)}`;
       // window.location.href = '/signup/verify';
     }
   } // handleSubmit
@@ -149,7 +151,7 @@ export default function Home() {
         <h1>Sign Up</h1>
       </div>
       
-      <Form action={`${backend_url}/api/v1/auth/registration/`} onSubmit={handleSubmit} className={styles.form}>
+      <Form action={`${backend_url}/api/v1/auth/registration/`} method="POST" onSubmit={handleSubmit} className={styles.form}>
           {/* accept FIRST NAME */}
           <Form.Group className={signupStyles.inputBox1}>
             <Form.Label className={signupStyles.formLabel}>First Name</Form.Label>

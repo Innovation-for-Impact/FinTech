@@ -66,7 +66,7 @@ export default function Home() {
 
     // Find auth api info here https://django-rest-auth.readthedocs.io/en/latest/api_endpoints.html
     // Mess around with different api requests on localhost:8000/api/v1/<api endpoint>
-      // once you start the backend server
+    // once you start the backend server
 
     fetch (e.target.action, {
       method: 'POST',
