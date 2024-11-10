@@ -1,14 +1,17 @@
 "use client";
 import styles from "../../../app/css/page.module.css";
 import homeStyles from "../../../app/css/home.module.css";
+import profileStyles from "../../../app/css/profile.module.css";
 import Link from 'next/link';
 import React, { useState } from "react";
 import {Icon} from 'react-icons-kit';
 import { ic_menu } from 'react-icons-kit/md/ic_menu';
 import { ic_close } from 'react-icons-kit/md/ic_close';
-import Image from 'next/image';
+import Image_logo from 'next/image';
 import logo from '../../../../public/innofunds-logo-transparent.png';
 import { Navbar, Nav, Button, ModalFooter } from 'react-bootstrap';
+import Image from 'react-bootstrap/Image'; 
+import { FaCircleUser } from "react-icons/fa6";
 
 export default function Home() {
   const [isOpen, setIsOpen] = useState(false);
@@ -42,7 +45,7 @@ export default function Home() {
               <Navbar className={homeStyles.homeNavbar}>
                 <Navbar.Brand>
                   {/* display logo */}
-                  <Image 
+                  <Image_logo 
                     className={homeStyles.img}
                     src={logo}
                     alt="Innofunds Logo"
@@ -77,17 +80,26 @@ export default function Home() {
         </div>
         </header>
 
-        {/* header for current page */}
+        {/* contents of profile page */}
         <div className={homeStyles.homePage}>
-          <div class={styles.homeTitle}>
-            <h1 style={{color:'#32415e'}}>
-              Profile
-            </h1>
-          </div>
+
+          {/* profile icon */}
+          <FaCircleUser className={profileStyles.profile_icon} color="#BDCFCC" />
+          {/* <Image src="" rounded /> */}
+
+          <p className={profileStyles.name}>Name</p>
+          <p className={profileStyles.pronouns}>Pronouns</p>
+
+          <Button>
+            Groups
+          </Button>
+          <Button>
+            Friends
+          </Button>
         </div>
 
         {/* TODO: add page content here */}
-
+        
         <ModalFooter className={homeStyles.footer}>
           <h1 className={homeStyles.footer_text} >InnoFunds</h1>
         </ModalFooter>
