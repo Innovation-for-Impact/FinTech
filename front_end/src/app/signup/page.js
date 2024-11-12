@@ -13,6 +13,8 @@ import { useCookies } from "next-client-cookies";
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 
+const backend_url = "http://localhost:8000"
+
 export default function Home() {
   const [firstName, setFirst] = useState('');
   const [lastName, setLast] = useState('');
@@ -75,6 +77,7 @@ export default function Home() {
 
     setErrorMessage('');
 
+
     // if there is an error, create an error message
     if (!firstName || !lastName || !password || !confirmPassword || !email) {
       setErrorMessage('Error: All fields are required!');
@@ -95,20 +98,33 @@ export default function Home() {
       setErrorMessage('Error: Did not check Terms and Conditions');
     } // if there are no errors (sign up successful), redriect to the verify page
     else { 
-      const data = new FormData(e.currentTarget);
+      const formData = {
+        "email": email,
+        "password1": password,
+        "password2": confirmPassword,
+      }
+      console.log(formData);
       fetch(e.target.action, {
-        method: "post",
-        body: data
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData)
       })
       .then(res => {
-        if(!res.ok)
-          throw new Error(res);
         return res.json();
       })
-      .then(json => {
-        if(json["code"] === "400") {
-          setErrorMessage(json["error"])
-          return;
+      .then(data => {
+        console.log(data);
+        if(data.access) {
+          // successfully registered
+          // set cookie to data.access
+          localStorage.setItem('access', data.access);
+          window.location.href = '/signup/verify';
+        }
+        else {
+          // print any error message
+          setErrorMessage("Signup failed. Please check your input.");
         }
       })
       .catch(err => {
@@ -116,7 +132,7 @@ export default function Home() {
         setErrorMessage("Encountered an error")
       })
       // make sure to include "email" data
-      //window.location.href = `/signup/verify?email=${encodeURIComponent(email)}`;
+      // window.location.href = `/signup/verify?email=${encodeURIComponent(email)}`;
       // window.location.href = '/signup/verify';
     }
   } // handleSubmit
@@ -135,7 +151,7 @@ export default function Home() {
         <h1>Sign Up</h1>
       </div>
       
-      <Form onSubmit={handleSubmit} className={styles.form}>
+      <Form action={`${backend_url}/api/v1/auth/registration/`} method="POST" onSubmit={handleSubmit} className={styles.form}>
           {/* accept FIRST NAME */}
           <Form.Group className={signupStyles.inputBox1}>
             <Form.Label className={signupStyles.formLabel}>First Name</Form.Label>

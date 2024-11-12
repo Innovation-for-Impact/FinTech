@@ -5,7 +5,7 @@ import { CookiesProvider } from 'next-client-cookies/server';
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata = {
-  title: "Fintech",
+  title: "InnoFunds",
   description: "A finance manage app created by Innovation for Impact at the University of Michigan",
 };
 
