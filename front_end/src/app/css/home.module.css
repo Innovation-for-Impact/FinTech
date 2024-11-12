@@ -1,6 +1,8 @@
 /* sets the margin so that the hamburger menu is not covering content */
 .homePage{
     margin-left: 70px;
+    background-color: white !important;
+    min-height: 100vh; 
 }
 
 /* styles navigation menu (default) */
@@ -20,6 +22,7 @@
     /* ensures that the navigation menu is shown on top */
     z-index: 1000;
     list-style-type: none;
+    padding-top:80px;
 }
  
 /* when hamburger icon is toggled (open), then display items as block */
@@ -31,11 +34,30 @@
 .nav_item{
     padding: 20px;
     display: block;
+    color: white !important;
+    font-size: 1.5em;
 }
 
-/* styles the navigation item text to have color white */
-.nav_item p{
-    color: white;
+.nav_item:hover{ 
+    text-decoration: underline;
+    color: #BDCFCC;
+    font-weight: bold;
+
+}
+
+.button_style{
+    margin-left: 20px;
+    margin-top: 20px;
+    font-size: 1.5em;
+    padding:7px;
+    padding-left:30px;
+    padding-right:30px;
+    border-radius: 1em;
+}
+
+.button_style:hover{
+    text-decoration: underline;
+    font-weight: 700;
 }
 
 /* styles the hamburger icon */
@@ -54,15 +76,19 @@
 }
 
 /* shows which page the user is on  */
-.active{
+/* .active{
     border-bottom: 5px solid #c5c7cb;
     width:fit-content;
-}
+} */
 
 /* styles logo */
 .img {
     width: 6.5vw;
     height: auto;
+}
+
+.footer {
+    display: none;
 }
 
 /* Tablet View at max-width of 768px */
@@ -82,7 +108,7 @@
         top: 0;
         left: 60px; 
         /* set width and height for styling */
-        width: 200px; 
+        width: 200px;
         height: 100vh; 
         /* set background color to #15253aff */
         background-color: #15253aff; 
@@ -102,11 +128,6 @@
         display: block;
     }
 
-    /* styles the navigation item text to have color white */
-    .nav_item p{
-        color: white;
-    }
-
     /* styles the hamburger icon */
     .hamburger{
         /* sets color to white */
@@ -120,12 +141,6 @@
         background-color: #15253aff; 
         /* ensures that that hamburger icon is shown on top */
         z-index: 1000; 
-    }
-
-    /* shows which page the user is on  */
-    .active{
-        border-bottom: 5px solid #c5c7cb;
-        width:fit-content;
     }
 }
 
@@ -148,44 +163,91 @@
         /* hides content that overflows */
         overflow: hidden;
         /* centers the items */
-        margin-left: 8.5em;
+        margin-left: 6em;
         margin-bottom: -0.3em;
+        /* font size */
+        font-size: 0.7rem;
     }
 
     /* gives each item a margin of 50px to the right for better spacing */
-    .nav_item{
-        margin-right: 4px;
-    }
-
     /* styles the items */
-    .nav_item p{
-        /* displays items on one line */
-        display: inline-block; 
-        /* add padding */
-        padding: 16px 16px;
-        /* increase font size */
-        font-size: 15px;
-        /* changes font color to white */
-        color: #ffffff;
+    .nav_item {
+        margin-right: 2em;
+        color: #132338 !important;
+        font-size: 1em;
     }
 
     /* shows which page the user is on  */
-    .active{
-        /* adds a border under the active item */
-        border-bottom: 10px solid #c5c7cb;
+    /* adds a border under the active item */
+    .active::after {
+        content: "";
+        display: block;
+        width: 100%;
+        height: 5px; 
+        background-color: #c5c7cb; 
+        position: absolute;
+        bottom: -1.15em;
+        left: 0;
+        border-radius: 10px;
     }
 
     /* when item is hovered, make it bolder */
-    .nav_item p:hover{
-        font-weight: bolder;
+    .nav_item:hover{
+        text-decoration: none;
+        font-weight: 700;
     }
 
-    /* styles the logo/icon */
-    .img{
-        /* position is absolute and we position it on the top left corner*/
-        position: absolute;
-        top: 8px;
-        left: 16px;
+    /* styles the white background of the links */
+    .link_background {
+        background-color: white; 
+        padding: 5px 15px; 
+        border-radius: 20px; 
+        display: inline-block; 
+        margin-bottom: 1.2em;
+        position: relative;
+    }
+
+    .link_background:hover {
+        background-color: #EEFBF3; 
+    }
+
+    /* styles logout button */
+    .button_style {
+        border: none;
+        margin-bottom: 1em !important;
+        font-size: 1em;
+    }
+
+    /* styles footer */
+    .footer {
+        background-color: #132338;
+        color: #ffff;
+        margin-bottom: 1em; /* Adjust bottom margin */
+    }
+
+    .footer {
+        display: block;
+    }
+
+    /* styles footer text */
+    .footer_text {
+        font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Verdana, sans-serif;
+        margin-left: 0.5em;
+        padding-top: 1em;
     }
 }
 
+/* Desktop View at min-width of 1440px */
+@media (min-width: 1440px) {
+    .homeNavbar li {
+        font-size: 1em;  
+    }
+
+    .link_background {
+        padding: 5px 20px; 
+    }
+
+    .button_style {
+        margin-bottom: 1.5em !important;
+    }
+}

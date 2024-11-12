@@ -6,6 +6,10 @@ import React, { useState } from "react";
 import {Icon} from 'react-icons-kit';
 import { ic_menu } from 'react-icons-kit/md/ic_menu';
 import { ic_close } from 'react-icons-kit/md/ic_close';
+import Image from 'next/image';
+import logo from '../../../../public/innofunds-logo-transparent.png';
+import { Navbar, Nav, Button, ModalFooter } from 'react-bootstrap';
+
 export default function Home() {
   const [isOpen, setIsOpen] = useState(false);
   const [legal_name, setName] = useState('');
@@ -16,6 +20,8 @@ export default function Home() {
   const [address_region, setRegion] = useState('');
   const [address_street, setStreet] = useState('');
   const [submitted, setSubmitted] = useState(false);
+  const [errorMessage, setErrorMessage] = useState('');
+
   const handleFormSubmit = async (event) => {
     event.preventDefault();
     const payload = {
@@ -54,116 +60,176 @@ export default function Home() {
       console.error('Network error:', error);
     }
   };
+
   const toggleMenu = () => {
     setIsOpen(!isOpen);
   };
+
   const handleLinkClick = () => {
     setIsOpen(false);
   };
+
   const handleIconClick = (e) => {
     e.stopPropagation();
     toggleMenu();
   };
+
+  const handleLogout = (e) => {
+    e.preventDefault();
+  
+    fetch('http://localhost:8000/api/v1/auth/logout/', {
+      method: 'POST',
+      headers: {
+        "Content-Type": "application/json",
+      },
+    })
+    .then(response => {
+      return response.json();
+    })
+    .then(data => {
+      console.log(data);
+      if (data.detail === 'Successfully logged out.') {
+        // successfully logged out
+        localStorage.removeItem('access'); 
+        window.location.href = '/'; 
+      } else {
+        // error messages
+        setErrorMessage("Failed to log out");
+      }
+    })
+    .catch(error => {
+      console.error("Logout error:", error);
+    });
+  };
+
   return (
-    <main className={`${styles.homeMain} ${homeStyles.body}`}>
+    <main className={`${styles.homeMain} ${homeStyles.body}`} >
+
+
+      {/* display menu (hamburger menu for mobile/tablet) */}
       <header className={styles.homeHeader}>
+        {/* <a href = "#main"  className={homeStyles.skip}>Skip to Main Content</a> */}
         <div className={homeStyles.hamburger} onClick={handleIconClick}>
           {isOpen ? <Icon icon={ic_close} size={55} /> : <Icon icon={ic_menu} size={55} />}
         </div>
+
+
+        {/* display navigation links */}
         <div className={homeStyles.homeContainer}>
           <div className={homeStyles.homeSubcontainer}>
-            <nav className={homeStyles.homeNavbar}>
+            <Navbar className={homeStyles.homeNavbar}>
+              <Navbar.Brand>
+                {/* display logo */}
+                <Image
+                  className={homeStyles.img}
+                  src={logo}
+                  alt="Innofunds Logo"
+                  layout="intrinsic"
+                />
+              </Navbar.Brand>
               <ul className={`${homeStyles.nav_menu} ${isOpen ? homeStyles.open : ''}`}>
                 <li>
-                  <Link className={homeStyles.nav_item} href = "profile/.." onClick={handleLinkClick}>
-                    <p>Home</p>
-                  </Link>
+                  <Nav.Link className={`${homeStyles.nav_item} ${homeStyles.link_background}`} href="profile/..">Home</Nav.Link>
                 </li>
                 <li>
-                  <Link className={homeStyles.nav_item} href = "profile/../goals" onClick={handleLinkClick}>
-                    <p>Goals</p>
-                  </Link>
+                  <Nav.Link className={`${homeStyles.nav_item} ${homeStyles.link_background}`} href="profile/../goals">Goals</Nav.Link>
                 </li>
                 <li>
-                  <Link className={homeStyles.nav_item} href = "profile/../calculator" onClick={handleLinkClick}>
-                    <p>Calculator</p>
-                  </Link>
+                  <Nav.Link className={`${homeStyles.nav_item} ${homeStyles.link_background}`} href="profile/../calculator">Calculator</Nav.Link>
                 </li>
                 <li>
-                  <Link className={homeStyles.nav_item} href = "profile/../friends" onClick={handleLinkClick}>
-                    <p>Friends</p>
-                  </Link>
+                  <Nav.Link className={`${homeStyles.nav_item} ${homeStyles.link_background}`} href="profile/../friends">Friends</Nav.Link>
                 </li>
                 <li>
-                  <Link className={`${homeStyles.nav_item} ${homeStyles.active}`} href = "profile" onClick={handleLinkClick}>
-                    <p>Profile</p>
-                  </Link>
+                  <Nav.Link className={`${homeStyles.nav_item} ${homeStyles.link_background} ${homeStyles.active}`} href="profile">Profile</Nav.Link>
+                </li>
+                <li>
+                  {/* LOG OUT */}
+                  <Button className={`${homeStyles.button_style} ${homeStyles.link_background}`} variant="primary" onClick={handleLogout}>
+                    Log Out
+                  </Button>
                 </li>
               </ul>
-              <img className={homeStyles.img} src="/_next/static/media/icon_transparent.e1a2640c.png" alt="Innovation for Impact logo" width="4.5%" />
-            </nav>
-          </div>
-        </div>
-      </header>
-      <div className={homeStyles.homePage}>
-        <div className={styles.homeTitle}>
-          <h1 style={{ color: '#32415E' }}>Profile</h1>
+            </Navbar>
         </div>
       </div>
-      <form onSubmit={handleFormSubmit}>
-        <div className={styles.info}>
-          <input
-            className={`${styles.input} ${submitted && styles.error}`}
-            placeholder="Legal Name"
-            name="name"
-            value={legal_name}
-            onChange={(e) => setName(e.target.value)}
-          />
-          <input
-            className={`${styles.input} ${submitted && styles.error}`}
-            placeholder="Email Address"
-            name="email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-          />
-          <input
-            className={`${styles.input} ${submitted && styles.error}`}
-            placeholder="City"
-            name="city"
-            value={address_city}
-            onChange={(e) => setCity(e.target.value)}
-          />
-          <input
-            className={`${styles.input} ${submitted && styles.error}`}
-            placeholder="Country"
-            name="country"
-            value={address_country}
-            onChange={(e) => setCountry(e.target.value)}
-          />
-          <input
-            className={`${styles.input} ${submitted && styles.error}`}
-            placeholder="Postal Code"
-            name="zip"
-            value={address_postal}
-            onChange={(e) => setPostal(e.target.value)}
-          />
-          <input
-            className={`${styles.input} ${submitted && styles.error}`}
-            placeholder="State or Region"
-            name="state"
-            value={address_region}
-            onChange={(e) => setRegion(e.target.value)}
-          />
-          <input
-            className={`${styles.input} ${submitted && styles.error}`}
-            placeholder="Street Address"
-            name="street"
-            value={address_street}
-            onChange={(e) => setStreet(e.target.value)}
-          />
-          <button>CONFIRM</button>
+      </header>
+
+
+      {/* header for current page */}
+      <div className={homeStyles.homePage}>
+        <div class={styles.homeTitle}>
+          <h1 style={{color:'#32415e'}}>
+            Profile
+          </h1>
         </div>
-      </form>
-    </main>
-  )
+      </div>
+
+
+      {/* TODO: add page content here */}
+      <form onSubmit={handleFormSubmit}>
+          <div className={styles.info}>
+            <input
+              className={`${styles.input} ${submitted && styles.error}`}
+              placeholder="Legal Name"
+              name="name"
+              value={legal_name}
+              onChange={(e) => setName(e.target.value)}
+            />
+            <input
+              className={`${styles.input} ${submitted && styles.error}`}
+              placeholder="Email Address"
+              name="email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+            />
+            <input
+              className={`${styles.input} ${submitted && styles.error}`}
+              placeholder="City"
+              name="city"
+              value={address_city}
+              onChange={(e) => setCity(e.target.value)}
+            />
+            <input
+              className={`${styles.input} ${submitted && styles.error}`}
+              placeholder="Country"
+              name="country"
+              value={address_country}
+              onChange={(e) => setCountry(e.target.value)}
+            />
+            <input
+              className={`${styles.input} ${submitted && styles.error}`}
+              placeholder="Postal Code"
+              name="zip"
+              value={address_postal}
+              onChange={(e) => setPostal(e.target.value)}
+            />
+            <input
+              className={`${styles.input} ${submitted && styles.error}`}
+              placeholder="State or Region"
+              name="state"
+              value={address_region}
+              onChange={(e) => setRegion(e.target.value)}
+            />
+            <input
+              className={`${styles.input} ${submitted && styles.error}`}
+              placeholder="Street Address"
+              name="street"
+              value={address_street}
+              onChange={(e) => setStreet(e.target.value)}
+            />
+            <button>CONFIRM</button>
+          </div>
+        </form>
+
+
+      <ModalFooter className={homeStyles.footer}>
+        <h1 className={homeStyles.footer_text} >InnoFunds</h1>
+      </ModalFooter>
+  </main>
+  );
 }
+
+
+
+

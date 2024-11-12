@@ -10,11 +10,13 @@ import {eye} from 'react-icons-kit/feather/eye';
 import {x} from 'react-icons-kit/feather/x';
 import { useCookies } from 'next-client-cookies';
 import Head from 'next/head';
+import Button from 'react-bootstrap/Button';
+import Form from 'react-bootstrap/Form';
 
 const backend_url = "http://localhost:8000"
 
 export default function Home() {
-  const [username, setUsername] = useState('');
+  const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [errorMessage, setErrorMessage] = useState('');
   const [type, setType] = useState('password');
@@ -109,10 +111,6 @@ export default function Home() {
 
   return (
     <main className={styles.main}>
-      <Head>
-        <title>InnoFunds</title>
-        <link rel="icon" href="../../public/favicon.ico"/>
-      </Head>
     <div className={styles.login}>
     <Image 
       className={styles.img}
@@ -125,47 +123,44 @@ export default function Home() {
         <h1>WELCOME BACK!</h1>
       </div>
 
-      <form action={`${backend_url}/api/v1/auth/login/`} method="POST" onSubmit={handleSubmit}>
+      <Form action={`${backend_url}/api/v1/auth/login/`} method="POST" onSubmit={handleSubmit}>
         <div className={styles.info}>
-          {/* accept USERNAME */}
-          <input 
-            className= {`${styles.input} ${submitted && username.length < 4 && styles.error}`}
-            placeholder="Email" // placeholder word (ie. shows up in gray-ed out font)
-            name="email"  // allow auto-fill
-            value={username} // save input to variable
-            onChange={(e) => setUsername(e.target.value)}
-          />
+          {/* accept EMAIL */}
+          <Form.Group>
+            <Form.Control
+              className= {`${styles.input} ${submitted && email.length < 4 && styles.error}`}
+              placeholder="Email" // placeholder word (ie. shows up in gray-ed out font)
+              name="email"  // allow auto-fill
+              aria-label="Email"
+              value={email} // save input to variable
+              onChange={(e) => setEmail(e.target.value)}
+            />
+          </Form.Group>
 
           {/* accept PASSWORD */}
-          <input
-            className={`${styles.input} ${submitted && password.length < 8 && styles.error}`}
-            style={{marginLeft: '1vw'}}
-            type={type}
-            placeholder="Password"
-            name="password"
-            aria-label="password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            autoComplete="current-password"
-          />
+          <Form.Group className={styles.input_password}>
+            <Form.Control
+              className={`${styles.input} ${submitted && password.length < 8 && styles.error}`}
+              style={{marginLeft: '1vw'}}
+              type={type}
+              placeholder="Password"
+              name="password"
+              aria-label="password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              autoComplete="current-password"
+            />
+            {/* include eye icon for PASSWORD toggle */}
+            <Icon icon={icon} onClick={handleToggle} className={styles.eye_login} tabIndex={0}/>
+          </Form.Group>
 
-          {/* <input 
-            className="hidden"
-            name="csrfmiddlewaretoken"
-            value={cookies.get("csrftoken")}
-            readOnly={true}
-          /> */}
-
-          {/* include eye icon for PASSWORD toggle */}
-          <span
-            className={styles.eye}
-            tabIndex="0"
-            onClick={handleToggle}
-            onKeyDown={(e) => handleKeyClick(e, handleToggle)}
-          >
-            <Icon icon={icon} fontSize={"1vw"}/>
-          </span>
-
+          {/* <input
+           className="hidden"
+           name="csrfmiddlewaretoken"
+           value={cookies.get("csrftoken")}
+           readOnly={true}
+         /> */}
+          
           {/* provide link to recover account (redirect to RECOVER)*/}
           <p className={styles.forgot}>
             <Link href="/recover">
@@ -193,9 +188,9 @@ export default function Home() {
           )}
 
           {/* allow user to submit the form */}
-          <button> 
-              LOGIN
-          </button>
+          <Button variant="primary" type="submit"> 
+            LOGIN
+          </Button>
 
           {/* allow user to create an account (redirect to SIGN UP) */}
           <p className={styles.noAccount}>
@@ -205,7 +200,7 @@ export default function Home() {
               </Link>
           </p>
         </div>
-      </form>
+      </Form>
     </div>
 
     {/* include copyright footer */}
