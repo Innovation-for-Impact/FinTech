@@ -125,6 +125,14 @@ class FintechFriendManager(models.Manager):
 
         return
 
+    def remove_user_friendships(self, user):
+        """Removes all of a user's friends"""
+        friends_lower = self.get_queryset().filter(user1_pk=user.pk)
+        friends_upper = self.get_queryset().filter(user2_pk=user.pk)
+
+        friends_lower.delete()
+        friends_upper.delete()
+
     def have_friendship(self, user1, user2):
         """Returns a boolean value indicating if the two users have
         a friendship. True if a friendship does exist"""

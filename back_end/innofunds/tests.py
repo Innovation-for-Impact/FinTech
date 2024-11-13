@@ -107,3 +107,22 @@ class FriendshipTestCases(TestCase):
         self.assertEqual(len(user1_friends), 0)
         user2_friends = FintechFriend.objects.get_user_friendships(user2)
         self.assertEqual(len(user2_friends), 0)
+
+    def test_user_friendship_delete(self):
+        user1 = FintechUser.objects.get(email="example1@email.com")
+        user2 = FintechUser.objects.get(email="example2@email.com")
+        FintechFriend.objects.create_friendship(user2, user1)
+
+        user1_friends = FintechFriend.objects.get_user_friendships(user1)
+        self.assertEqual(len(user1_friends), 1)
+        self.assertEqual(user1_friends[0], 2)
+
+        user2_friends = FintechFriend.objects.get_user_friendships(user2)
+        self.assertEqual(len(user2_friends), 1)
+        self.assertEqual(user2_friends[0], 1)
+
+        FintechFriend.objects.remove_user_friendships(user1)
+        user1_friends = FintechFriend.objects.get_user_friendships(user1)
+        self.assertEqual(len(user1_friends), 0)
+        user2_friends = FintechFriend.objects.get_user_friendships(user2)
+        self.assertEqual(len(user2_friends), 0)
