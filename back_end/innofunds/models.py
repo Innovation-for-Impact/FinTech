@@ -3,7 +3,8 @@ from django.db import models
 
 from django.contrib.auth.models import BaseUserManager, AbstractUser
 from itertools import chain
-
+from django.db.models.signals import pre_delete
+from django.dispatch import receiver
 from django.utils.module_loading import module_dir
 
 
@@ -81,6 +82,12 @@ class FintechUser(AbstractUser):
     def is_staff(self):
         "Is the user a member of staff?"
         return self.is_admin
+
+
+@receiver(pre_delete, sender=FintechUser, dispatch_uid="user_delete_signal")
+def delete_user_friendships(sender, instance, using, **kwargs):
+    """Cleans up a users friendships before they are deleted"""
+    FintechFriend.objects.remove_user_friendships(instance)
 
 
 class FintechFriendManager(models.Manager):

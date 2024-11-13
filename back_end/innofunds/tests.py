@@ -23,6 +23,8 @@ class FriendshipTestCases(TestCase):
             first_name="Example",
             last_name="Example",
         )
+
+        # DO NOT USE: WILL BE DELETED
         FintechUser.objects.create(
             password="abc",
             email="example4@email.com",
@@ -126,3 +128,14 @@ class FriendshipTestCases(TestCase):
         self.assertEqual(len(user1_friends), 0)
         user2_friends = FintechFriend.objects.get_user_friendships(user2)
         self.assertEqual(len(user2_friends), 0)
+
+    def test_user_deleted(self):
+        user1 = FintechUser.objects.get(email="example1@email.com")
+        user4 = FintechUser.objects.get(email="example4@email.com")
+        FintechFriend.objects.create_friendship(user4, user1)
+
+        self.assertTrue(FintechFriend.objects.have_friendship(user1, user4))
+
+        user4.delete()
+        user1_friends = FintechFriend.objects.get_user_friendships(user1)
+        self.assertEqual(len(user1_friends), 0)
