@@ -1,5 +1,4 @@
 /* mobile view */
-
 /* styles the profile icon */
 .profile_icon {
     width: 6em;
@@ -21,7 +20,25 @@
     margin-top: 0.2em;
     font-size: 0.6em;
 }
-  
+
+/* style profile buttons */
+.groups_button {
+    /* sets background color and border of login button to #BBEEAB*/
+    background-color: #BDCFCC;
+    border: 0px solid #BDCFCC;
+    /* curves edges of the button */
+    border-radius: 0.5em;
+    /* adjusts width and height */
+    width: 90%;
+    height: auto;
+    padding: 0.65em;
+    /* styles the font in login button */
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Verdana, sans-serif;
+    font-weight: bold;
+    font-size: 3.2vw; 
+    color: #15253A;
+}
+
 /* tablet view */
 @media (min-width: 768px) {
     .profile_icon {

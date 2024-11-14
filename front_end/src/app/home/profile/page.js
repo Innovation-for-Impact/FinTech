@@ -114,7 +114,7 @@ export default function Home() {
         <div className={homeStyles.hamburger} onClick={handleIconClick}>
           {isOpen ? <Icon icon={ic_close} size={55} /> : <Icon icon={ic_menu} size={55} />}
         </div>
-        
+
           {/* display navigation links */}
           <div className={homeStyles.homeContainer}>
             <div className={homeStyles.homeSubcontainer}>
@@ -166,16 +166,16 @@ export default function Home() {
           <p className={profileStyles.name}>Name</p>
           <p className={profileStyles.pronouns}>Pronouns</p>
 
-          <Button>
-            Groups
+          <Button className={`${profileStyles.groups_button}`} variant="primary" type="submit" onClick={() => { window.location.href = 'profile/../calculator'; }}>
+            Groups 
           </Button> 
-          <Button>
+          <Button className={`${profileStyles.friends_button}`} variant="primary" type="submit" onClick={() => { window.location.href = 'profile/../friends'; }}>
             Friends
           </Button>
         </div>
 
         {/* TODO: add page content here */}
-        <form onSubmit={handleFormSubmit}>
+        {/* <form onSubmit={handleFormSubmit}>
           <div className={styles.info}>
             <input
               className={`${styles.input} ${submitted && styles.error}`}
@@ -228,7 +228,7 @@ export default function Home() {
             />
             <button>CONFIRM</button>
           </div>
-        </form>
+        </form> */}
         
         <ModalFooter className={homeStyles.footer}>
           <h1 className={homeStyles.footer_text} >InnoFunds</h1>
