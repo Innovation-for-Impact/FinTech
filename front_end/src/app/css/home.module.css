@@ -24,7 +24,7 @@
     list-style-type: none;
     padding-top:80px;
 }
- 
+
 /* when hamburger icon is toggled (open), then display items as block */
 .open {
     display: block; 
@@ -90,6 +90,145 @@
 .footer {
     display: none;
 }
+
+/* -------------------------------------------------------------- */
+/* GOALS PAGE */
+.dashBoard {
+    color: blue; /* Change this to any color you prefer */
+    font-weight: bold;
+    font-size: 24px; /* Adjust as needed */
+}
+.dashboard {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+}
+
+.square_box {
+    background-color: #e5f1ef;
+    border-radius: 10px;
+    padding: 20px;
+    width: 250px;
+    height: 250px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+.square_box h2 {
+    font-size: 18px;
+    color: #333;
+    margin-bottom: 10px;
+}
+
+.square_box p {
+    font-size: 14px;
+    color: #666;
+}
+
+.square_box h3 {
+    font-size: 24px;
+    color: #d9534f;
+    margin-top: 10px;
+}
+
+.line_chart {
+    width: 100%;
+    height: 50px;
+    margin-top: 20px;
+    background: linear-gradient(to right, #aed581, #81c784, #4caf50);
+    border-radius: 5px;
+}
+.square_box ul {
+    list-style: none;
+    text-align: left;
+}
+
+.square_box ul li {
+    font-size: 14px;
+    color: #333;
+    margin: 5px 0;
+}
+
+.square_ box ul li span {
+    float: right;
+    color: #d9534f;
+}
+
+.budget_tracker {
+    background-color: #2c3e50;
+    color: #ffffff;
+    border-radius: 10px;
+    padding: 20px;
+    width: 300px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.budget_tracker h2 {
+    font-size: 16px;
+    display: flex;
+    justify-content: space-between;
+    color: #b0c4de;
+    margin-bottom: 15px;
+    font-weight: normal;
+}
+
+.budget_tracker .total-expenses {
+    font-size: 12px;
+    color: #a3b1c4;
+}
+
+.budget_tracker .expense-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 8px 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.budget_tracker .expense-item:last-child {
+    border-bottom: none;
+}
+
+.icon {
+    font-size: 18px;
+    color: #a3b1c4;
+    margin-right: 10px;
+}
+
+.expense-info {
+    flex-grow: 1;
+    margin-left: 10px;
+}
+
+.expense-info strong {
+    display: block;
+    font-size: 14px;
+    color: #f2f2f2;
+}
+
+.expense-info p {
+    font-size: 12px;
+    color: #b0c4de;
+    margin-top: 2px;
+}
+
+.expense-amount {
+    font-size: 14px;
+    color: #d9534f;
+    text-align: right;
+}
+
+.expense-amount span {
+    display: block;
+    font-size: 12px;
+    color: #a3b1c4;
+    margin-top: 2px;
+}
+/* -------------------------------------------------------------- */
 
 /* Tablet View at max-width of 768px */
 @media (min-width: 768px) {
