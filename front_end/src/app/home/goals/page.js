@@ -28,6 +28,34 @@ export default function Home() {
   };
   // end MENU functions
 
+  const handleLogout = (e) => {
+    e.preventDefault();
+  
+    fetch('http://localhost:8000/api/v1/auth/logout/', {
+      method: 'POST',
+      headers: {
+        "Content-Type": "application/json",
+      },
+    })
+    .then(response => {
+      return response.json();
+    })
+    .then(data => {
+      console.log(data);
+      if (data.detail === 'Successfully logged out.') {
+        // successfully logged out
+        localStorage.removeItem('access'); 
+        window.location.href = '/'; 
+      } else {
+        // error messages
+        setErrorMessage("Failed to log out");
+      }
+    })
+    .catch(error => {
+      console.error("Logout error:", error);
+    });
+  };
+
   return (
     <main className={`${styles.homeMain} ${homeStyles.body}`} >
         
@@ -69,7 +97,7 @@ export default function Home() {
                   </li>
                   <li>
                     {/* LOG OUT */}
-                    <Button className={`${homeStyles.button_style} ${homeStyles.link_background}`} variant="primary" type="submit"> 
+                    <Button className={`${homeStyles.button_style} ${homeStyles.link_background}`} variant="primary" type="submit" onClick={handleLogout}> 
                       Log Out 
                     </Button>
                   </li>

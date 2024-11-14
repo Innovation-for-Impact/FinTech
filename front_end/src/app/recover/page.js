@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import styles from "../css/page.module.css";
 import specificStyles from "../css/recover.module.css";
 import Link from 'next/link';
+import { useCookies } from 'next-client-cookies';
 import {Icon} from 'react-icons-kit';
 import {x} from 'react-icons-kit/feather/x';
 // import MailboxIcon from "../images/icons8-mail-48.png"
@@ -12,6 +13,7 @@ console.log("this is the forgot password page");
 export default function ForgotPassword() {
   const [email, setEmail] = useState('');
   const [submitted, setSubmitted] = useState(false);
+  const cookies = useCookies();
   const [showSuccessMessage, setShowSuccessMessage] = useState(false);
   const [errorMessage, setErrorMessage] = useState('');
   const [XIcon, setXIcon] = useState(x);
@@ -37,23 +39,23 @@ export default function ForgotPassword() {
       setErrorMessage('Please submit a valid email!');
       return; 
     }
-    //send request to backend server (don't know how to handle this yet)
-    try{
-        // const response = await fetch(,{
-        setShowSuccessMessage(true);
-        // }); //need to add api stuff
-      if(response.ok){
-        //password reset was successful 
-        //display success message to user 
-      }
-      else{
-        //something went wrong
-      }
-    }
-    catch (error) {
-      //handle network error
-      console.error('Error: ', error);
-    }
+    // TODO backend: send request for recovery email backend server
+    const data = new FormData(e.currentTarget)
+    fetch(e.target.action, {
+      method: "post",
+      body: data
+    })
+    .then(res => {
+      if(!res.ok)
+        throw new Error(res);
+      return res.json();
+    }).then(json => {
+      if(!json.ok)
+        throw new Error(json);
+      setShowSuccessMessage(true);
+    }).catch(err => {
+      console.error(err);
+    })
   };
 
   const handleXtoggle = () => {
@@ -68,8 +70,6 @@ export default function ForgotPassword() {
     }
   } // handleToggle
 
-
-
   return (
     <main className={styles.main}>
       <div className={specificStyles.forgot}>
@@ -80,9 +80,10 @@ export default function ForgotPassword() {
               Provide the email address associated with your account and we will share a link to reset your password!
             </p>
           )}
-
+        {/* accept user input (email address) through a form */}
+        
         {/* User clicks submits and gets a success message or error message */}
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={handleSubmit} action="/api/auth/password/reset/" method="POST">
           <input
             className={`${specificStyles.input} ${submitted && email.length === 0 && styles.error}`}
             type="email"
@@ -92,7 +93,19 @@ export default function ForgotPassword() {
             onChange={(e) => setEmail(e.target.value)}
             name="email"
           />
+        
 
+          <input 
+            className="hidden"
+            name="csrfmiddlewaretoken"
+            value={cookies.get("csrftoken")}
+            readOnly={true}
+          />
+
+          {/* allow user to submit the form */}
+          <button type="submit">
+            Submit
+          </button>
           {showSuccessMessage && (
             <div className={specificStyles.successMessage}>
               Email sent! Please check your inbox.
@@ -125,10 +138,6 @@ export default function ForgotPassword() {
             </p>
             </div>
           )}
-  
-          <button type="submit">
-            SUBMIT
-          </button>
         </form>
         </div>
         <p className={styles.noAccount}>
