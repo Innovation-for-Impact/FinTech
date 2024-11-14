@@ -72,21 +72,27 @@ class FriendshipTestCases(TestCase):
         user1_friends = FintechFriend.objects.get_user_friendships(user1)
         self.assertEqual(len(user1_friends), 1)
         self.assertEqual(user1_friends[0], 2)
-        self.assertTrue(FintechFriend.objects.have_friendship(user1, user2))
-        self.assertFalse(FintechFriend.objects.have_friendship(user1, user3))
+        self.assertTrue(
+            FintechFriend.objects.have_friendship_of_type(user1, user2))
+        self.assertFalse(
+            FintechFriend.objects.have_friendship_of_type(user1, user3))
 
         user2_friends = FintechFriend.objects.get_user_friendships(user2)
         self.assertEqual(len(user2_friends), 2)
         self.assertIn(1, user2_friends)
         self.assertIn(3, user2_friends)
-        self.assertTrue(FintechFriend.objects.have_friendship(user2, user1))
-        self.assertTrue(FintechFriend.objects.have_friendship(user3, user2))
+        self.assertTrue(
+            FintechFriend.objects.have_friendship_of_type(user2, user1))
+        self.assertTrue(
+            FintechFriend.objects.have_friendship_of_type(user3, user2))
 
         user3_friends = FintechFriend.objects.get_user_friendships(user3)
         self.assertEqual(len(user3_friends), 1)
         self.assertEqual(user1_friends[0], 2)
-        self.assertFalse(FintechFriend.objects.have_friendship(user3, user1))
-        self.assertTrue(FintechFriend.objects.have_friendship(user2, user3))
+        self.assertFalse(
+            FintechFriend.objects.have_friendship_of_type(user3, user1))
+        self.assertTrue(
+            FintechFriend.objects.have_friendship_of_type(user2, user3))
 
         FintechFriend.objects.remove_friendship(user3, user2)
 
@@ -134,8 +140,63 @@ class FriendshipTestCases(TestCase):
         user4 = FintechUser.objects.get(email="example4@email.com")
         FintechFriend.objects.create_friendship(user4, user1)
 
-        self.assertTrue(FintechFriend.objects.have_friendship(user1, user4))
+        self.assertTrue(
+            FintechFriend.objects.have_friendship_of_type(user1, user4))
 
         user4.delete()
         user1_friends = FintechFriend.objects.get_user_friendships(user1)
         self.assertEqual(len(user1_friends), 0)
+
+    def test_update_friendship(self):
+        user1 = FintechUser.objects.get(email="example1@email.com")
+        user2 = FintechUser.objects.get(email="example2@email.com")
+
+        self.assertFalse(FintechFriend.objects.have_relationship(user1, user2))
+        self.assertFalse(FintechFriend.objects.have_relationship(user2, user1))
+        FintechFriend.objects.create_friendship(user1, user2)
+        self.assertTrue(
+            FintechFriend.objects.have_friendship_of_type(user1, user2, 3))
+        self.assertFalse(
+            FintechFriend.objects.have_friendship_of_type(user1, user2, 0))
+        self.assertTrue(
+            FintechFriend.objects.have_friendship_of_type(user2, user1, 3))
+        self.assertFalse(
+            FintechFriend.objects.have_friendship_of_type(user2, user1, 0))
+        self.assertTrue(FintechFriend.objects.have_relationship(user1, user2))
+        self.assertTrue(FintechFriend.objects.have_relationship(user2, user1))
+
+        FintechFriend.objects.update_friendship(user1, user2, 2)
+        self.assertFalse(
+            FintechFriend.objects.have_friendship_of_type(user1, user2, 3))
+        self.assertTrue(
+            FintechFriend.objects.have_friendship_of_type(user1, user2, 2))
+        self.assertFalse(
+            FintechFriend.objects.have_friendship_of_type(user2, user1, 3))
+        self.assertTrue(
+            FintechFriend.objects.have_friendship_of_type(user2, user1, 2))
+        self.assertTrue(FintechFriend.objects.have_relationship(user1, user2))
+        self.assertTrue(FintechFriend.objects.have_relationship(user2, user1))
+
+    def test_friendship_exceptions(self):
+        user1 = FintechUser.objects.get(email="example1@email.com")
+        user2 = FintechUser.objects.get(email="example2@email.com")
+
+        FintechFriend.objects.create_friendship(user1, user2)
+        self.assertRaises(
+            Exception, FintechFriend.objects.create_friendship, user1, user2
+        )
+        self.assertRaises(
+            Exception, FintechFriend.objects.create_friendship, user1, user2
+        )
+
+        FintechFriend.objects.remove_friendship(user1, user2)
+        self.assertRaises(
+            Exception, FintechFriend.objects.get_friendship, user1, user2)
+        self.assertRaises(
+            Exception, FintechFriend.objects.get_friendship, user2, user1)
+        self.assertRaises(
+            Exception, FintechFriend.objects.update_friendship, user1, user2, 0
+        )
+        self.assertRaises(
+            Exception, FintechFriend.objects.update_friendship, user2, user1, 0
+        )

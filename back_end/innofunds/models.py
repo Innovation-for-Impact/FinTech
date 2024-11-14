@@ -91,9 +91,20 @@ def delete_user_friendships(sender, instance, using, **kwargs):
 
 
 class FintechFriendManager(models.Manager):
-    def create_friendship(self, user1, user2):
+    def create_friendship(self, user1, user2, type=3):
         """Creates the friendship with the invariant that the first user
-        id id less than the second user's id"""
+        id is less than the second user's id. By default, type is 3, which
+        represents a complete friendship. However, other possible types are
+        valid:
+        0 - unknown friendship
+        1 - user1 sent a friend request to user2
+        2 - user2 sent a friend request to user1
+
+        If the friendship already exists, it will not be updated. Use
+        update_friendship(...) instead
+
+        If the friendship already exists, an exception will be raised
+        """
         small = min(user1.id, user2.id)
         big = max(user1.id, user2.id)
 
@@ -101,17 +112,56 @@ class FintechFriendManager(models.Manager):
             self.get_queryset().filter(user1_pk=small).filter(user2_pk=big)
         )
         if existing_friendship.exists():
-            return existing_friendship
+            raise Exception("Friendship between users already exists")
 
-        friendship = self.model(user1_pk=small, user2_pk=big)
+        friendship = self.model(user1_pk=small, user2_pk=big, type=type)
 
         friendship.save(using=self._db)
         return friendship
 
-    def get_user_friendships(self, user):
-        """Returns a list of user IDs for the user's friends"""
-        friends_lower = self.get_queryset().filter(user1_pk=user.pk).values("user2_pk")
-        friends_upper = self.get_queryset().filter(user2_pk=user.pk).values("user1_pk")
+    def update_friendship(self, user1, user2, type):
+        """Updates the friendship status between two users. Raises
+        an exception if the friendship does not exist"""
+        small = min(user1.id, user2.id)
+        big = max(user1.id, user2.id)
+
+        friendship = self.get_queryset().filter(user1_pk=small).get(user2_pk=big)
+
+        friendship.type = type
+        friendship.save()
+        return friendship
+
+    def get_friendship(self, user1, user2):
+        """Gets the friendship between two users. Raises and exception
+        if the friendship does not exist"""
+        small = min(user1.id, user2.id)
+        big = max(user1.id, user2.id)
+
+        friendship = self.get_queryset().filter(user1_pk=small).filter(user2_pk=big)
+        if not friendship.exists():
+            raise Exception("Friendship does not exist")
+        return friendship
+
+    def get_user_friendships(self, user, type=3):
+        """Returns a list of user IDs for the user's friends based on the
+        given type
+        0 - unknown friendship
+        1 - user1 sent a friend request to user2
+        2 - user2 sent a friend request to user1
+        3 (default) - user1 and user2 are friends
+        """
+        friends_lower = (
+            self.get_queryset()
+            .filter(user1_pk=user.pk)
+            .filter(type=type)
+            .values("user2_pk")
+        )
+        friends_upper = (
+            self.get_queryset()
+            .filter(user2_pk=user.pk)
+            .filter(type=type)
+            .values("user1_pk")
+        )
 
         # .values(...) returns a dict, so get rid of that
         friends_lower = map(lambda user: user["user2_pk"], friends_lower)
@@ -125,8 +175,6 @@ class FintechFriendManager(models.Manager):
         big = max(user1.id, user2.id)
 
         friendship = self.get_queryset().filter(user1_pk=small).filter(user2_pk=big)
-        if not friendship.exists():
-            return
 
         friendship.delete()
 
@@ -140,13 +188,31 @@ class FintechFriendManager(models.Manager):
         friends_lower.delete()
         friends_upper.delete()
 
-    def have_friendship(self, user1, user2):
-        """Returns a boolean value indicating if the two users have
-        a friendship. True if a friendship does exist"""
+    def have_relationship(self, user1, user2):
+        """Returns True if the users have anyy form of relationsip"""
         small = min(user1.id, user2.id)
         big = max(user1.id, user2.id)
 
         friendship = self.get_queryset().filter(user1_pk=small).filter(user2_pk=big)
+        return friendship.exists()
+
+    def have_friendship_of_type(self, user1, user2, type=3):
+        """Returns a boolean value indicating if the two users have
+        a friendship of the given type. True if the friendship does exist:
+        0 - unknown friendship
+        1 - user1 sent a friend request to user2
+        2 - user2 sent a friend request to user1
+        3 (default) - user1 and user2 are friends
+        """
+        small = min(user1.id, user2.id)
+        big = max(user1.id, user2.id)
+
+        friendship = (
+            self.get_queryset()
+            .filter(user1_pk=small)
+            .filter(user2_pk=big)
+            .filter(type=type)
+        )
         return friendship.exists()
 
 
@@ -154,5 +220,11 @@ class FintechFriend(models.Model):
     id = models.BigAutoField(unique=True, primary_key=True)
     user1_pk = models.IntegerField()
     user2_pk = models.IntegerField()
+
+    # type 0: unknown relation
+    # type 1: user1 pending on user2
+    # type 2: user2 pending on user1
+    # type 3: friendship established
+    type = models.IntegerField(default=0)
 
     objects = FintechFriendManager()
