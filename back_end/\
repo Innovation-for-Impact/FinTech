@@ -1,4 +1,3 @@
-from urllib.request import HTTPPasswordMgrWithDefaultRealm
 from django.shortcuts import render
 from rest_framework import viewsets, permissions
 from innofunds.models import FintechFriend, FintechUser
@@ -37,26 +36,8 @@ class FintechUserViewSet(viewsets.ModelViewSet):
     serializer_class = UserSerializer
     permission_classes = [UserViewPermission]
 
-    @action(detail=True, methods=["post", "get"])
-    def friends(self, request, pk=None):
-        if request.method == "POST":
-            recipient_id = int(request.POST.get("recipient_id"))
-            FintechFriend.objects.friend_request(self.get_object().id, recipient_id)
-            return Response("Friend request sent")
-        elif request.method == "GET":
-            limit = int(request.GET.get("limit", 10))
-            offset = int(request.GET.get("offset", 0))
-            type = int(request.GET.get("type", 3))
-            friend_ids = FintechFriend.objects.get_user_relationships(
-                self.get_object().id, type=type, limit=limit, offset=offset
-            )
-            friends = FintechUser.objects.all().filter(id__in=friend_ids)
 
-            serializer = self.get_serializer(friends, many=True)
-            return Response(serializer.data)
-
-
-class FintechFriendsViewSet(viewsets.ModelViewSet):
+class FintechFriends(viewsets.ModelViewSet):
     """Gets all friends"""
 
     queryset = FintechFriend.objects.all()
@@ -66,7 +47,3 @@ class FintechFriendsViewSet(viewsets.ModelViewSet):
 
 # how do I give the frontend friends
 # api/v1/user/1/friends
-# need to add an endpoint for accepting a friend request
-# need an emdpoint for rejecting a friend request
-# need an endpoint for sending a friend request
-# need and endpoint for getting a user's friends

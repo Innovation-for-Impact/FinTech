@@ -5,8 +5,12 @@ import innofunds.views.users as user_views
 from rest_framework_nested import routers
 
 router = routers.DefaultRouter()
-router.register(r'users', viewset=user_views.FintechUserViewSet, basename='users')
+router.register(r"users", viewset=user_views.FintechUserViewSet, basename="users")
+router.register(
+    r"friends", viewset=user_views.FintechFriendsViewSet, basename="friends"
+)
 
 urlpatterns = [
-    path('', include(router.urls)),
+    path("", include(router.urls)),
 ]
+
