@@ -19,6 +19,14 @@ class UserSerializer(serializers.HyperlinkedModelSerializer):
         fields = ["id", "email", "first_name", "last_name"]
 
 
+class LimitedUserSerializer(serializers.HyperlinkedModelSerializer):
+    """Serializer that does not return private information"""
+
+    class Meta:
+        model = FintechUser
+        fields = ["id", "first_name", "last_name"]
+
+
 class FriendSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = FintechFriend

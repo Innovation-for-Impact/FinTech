@@ -139,10 +139,16 @@ class FintechFriendManager(models.Manager):
         has sent a friend request already and `accept_request` is set to true,
         a proper friendship will be created.
 
-        If the friend request was already sent by sender, an exception will
-        be thrown
+        If the friend request was already sent by sender or the users are
+        already friends, an exception will be thrown
         """
+
         if sender_id <= recipient_id:
+            if self.have_friendship_of_type(
+                sender_id, recipient_id, RelationshipTypes.FRIENDS
+            ):
+                raise Exception("Friendship already established")
+
             if self.have_friendship_of_type(
                 sender_id, recipient_id, RelationshipTypes.USER2_SENT_REQUEST
             ):
@@ -155,6 +161,11 @@ class FintechFriendManager(models.Manager):
                     sender_id, recipient_id, RelationshipTypes.USER1_SENT_REQUEST
                 )
         else:
+            if self.have_friendship_of_type(
+                recipient_id, sender_id, RelationshipTypes.FRIENDS
+            ):
+                raise Exception("Friendship already established")
+
             if self.have_friendship_of_type(
                 recipient_id, sender_id, RelationshipTypes.USER1_SENT_REQUEST
             ):

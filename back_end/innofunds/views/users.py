@@ -1,13 +1,17 @@
 from urllib.request import HTTPPasswordMgrWithDefaultRealm
+from django.contrib.auth.models import PermissionDenied
 from django.shortcuts import render
 from rest_framework import viewsets, permissions
+from rest_framework.exceptions import APIException
 from innofunds.models import FintechFriend, FintechUser
 from innofunds.serializers import (
     FriendSerializer,
+    LimitedUserSerializer,
     UserSerializer,
 )
 from rest_framework.decorators import action
 from rest_framework.response import Response
+from rest_framework import status
 
 
 class UserViewPermission(permissions.BasePermission):
@@ -28,6 +32,19 @@ class UserViewPermission(permissions.BasePermission):
         ) or obj.id == request.user.id
 
 
+class IsAdminOrSelfOrReadOnly(permissions.BasePermission):
+    """Allows access to all actions if the user is an admin, or
+    the user is equal to the object it's trying to access. Otherwise,
+    only readyonly actions are allowed"""
+
+    def has_object_permission(self, request, view, obj):
+        return (
+            request.user
+            and request.user.is_authenticated
+            and (request.user.is_admin or obj.id == request.user.id)
+        ) or request.method == "GET"
+
+
 class FintechUserViewSet(viewsets.ModelViewSet):
     """
     Gets all users; limited by UserViewPermission
@@ -37,12 +54,32 @@ class FintechUserViewSet(viewsets.ModelViewSet):
     serializer_class = UserSerializer
     permission_classes = [UserViewPermission]
 
-    @action(detail=True, methods=["post", "get"])
+    @action(
+        detail=True,
+        methods=["post", "get", "delete"],
+        permission_classes=[IsAdminOrSelfOrReadOnly],
+    )
     def friends(self, request, pk=None):
+        # TODO: more advanced permission control in the future:
+        # - i.e. the user can limit who views their friends
+
         if request.method == "POST":
-            recipient_id = int(request.POST.get("recipient_id"))
-            FintechFriend.objects.friend_request(self.get_object().id, recipient_id)
-            return Response("Friend request sent")
+            try:
+                recipient_id = int(request.POST.get("recipient_id"))
+                FintechFriend.objects.friend_request(self.get_object().id, recipient_id)
+                return Response(status=status.HTTP_200_OK)
+            except TypeError:
+                return Response(
+                    "Must provide a valid recipient_id",
+                    status=status.HTTP_400_BAD_REQUEST,
+                )
+            except APIException:
+                raise
+            except Exception:
+                return Response(
+                    "Friend request already sent, or users are already friends",
+                    status=status.HTTP_208_ALREADY_REPORTED,
+                )
         elif request.method == "GET":
             limit = int(request.GET.get("limit", 10))
             offset = int(request.GET.get("offset", 0))
@@ -52,8 +89,31 @@ class FintechUserViewSet(viewsets.ModelViewSet):
             )
             friends = FintechUser.objects.all().filter(id__in=friend_ids)
 
-            serializer = self.get_serializer(friends, many=True)
-            return Response(serializer.data)
+            serializer_data = 0
+            if self.get_object().is_admin:
+                serializer_data = self.get_serializer(friends, many=True)
+            else:
+                serializer_data = LimitedUserSerializer(friends, many=True)
+            return Response(serializer_data.data)
+        elif request.method == "DELETE":
+            try:
+                recipient_id = int(request.POST.get("recipient_id"))
+                FintechFriend.objects.remove_relationship(
+                    self.get_object().id, recipient_id
+                )
+                return Response(status=status.HTTP_200_OK)
+            except TypeError:
+                return Response(
+                    "Must provide a valid recipient_id",
+                    status=status.HTTP_400_BAD_REQUEST,
+                )
+            except APIException:
+                raise
+            except Exception:
+                return Response(
+                    "No relationship exists between users",
+                    status=status.HTTP_404_NOT_FOUND,
+                )
 
 
 class FintechFriendsViewSet(viewsets.ModelViewSet):
