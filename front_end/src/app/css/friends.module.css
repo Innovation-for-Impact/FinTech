@@ -1,0 +1,315 @@
+/* FRIENDS PAGE */
+.pageContainer {
+  width: 85%;
+  max-width: 1000px;
+  margin: 0 auto;  /* Center the container */
+  padding: 15px;
+  min-height: 100vh;
+}
+
+
+.activitySection {
+  background-color: #2B3444;
+  border-radius: 12px;
+  padding: 20px;
+  margin: 20px auto; /* Changed to auto margins */
+  position: relative;
+  width: 100%; /* Ensure full width within container */
+}
+
+.activitySection .dot-top-left,
+.activitySection .dot-bottom-left {
+  position: absolute;
+  left: 12px;
+  width: 6px;
+  height: 6px;
+  background-color: #fff;
+  border-radius: 50%;
+}
+
+.activitySection .dot-top-right,
+.activitySection .dot-bottom-right {
+  position: absolute;
+  right: 12px;
+  width: 6px;
+  height: 6px;
+  background-color: #fff;
+  border-radius: 50%;
+}
+
+.activitySection .dot-top-left,
+.activitySection .dot-top-right {
+  top: 12px;
+}
+
+.activitySection .dot-bottom-left,
+.activitySection .dot-bottom-right {
+  bottom: 12px;
+}
+
+.sectionTitle {
+  color: white;
+  font-size: 20px;
+  margin-bottom: 15px;
+  padding-left: 12px;
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Verdana, sans-serif;
+}
+
+.activityCard {
+  background-color: #F5F5F5;
+  border-radius: 8px;
+  padding: 12px;
+  margin: 8px 0;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  min-height: 45px;
+}
+
+.avatarWrapper {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  overflow: hidden;
+}
+
+.userAvatar {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.activityContent {
+  flex: 1;
+  font-size: 13px;
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Verdana, sans-serif;
+  color: #333;
+}
+
+.actionBar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 15px auto; /* Changed to auto margins */
+  width: 100%; /* Ensure full width */
+}
+
+.payRequestButton {
+  background-color: #12213F;
+  color: white;
+  border: none;
+  border-radius: 20px;
+  padding: 8px 20px;
+  font-size: 17px;
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Verdana, sans-serif;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  font-weight: 500;
+}
+
+.searchWrapper {
+  position: relative;
+  width: 350px; 
+}
+
+.searchInput {
+  width: 100%;
+  background-color: #EAEAEA;
+  border: none;
+  border-radius: 16px;
+  padding: 8px 35px 8px 15px;
+  font-size: 15px; 
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Verdana, sans-serif;
+}
+
+.searchIcon {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #666;
+  font-size: 15px;
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Verdana, sans-serif;
+}
+
+.friendsGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+  margin: 15px auto; /* Changed to auto margins */
+  width: 100%; /* Ensure full width */
+}
+
+.friendCard {
+  background-color: #2B3444;
+  border-radius: 6px;
+  padding: 12px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: 90px;
+}
+
+.colorVariant1 { background-color: #37445E; }
+.colorVariant2 { background-color: #3B5C68; }
+.colorVariant3 { background-color: #699385; }
+
+.friendInfo {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.avatarCircle {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background-color: rgba(255, 255, 255, 0.2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.nameInfo h3 {
+  color: white;
+  margin: 0;
+  font-size: 14px;
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Verdana, sans-serif;
+}
+
+.nameInfo p {
+  color: #B0B0B0;
+  margin: 2px 0 0 0;
+  font-size: 11px;
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Verdana, sans-serif;
+}
+
+.viewButton {
+  background-color: rgba(255, 255, 255, 0.1);
+  color: white;
+  border: none;
+  border-radius: 4px;
+  padding: 5px;
+  margin-top: 8px;
+  cursor: pointer;
+  font-size: 11px;
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Verdana, sans-serif;
+}
+
+
+.parentContainer {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin: 20px 0;
+}
+
+.addFriendsButton {
+  background-color: #12213F;
+  color: white;
+  border: none;
+  border-radius: 20px;
+  padding: 8px 20px;
+  font-size: 17px;
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Verdana, sans-serif;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  font-weight: 500;
+  width: fit-content;
+}
+@media (max-width: 768px) {
+  .friendsGrid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  
+  .searchWrapper {
+    width: 200px;
+  }
+}
+@media (max-width: 480px) {
+  .nav_menu {
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 60px;
+    height: 100vh;
+    background-color: #15253aff;
+    z-index: 1000;
+  }
+
+  .homePage,
+  .pageContainer {
+    margin-left: 60px;
+    width: calc(100% - 60px);
+    padding: 10px;
+  }
+
+  .activitySection {
+    padding: 25px 8px; 
+    margin-bottom: 5px; 
+    padding-bottom: 30px;
+  }
+
+  .activityCard {
+    padding: 6px;
+    margin: 6px 0;
+  }
+
+  .friendsGrid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 8px;
+  }
+
+  .sectionTitle {
+    font-size: 16px;
+    margin: 15px 0 25px 0; 
+    padding-top: 10px;
+  }
+
+  .avatarWrapper {
+    width: 24px;
+    height: 24px;
+  }
+
+  .activityContent {
+    font-size: 10px;
+  }
+
+  .actionBar {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .parentContainer {
+    margin-left: 60px;
+    width: calc(100% - 60px);
+  }
+
+  .searchWrapper {
+    width: 100%;
+  }
+
+  .payRequestButton {
+    width: 100%;
+    padding: 8px;
+  }
+
+  .addFriendsButton {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 20px; 
+    margin-left: 10px;
+    margin-right:10px;
+  }
+
+  /* Adjust dots positioning */
+  .activitySection .dot-top-left,
+  .activitySection .dot-top-right {
+    top: 8px;
+  }
+
+  .activitySection .dot-bottom-left,
+  .activitySection .dot-bottom-right {
+    bottom: 8px;
+  }
+}

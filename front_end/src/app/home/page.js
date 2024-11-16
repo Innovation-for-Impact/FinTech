@@ -6,6 +6,9 @@ import React, { useState } from "react";
 import {Icon} from 'react-icons-kit';
 import { ic_menu } from 'react-icons-kit/md/ic_menu';
 import { ic_close } from 'react-icons-kit/md/ic_close';
+import Image from 'next/image';
+import logo from '../../../public/innofunds-logo-transparent.png';
+import { Navbar, Nav, Button, ModalFooter } from 'react-bootstrap';
 
 export default function Home() {
   const [isOpen, setIsOpen] = useState(false);
@@ -26,6 +29,34 @@ export default function Home() {
 
   // end MENU functions
 
+  const handleLogout = (e) => {
+    e.preventDefault();
+  
+    fetch('http://localhost:8000/api/v1/auth/logout/', {
+      method: 'POST',
+      headers: {
+        "Content-Type": "application/json",
+      },
+    })
+    .then(response => {
+      return response.json();
+    })
+    .then(data => {
+      console.log(data);
+      if (data.detail === 'Successfully logged out.') {
+        // successfully logged out
+        localStorage.removeItem('access'); 
+        window.location.href = '/'; 
+      } else {
+        // error messages
+        setErrorMessage("Failed to log out");
+      }
+    })
+    .catch(error => {
+      console.error("Logout error:", error);
+    });
+  };
+
   return (
     <main className={`${styles.homeMain} ${homeStyles.body}`} >
 
@@ -37,62 +68,105 @@ export default function Home() {
         </div>
         
         {/* display navigation links */}
-        <div className={homeStyles.homeContainer}>
-        <div className={homeStyles.homeSubcontainer}>
-        <nav className={homeStyles.homeNavbar}>
-          {/* <a href="#" className={homeStyles.nav_branding}>Menu</a> */}
-          <ul className={`${homeStyles.nav_menu} ${isOpen ? homeStyles.open : ''}`}>
-            <li>
-              <Link className={`${homeStyles.nav_item} ${homeStyles.active}`} href="home" onClick={handleLinkClick}>
-                <p>Home</p>
-              </Link>
-            </li>
-            <li>
-              <Link className={homeStyles.nav_item} href="home/goals" onClick={handleLinkClick}>
-                <p>Goals</p>
-              </Link>
-            </li>
-            <li>
-              <Link className={homeStyles.nav_item} href="home/calculator" onClick={handleLinkClick}>
-                <p>Calculator</p>
-              </Link>
-            </li>
-            <li>
-              <Link className={homeStyles.nav_item} href="home/friends" onClick={handleLinkClick}>
-                <p>Friends</p>
-              </Link>
-            </li>
-            <li>
-              <Link className={homeStyles.nav_item} href="home/profile" onClick={handleLinkClick}>
-                <p>Profile</p>
-              </Link>
-            </li>
-          </ul>
-
-
-          {/* display IFI logo */}
-          <img className={homeStyles.img}
-            src="/_next/static/media/icon_transparent.e1a2640c.png"
-            alt="Innovation for Impact logo" 
-            width="4.5%"
-          />
-        </nav>
-      </div>
-      </div>
-    </header>
+          <div className={homeStyles.homeContainer}>
+            <div className={homeStyles.homeSubcontainer}>
+              <Navbar className={homeStyles.homeNavbar}>
+                <Navbar.Brand>
+                  {/* display logo */}
+                  <Image 
+                    className={homeStyles.img}
+                    src={logo}
+                    alt="Innofunds Logo"
+                    layout="intrinsic"
+                  />
+                </Navbar.Brand>
+                <ul className={`${homeStyles.nav_menu} ${isOpen ? homeStyles.open : ''}`}>
+                  <li>
+                    <Nav.Link className={`${homeStyles.nav_item} ${homeStyles.link_background} ${homeStyles.active}`} href="home">Home</Nav.Link>
+                  </li>
+                  <li>
+                    <Nav.Link className={`${homeStyles.nav_item} ${homeStyles.link_background}`} href="home/goals">Goals</Nav.Link>
+                  </li>
+                  <li>
+                    <Nav.Link className={`${homeStyles.nav_item} ${homeStyles.link_background}`} href="home/calculator">Calculator</Nav.Link>
+                  </li>
+                  <li>
+                    <Nav.Link className={`${homeStyles.nav_item} ${homeStyles.link_background}`} href="home/friends">Friends</Nav.Link>
+                  </li>
+                  <li>
+                    <Nav.Link className={`${homeStyles.nav_item} ${homeStyles.link_background}`} href="home/profile">Profile</Nav.Link>
+                  </li>
+                  <li>
+                    {/* LOG OUT */}
+                    <Button className={`${homeStyles.button_style} ${homeStyles.link_background}`} variant="primary" type="submit" onClick={handleLogout}> 
+                      Log Out 
+                    </Button>
+                  </li>
+                </ul>
+              </Navbar>
+          </div>
+        </div>
+      </header>
 
     {/* header for current page */}
     <div className={homeStyles.homePage}>
-      <div class={styles.homeTitle}>
-        <h1 style={{color:'#32415e'}}>
-          HOME PAGE!
-        </h1>
+      <div className={styles.homeTitle}>
+      <h1>Home</h1>
       </div>
     </div>
 
     {/* TODO: add page content here */}
+    <div className={homeStyles.content}>
+    <div className={homeStyles.balanceHeader}>
+      
+      <h2>Balance Owed</h2>
+      <p>$ 30.00</p>
+      <h3>Payment Due By: </h3>
+      <button>Pay or Request</button>
+    </div>
 
-    {/* TODO:  */}
+    <div className={homeStyles.latestFromUs}>
+      <h1>Latest From Us</h1>
+      <div className={homeStyles.newFeature}>
+        <h3>Save More With Our New Feature</h3>
+        <button>Check it out!</button>
+      </div>
+
+      <div className={homeStyles.bigStat}>
+        <h3>Big Statistic</h3>
+        <button>See Targets</button>
+      </div>
+
+      <div className={homeStyles.upcomingFeature}>
+        <h3>Another cool feature is on the way!</h3>
+        <button>Learn More</button>
+      </div>
+    </div>
+    {/* latest from us ends */}
+    <div className={homeStyles.quickActions}>
+      <h1>Quick Actions</h1>
+      <div className={homeStyles.inviteFriends}>
+        <h3>Invite your friends</h3>
+        <p>Share milestones and keep up with the community.</p>
+        <button>Get Connected</button>
+      </div>
+
+      <div className={homeStyles.calculator}>
+        <h3>Track Your Finances</h3>
+        <p>our Calculator feature can help you plan your budget.</p>
+        <button>Calculate</button>
+      </div>
+
+      <div className={homeStyles.newQuickAction}>
+        <h3>Add a new Quick Action</h3>
+        <button>Click Here</button>
+      </div>
+
+    </div>
+    </div>
+    <ModalFooter className={homeStyles.footer}>
+      <h1 className={homeStyles.footer_text} >InnoFunds</h1>
+    </ModalFooter>
     
   </main>
   );
