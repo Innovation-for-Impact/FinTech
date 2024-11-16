@@ -110,14 +110,60 @@ export default function Home() {
 
     {/* header for current page */}
     <div className={homeStyles.homePage}>
-      <div class={styles.homeTitle}>
-        <h1 style={{color:'#32415e'}}>
-          HOME PAGE!
-        </h1>
+      <div className={styles.homeTitle}>
+      <h1>Home</h1>
       </div>
     </div>
 
     {/* TODO: add page content here */}
+    <div className={homeStyles.content}>
+    <div className={homeStyles.balanceHeader}>
+      
+      <h2>Balance Owed</h2>
+      <p>$ 30.00</p>
+      <h3>Payment Due By: </h3>
+      <button>Pay or Request</button>
+    </div>
+
+    <div className={homeStyles.latestFromUs}>
+      <h1>Latest From Us</h1>
+      <div className={homeStyles.newFeature}>
+        <h3>Save More With Our New Feature</h3>
+        <button>Check it out!</button>
+      </div>
+
+      <div className={homeStyles.bigStat}>
+        <h3>Big Statistic</h3>
+        <button>See Targets</button>
+      </div>
+
+      <div className={homeStyles.upcomingFeature}>
+        <h3>Another cool feature is on the way!</h3>
+        <button>Learn More</button>
+      </div>
+    </div>
+    {/* latest from us ends */}
+    <div className={homeStyles.quickActions}>
+      <h1>Quick Actions</h1>
+      <div className={homeStyles.inviteFriends}>
+        <h3>Invite your friends</h3>
+        <p>Share milestones and keep up with the community.</p>
+        <button>Get Connected</button>
+      </div>
+
+      <div className={homeStyles.calculator}>
+        <h3>Track Your Finances</h3>
+        <p>our Calculator feature can help you plan your budget.</p>
+        <button>Calculate</button>
+      </div>
+
+      <div className={homeStyles.newQuickAction}>
+        <h3>Add a new Quick Action</h3>
+        <button>Click Here</button>
+      </div>
+
+    </div>
+    </div>
     <ModalFooter className={homeStyles.footer}>
       <h1 className={homeStyles.footer_text} >InnoFunds</h1>
     </ModalFooter>

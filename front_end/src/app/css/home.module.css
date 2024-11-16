@@ -2,50 +2,60 @@
 .homePage{
     margin-left: 70px;
     background-color: white !important;
-    min-height: 100vh; 
-}
+ }
 
-/* styles navigation menu (default) */
-.nav_menu {
+ /* sets the margin so that the hamburger menu is not covering content */
+.content{
+    margin-left: 70px;
+    background-color: white !important;
+    min-height: 100vh;
+ }
+ 
+ 
+ /* styles navigation menu (default) */
+ .nav_menu {
     /* hides the nagivation menu */
-    display: none; 
+    display: none;
     /* sets position to be fixed so that menu can be seen correctly when toggled */
     position: fixed;
     /* set left and top position so that hamburger icon is shown */
     top: 0;
-    left: 60px; 
+    left: 60px;
     /* set width and height for styling */
-    width: 200px; 
-    height: 100vh; 
+    width: 200px;
+    height: 100vh;
     /* set background color to #15253aff */
-    background-color: #15253aff; 
+    background-color: #15253aff;
     /* ensures that the navigation menu is shown on top */
     z-index: 1000;
     list-style-type: none;
     padding-top:80px;
-}
+ }
+ /* when hamburger icon is toggled (open), then display items as block */
+ .open {
+    display: block;
+ } 
  
-/* when hamburger icon is toggled (open), then display items as block */
-.open {
-    display: block; 
-}  
-
-/* styles the navigation items: display as block and set padding */
-.nav_item{
+ 
+ /* styles the navigation items: display as block and set padding */
+ .nav_item{
     padding: 20px;
     display: block;
     color: white !important;
     font-size: 1.5em;
-}
-
-.nav_item:hover{ 
+ }
+ 
+ 
+ .nav_item:hover{
     text-decoration: underline;
     color: #BDCFCC;
     font-weight: bold;
-
-}
-
-.button_style{
+ 
+ 
+ }
+ 
+ 
+ .button_style{
     margin-left: 20px;
     margin-top: 20px;
     font-size: 1.5em;
@@ -53,109 +63,197 @@
     padding-left:30px;
     padding-right:30px;
     border-radius: 1em;
-}
-
-.button_style:hover{
+ }
+ 
+ 
+ .button_style:hover{
     text-decoration: underline;
     font-weight: 700;
-}
-
-/* styles the hamburger icon */
-.hamburger{
+ }
+ 
+ 
+ /* styles the hamburger icon */
+ .hamburger{
     /* sets color to white */
-    color: white;  
+    color: white; 
     /* position is fixed */
     position: fixed;
     /* adds width and height */
     width: 60px;
-    height: 100vh; 
+    height: 100vh;
     /* sets the background color to #15253aff */
-    background-color: #15253aff; 
+    background-color: #15253aff;
     /* ensures that that hamburger icon is shown on top */
-    z-index: 1000; 
-}
-
-/* shows which page the user is on  */
-/* .active{
+    z-index: 1000;
+ }
+ 
+ 
+ /* shows which page the user is on  */
+ /* .active{
     border-bottom: 5px solid #c5c7cb;
     width:fit-content;
-} */
-
-/* styles logo */
-.img {
+ } */
+ 
+ 
+ /* styles logo */
+ .img {
     width: 6.5vw;
     height: auto;
-}
+ }
 
-.footer {
+ .balanceHeader{
+    background-color: #EEFBF3;
+    color:#10223F;
+    justify-content: center;
+ }
+
+ .balanceHeader button{
+    background-color: #699385;
+    color:#10223F;
+ }
+
+ .balanceHeader h2{
+    align-self: center;
+ }
+
+ .latestFromUs div{
+    display:inline-block;
+    margin:15px;
+    width: 15em;
+ }
+
+ .latestFromUs h3{
+    padding:20px;
+ }
+
+ .newFeature{
+    color:white;
+    background-color: #699385;
+ }
+
+ .newFeature button{
+    background-color: #37445E;
+    color:white;
+ }
+
+ .bigStat{
+    color:white;
+    background-color: #37445E;
+ }
+
+ .bigStat button{
+    color:white;
+    background-color: #699385;
+ }
+
+ .upcomingFeature{
+    color:white;
+    background-color: #699385;
+ }
+
+ .upcomingFeature button{
+    background-color: #37445E;
+    color:white;
+ }
+
+ .quickActions div{
+    display:inline-block;
+    margin:15px;
+    width: 15em;
+ }
+
+ .inviteFriends{
+    background-color: #EEFBF3;
+ }
+
+ .calculator{
+    color:white;
+    background-color: #37445E;
+ }
+
+ .newQuickAction{
+    background-color: #699385;
+    color:white;
+ }
+
+ 
+ 
+ 
+ .footer {
     display: none;
-}
-
-/* Tablet View at max-width of 768px */
-@media (min-width: 768px) {
+ }
+ 
+ 
+ /* Tablet View at max-width of 768px */
+ @media (min-width: 768px) {
     /* sets the margin so that the hamburger menu is not covering content */
     .homePage{
         margin-left: 70px;
     }
-
+ 
+ 
     /* styles navigation menu (default) */
     .nav_menu {
         /* hides the nagivation menu */
-        display: none; 
+        display: none;
         /* sets position to be fixed so that menu can be seen correctly when toggled */
         position: fixed;
         /* set left and top position so that hamburger icon is shown */
         top: 0;
-        left: 60px; 
+        left: 60px;
         /* set width and height for styling */
         width: 200px;
-        height: 100vh; 
+        height: 100vh;
         /* set background color to #15253aff */
-        background-color: #15253aff; 
+        background-color: #15253aff;
         /* ensures that the navigation menu is shown on top */
         z-index: 1000;
         list-style-type: none;
     }
-     
+    
     /* when hamburger icon is toggled (open), then display items as block */
     .open {
-        display: block; 
-    }  
-    
+        display: block;
+    } 
+   
     /* styles the navigation items: display as block and set padding */
     .nav_item{
         padding: 20px;
         display: block;
     }
-
+ 
+ 
     /* styles the hamburger icon */
     .hamburger{
         /* sets color to white */
-        color: white;  
+        color: white; 
         /* position is fixed */
         position: fixed;
         /* adds width and height */
         width: 60px;
-        height: 100vh; 
+        height: 100vh;
         /* sets the background color to #15253aff */
-        background-color: #15253aff; 
+        background-color: #15253aff;
         /* ensures that that hamburger icon is shown on top */
-        z-index: 1000; 
+        z-index: 1000;
     }
-}
-
-/* Desktop View at min-width of 1024px */
-@media (min-width: 1024px) {
+ }
+ 
+ 
+ /* Desktop View at min-width of 1024px */
+ @media (min-width: 1024px) {
     /* NAVIGATION BAR */
     /* hides hamburger icon */
     .hamburger{
         display: none;
     }
-
+ 
+ 
     .nav_menu{
         display: contents;
     }
-
+ 
+ 
     /* styles are the navigation bar */
     .homeNavbar li{
         /* uses flex to display items */
@@ -168,7 +266,8 @@
         /* font size */
         font-size: 0.7rem;
     }
-
+ 
+ 
     /* gives each item a margin of 50px to the right for better spacing */
     /* styles the items */
     .nav_item {
@@ -176,78 +275,90 @@
         color: #132338 !important;
         font-size: 1em;
     }
-
+ 
+ 
     /* shows which page the user is on  */
     /* adds a border under the active item */
     .active::after {
         content: "";
         display: block;
         width: 100%;
-        height: 5px; 
-        background-color: #c5c7cb; 
+        height: 5px;
+        background-color: #c5c7cb;
         position: absolute;
         bottom: -1.15em;
         left: 0;
         border-radius: 10px;
     }
-
+ 
+ 
     /* when item is hovered, make it bolder */
     .nav_item:hover{
         text-decoration: none;
         font-weight: 700;
     }
-
+ 
+ 
     /* styles the white background of the links */
     .link_background {
-        background-color: white; 
-        padding: 5px 15px; 
-        border-radius: 20px; 
-        display: inline-block; 
+        background-color: white;
+        padding: 5px 15px;
+        border-radius: 20px;
+        display: inline-block;
         margin-bottom: 1.2em;
         position: relative;
     }
-
+ 
+ 
     .link_background:hover {
-        background-color: #EEFBF3; 
+        background-color: #EEFBF3;
     }
-
+ 
+ 
     /* styles logout button */
     .button_style {
         border: none;
         margin-bottom: 1em !important;
         font-size: 1em;
     }
-
+ 
+ 
     /* styles footer */
     .footer {
         background-color: #132338;
         color: #ffff;
         margin-bottom: 1em; /* Adjust bottom margin */
     }
-
+ 
+ 
     .footer {
         display: block;
     }
-
+ 
+ 
     /* styles footer text */
     .footer_text {
         font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Verdana, sans-serif;
         margin-left: 0.5em;
         padding-top: 1em;
     }
-}
-
-/* Desktop View at min-width of 1440px */
-@media (min-width: 1440px) {
+ }
+ 
+ 
+ /* Desktop View at min-width of 1440px */
+ @media (min-width: 1440px) {
     .homeNavbar li {
-        font-size: 1em;  
+        font-size: 1em; 
     }
-
+ 
+ 
     .link_background {
-        padding: 5px 20px; 
+        padding: 5px 20px;
     }
-
+ 
+ 
     .button_style {
         margin-bottom: 1.5em !important;
     }
-}
+ }
+ 
