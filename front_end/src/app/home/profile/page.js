@@ -9,11 +9,17 @@ import { ic_menu } from 'react-icons-kit/md/ic_menu';
 import { ic_close } from 'react-icons-kit/md/ic_close';
 import Image_logo from 'next/image';
 import logo from '../../../../public/innofunds-logo-transparent.png';
-import { Navbar, Nav, Button, ModalFooter } from 'react-bootstrap';
+import { Navbar, Nav, Button, ModalFooter, CardImg } from 'react-bootstrap';
 import Image from 'react-bootstrap/Image'; 
 import { FaCircleUser } from "react-icons/fa6";
 import { IoMdSettings } from "react-icons/io";
 import { IoNotifications } from "react-icons/io5";
+import Container from 'react-bootstrap/Container';
+import Col from 'react-bootstrap/Col';
+import Row from 'react-bootstrap/Row';
+import Card from 'react-bootstrap/Card';
+import ListGroup from 'react-bootstrap/ListGroup';
+import { FaPlus } from "react-icons/fa6";
 
 export default function Home() {
   const [isOpen, setIsOpen] = useState(false);
@@ -159,14 +165,15 @@ export default function Home() {
         </header>
 
         {/* contents of profile page */}
-        <div className={homeStyles.homePage}>
-
+        <div className={homeStyles.content}>
+          
           {/* profile icon */}
           <FaCircleUser className={profileStyles.profile_icon} color="#BDCFCC"/>
           {/* <Image src="" rounded /> */}
 
           <p className={profileStyles.name}>Name</p>
           <p className={profileStyles.pronouns}>Pronouns</p>
+
 
           <Button className={`${profileStyles.groups_button}`} variant="primary" type="submit" onClick={() => { window.location.href = 'profile/../calculator'; }}>
             Groups 
@@ -175,11 +182,61 @@ export default function Home() {
             Friends
           </Button>
 
-          {/* notifications icon */}
-          <IoNotifications  className={profileStyles.notifications_icon}/>
+          <Row>
+              {/* notifications icon */}
+              <IoNotifications  className={profileStyles.notifications_icon}/>
 
-          {/* settings icon */}
-          <IoMdSettings className={profileStyles.settings_icon}/>
+              {/* settings icon */}
+              <IoMdSettings className={profileStyles.settings_icon}/>
+          </Row>
+
+          <Container className={profileStyles.card_container}>
+            <Row className={profileStyles.row}>
+              <p  className={profileStyles.card_title_container}> 
+                My Cards
+              </p>
+
+              <FaPlus className={profileStyles.card_plus_icon}/>
+            </Row>
+
+            <ListGroup>
+              <ListGroup.Item>
+                  <Card className={profileStyles.card1}>
+                    <Card.Body className={profileStyles.card1_body}>
+
+                      <Row className={profileStyles.row}>
+                        <Card.Title className={profileStyles.card1_title}>Balance</Card.Title>
+                          <Card.Img className={profileStyles.card1_img} src="holder.js/100px160"></Card.Img>
+                      </Row>
+
+                        <Card.Text className={profileStyles.card1_text}>
+                        $100.00
+                        </Card.Text>
+                    </Card.Body>
+                  </Card>
+                </ListGroup.Item>
+
+                <ListGroup.Item>
+                  <Card className={profileStyles.card2}>
+                    <Card.Body className={profileStyles.card2_body}>
+
+                      <Row className={profileStyles.row}>
+                        <Card.Title className={profileStyles.card2_title}>Balance</Card.Title>
+                          <Card.Img className={profileStyles.card2_img} src="holder.js/100px160"></Card.Img>
+                      </Row>
+
+                          <Card.Text className={profileStyles.card2_text}>
+                          $100.00
+                          </Card.Text>
+                    </Card.Body>
+                  </Card>
+                </ListGroup.Item>
+            </ListGroup>
+
+            <Button className={`${profileStyles.transfer_button}`} variant="primary" type="submit">
+              Transfer
+            </Button>
+          </Container>
 
         </div>
 
