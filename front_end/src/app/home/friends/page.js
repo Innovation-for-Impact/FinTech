@@ -1,5 +1,6 @@
 "use client";
 import styles from "../../../app/css/page.module.css";
+import homeStyles from "../../../app/css/home.module.css";
 import friendStyles from "../../../app/css/friends.module.css";
 import Link from 'next/link';
 import React, { useState } from "react";
@@ -9,6 +10,8 @@ import { ic_close } from 'react-icons-kit/md/ic_close';
 import { ic_search } from 'react-icons-kit/md/ic_search';
 import { ic_person } from 'react-icons-kit/md/ic_person';
 import Image from 'next/image';
+import logo from '../../../../public/innofunds-logo-transparent.png';
+import { Navbar, Nav, Button, ModalFooter } from 'react-bootstrap';
 
 export default function Friends() {
   const [isOpen, setIsOpen] = useState(false);
@@ -51,52 +54,93 @@ export default function Friends() {
     }
   ];
 
+  const handleLogout = (e) => {
+    e.preventDefault();
+  
+    fetch('http://localhost:8000/api/v1/auth/logout/', {
+      method: 'POST',
+      headers: {
+        "Content-Type": "application/json",
+      },
+    })
+    .then(response => {
+      return response.json();
+    })
+    .then(data => {
+      console.log(data);
+      if (data.detail === 'Successfully logged out.') {
+        // successfully logged out
+        localStorage.removeItem('access'); 
+        window.location.href = '/'; 
+      } else {
+        // error messages
+        setErrorMessage("Failed to log out");
+      }
+    })
+    .catch(error => {
+      console.error("Logout error:", error);
+    });
+  };
+
   return (
-    <main className={styles.main}>
-      <header className={styles.header}>
-        <div className={styles.hamburger} onClick={handleIconClick}>
-          {isOpen ? <Icon icon={ic_close} size={55} /> : <Icon icon={ic_menu} size={55} />}
+    <main className={`${styles.homeMain} ${homeStyles.body}`} >
+        
+        {/* display menu (hamburger menu for mobile/tablet) */}
+        <header className={styles.homeHeader}>
+          {/* <a href = "#main"  className={homeStyles.skip}>Skip to Main Content</a> */}
+          <div className={homeStyles.hamburger} onClick={handleIconClick}>
+            {isOpen ? <Icon icon={ic_close} size={55} /> : <Icon icon={ic_menu} size={55} />}
+          </div>
+
+          {/* display navigation links */}
+          <div className={homeStyles.homeContainer}>
+            <div className={homeStyles.homeSubcontainer}>
+              <Navbar className={homeStyles.homeNavbar}>
+                <Navbar.Brand>
+                  {/* display logo */}
+                  <Image 
+                    className={homeStyles.img}
+                    src={logo}
+                    alt="Innofunds Logo"
+                    layout="intrinsic"
+                  />
+                </Navbar.Brand>
+                <ul className={`${homeStyles.nav_menu} ${isOpen ? homeStyles.open : ''}`}>
+                  <li>
+                    <Nav.Link className={`${homeStyles.nav_item} ${homeStyles.link_background}`} href="friends/..">Home</Nav.Link>
+                  </li>
+                  <li>
+                    <Nav.Link className={`${homeStyles.nav_item} ${homeStyles.link_background}`} href="friends/../goals">Goals</Nav.Link>
+                  </li>
+                  <li>
+                    <Nav.Link className={`${homeStyles.nav_item} ${homeStyles.link_background} ${homeStyles.active}`} href="friends/../calculator">Calculator</Nav.Link>
+                  </li>
+                  <li>
+                    <Nav.Link className={`${homeStyles.nav_item} ${homeStyles.link_background}`} href="friends">Friends</Nav.Link>
+                  </li>
+                  <li>
+                    <Nav.Link className={`${homeStyles.nav_item} ${homeStyles.link_background}`} href="friends/../profile">Profile</Nav.Link>
+                  </li>
+                  <li>
+                    {/* LOG OUT */}
+                    <Button className={`${homeStyles.button_style} ${homeStyles.link_background}`} variant="primary" type="submit" onClick={handleLogout}> 
+                      Log Out 
+                    </Button>
+                  </li>
+                </ul>
+              </Navbar>
+          </div>
         </div>
-
-        <nav className={styles.navbar}>
-          <ul className={`${styles.nav_menu} ${isOpen ? styles.open : ''}`}>
-            <li>
-              <Link className={styles.nav_item} href="/" onClick={handleLinkClick}>
-                <p>Home</p>
-              </Link>
-            </li>
-            <li>
-              <Link className={styles.nav_item} href="/goals" onClick={handleLinkClick}>
-                <p>Goals</p>
-              </Link>
-            </li>
-            <li>
-              <Link className={styles.nav_item} href="/calculator" onClick={handleLinkClick}>
-                <p>Calculator</p>
-              </Link>
-            </li>
-            <li>
-              <Link className={`${styles.nav_item} ${styles.active}`} href="/friends" onClick={handleLinkClick}>
-                <p>Friends</p>
-              </Link>
-            </li>
-            <li>
-              <Link className={styles.nav_item} href="/profile" onClick={handleLinkClick}>
-                <p>Profile</p>
-              </Link>
-            </li>
-          </ul>
-
-          <Image
-            className={styles.img}
-            src="/icon_transparent.png"
-            alt="Innovation for Impact logo"
-            width={45}
-            height={45}
-            priority
-          />
-        </nav>
-      </header>
+        </header>
+      
+      {/* header for current page */}
+      {/* <div className={homeStyles.homePage}>
+        <div class={styles.homeTitle}>
+          <h1 style={{color:'#32415e'}}>
+            Friends
+          </h1>
+        </div>
+      </div> */}
 
       <div className={friendStyles.pageContainer}>
         <div className={friendStyles.activitySection}>
@@ -174,18 +218,15 @@ export default function Friends() {
           ))}
         </div>
       </div>
+      <div className={friendStyles.parentContainer}>
+  <button className={friendStyles.addFriendsButton}>Add Friends</button>
+</div>
+  
 
-      <footer className={friendStyles.footer}>
-        <div className={friendStyles.footerLogo}>
-          <Link href="/">
-            <Image src="/logo.png" alt="FinTech Logo" width={30} height={30} />
-          </Link>
-        </div>
-        <div className={friendStyles.footerLinks}>
-          <Link href="/faq">FAQ</Link>
-          <Link href="/support">Support</Link>
-        </div>
-      </footer>
+<ModalFooter className={homeStyles.footer}>
+      <h1 className={homeStyles.footer_text} >InnoFunds</h1>
+    </ModalFooter>
     </main>
   );
 }
+
