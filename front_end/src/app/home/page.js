@@ -6,6 +6,13 @@ import React, { useState } from "react";
 import {Icon} from 'react-icons-kit';
 import { ic_menu } from 'react-icons-kit/md/ic_menu';
 import { ic_close } from 'react-icons-kit/md/ic_close';
+import { RiMoneyDollarCircleFill } from "react-icons/ri";
+import { TbTargetArrow } from "react-icons/tb";
+import { HiOutlineLightBulb } from "react-icons/hi";
+import { FaPeopleGroup } from "react-icons/fa6";
+import { BsFillPiggyBankFill } from "react-icons/bs";
+import { HiViewGridAdd } from "react-icons/hi";
+import { FaUserCircle } from "react-icons/fa";
 import Image from 'next/image';
 import logo from '../../../public/innofunds-logo-transparent.png';
 import { Navbar, Nav, Button, ModalFooter } from 'react-bootstrap';
@@ -110,7 +117,7 @@ export default function Home() {
 
     {/* header for current page */}
     <div className={homeStyles.homePage}>
-      <div className={styles.homeTitle}>
+      <div className={homeStyles.homeTitle}>
       <h1>Home</h1>
       </div>
     </div>
@@ -118,48 +125,54 @@ export default function Home() {
     {/* TODO: add page content here */}
     <div className={homeStyles.content}>
     <div className={homeStyles.balanceHeader}>
-      
-      <h2>Balance Owed</h2>
-      <p>$ 30.00</p>
-      <h3>Payment Due By: </h3>
-      <button>Pay or Request</button>
+    <FaUserCircle className={homeStyles.balanceHeaderProfile} /> 
+      <h3>Balance Owed</h3>
+      <h1><strong>$ 30.00</strong></h1>
+      <p>Payment Due By: <strong>November 21</strong></p>
+      <button><strong>Pay or Request</strong></button>
     </div>
 
     <div className={homeStyles.latestFromUs}>
       <h1>Latest From Us</h1>
       <div className={homeStyles.newFeature}>
+      <RiMoneyDollarCircleFill className={homeStyles.newFeatIcon} />
         <h3>Save More With Our New Feature</h3>
-        <button>Check it out!</button>
+        <button><strong>Check it out!</strong></button>
       </div>
 
       <div className={homeStyles.bigStat}>
+        <TbTargetArrow className={homeStyles.bigStatIcon}/>
         <h3>Big Statistic</h3>
-        <button>See Targets</button>
+        <button><strong>See Targets</strong></button>
       </div>
 
       <div className={homeStyles.upcomingFeature}>
+      <HiOutlineLightBulb className={homeStyles.upcomingFeatIcon}/>
         <h3>Another cool feature is on the way!</h3>
-        <button>Learn More</button>
+        <button><strong>Learn More</strong></button>
       </div>
     </div>
     {/* latest from us ends */}
     <div className={homeStyles.quickActions}>
       <h1>Quick Actions</h1>
       <div className={homeStyles.inviteFriends}>
+        <FaPeopleGroup className={homeStyles.inviteFriendsIcon}/>
         <h3>Invite your friends</h3>
         <p>Share milestones and keep up with the community.</p>
-        <button>Get Connected</button>
+        <button><strong>Get Connected</strong></button>
       </div>
 
       <div className={homeStyles.calculator}>
+        <BsFillPiggyBankFill className={homeStyles.calculatorIcon}/>
         <h3>Track Your Finances</h3>
         <p>our Calculator feature can help you plan your budget.</p>
-        <button>Calculate</button>
+        <button><strong>Calculate</strong></button>
       </div>
 
       <div className={homeStyles.newQuickAction}>
+        <HiViewGridAdd className={homeStyles.newActionIcon}/>
         <h3>Add a new Quick Action</h3>
-        <button>Click Here</button>
+        <button><strong>Click Here</strong></button>
       </div>
 
     </div>

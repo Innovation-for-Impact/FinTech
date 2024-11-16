@@ -54,7 +54,6 @@
  
  }
  
- 
  .button_style{
     margin-left: 20px;
     margin-top: 20px;
@@ -101,29 +100,84 @@
     height: auto;
  }
 
+ .homeTitle h1{
+    font-size: large;
+ }
+
+ 
+
+ /* .balanceHeaderProfile,  .balanceHeader h3{
+    display: inline;
+ } */
+
  .balanceHeader{
     background-color: #EEFBF3;
     color:#10223F;
     justify-content: center;
+    display:flex;
+    flex-wrap:wrap;
+    flex-flow:column wrap;
+    justify-items: center;
+    margin:10px;
+    border:solid 2px #EEFBF3;
+    border-radius: 20px;
+    height: 200px;
+    /* box-shadow:1px 0.5px 8px 0.5px #10223F; */
  }
 
- .balanceHeader button{
-    background-color: #699385;
-    color:#10223F;
+ .balanceHeaderProfile{
+    font-size: 40px;
+    border-radius: 35px;
+    margin-left:20px;
+    margin-top:10px;
  }
 
- .balanceHeader h2{
+ .balanceHeader h3{
     align-self: center;
  }
 
+ .balanceHeader h1{
+    align-self: center;
+ }
+
+ .balanceHeader p {
+    align-self: center;
+    font-size: medium;
+ }
+
+ .balanceHeader button{
+    margin:10px;
+    background-color: #699385;
+    color:#10223F;
+    width:180px;
+    padding:5px;
+    align-self: center;
+    border: solid 2px #699385;
+    border-radius: 200px;
+    font-size: larger;
+    box-shadow: 0.5px 1px 1px 1px;
+ }
+
+ .latestFromUs h1{
+    font-size: large;
+    padding-top:35px;
+ }
+
  .latestFromUs div{
-    display:inline-block;
-    margin:15px;
-    width: 15em;
+    display:grid;
+    margin:10px;
+    /* width: 15em; */
+    padding-top:20px;
+    padding-bottom:20px;
+    border-radius: 20px;
  }
 
  .latestFromUs h3{
     padding:20px;
+ }
+
+.newFeature h3{
+    justify-self: center;
  }
 
  .newFeature{
@@ -131,9 +185,31 @@
     background-color: #699385;
  }
 
+ .newFeatIcon{
+    font-size: 70px;
+    justify-self: center;
+    border: solid 4px #37445E;
+    border-radius: 35px;
+    background-color: #37445E;
+ }
+
  .newFeature button{
     background-color: #37445E;
     color:white;
+    border-radius: 15px;
+    width:120px;
+    padding:7px;
+    font-size:large;
+    justify-self: center;
+    margin-bottom:10px;
+ }
+
+ .bigStatIcon{
+    font-size: 70px;
+    justify-self: center;
+    border: solid 4px #699385;
+    border-radius: 35px;
+    background-color: #699385;
  }
 
  .bigStat{
@@ -141,9 +217,27 @@
     background-color: #37445E;
  }
 
+ .bigStat h3{
+    justify-self: center;
+ }
+
  .bigStat button{
     color:white;
     background-color: #699385;
+    border-radius: 15px;
+    width:120px;
+    padding:7px;
+    font-size:large;
+    justify-self: center;
+    margin-bottom:10px;
+ }
+
+ .upcomingFeatIcon{
+    font-size: 70px;
+    justify-self: center;
+    border: solid 4px #37445E;
+    border-radius: 35px;
+    background-color: #37445E;
  }
 
  .upcomingFeature{
@@ -151,33 +245,136 @@
     background-color: #699385;
  }
 
+ .upcomingFeature h3{
+    justify-self: center;
+ }
+
  .upcomingFeature button{
+    background-color: #37445E;
+    color:white;
+    border-radius: 15px;
+    width:120px;
+    padding:7px;
+    font-size:large;
+    justify-self: center;
+    margin-bottom:10px;
+ }
+
+ .quickActions div{
+    /* display:inline-block; */
+    display:grid;
+    margin:15px;
+    /* width: 15em; */
+    border-radius: 20px;
+ }
+
+ .quickActions h1{
+    font-size: large;
+    padding-top:35px;
+ }
+
+ .quickActions h3{
+    padding:20px;
+ }
+
+ .inviteFriendsIcon{
+    margin-top:20px;
+    font-size: 60px;
+    justify-self: center;
+    border: solid 4px #699385;
+    border-radius: 35px;
+    background-color: #699385;
+ }
+
+ .inviteFriends{
     background-color: #37445E;
     color:white;
  }
 
- .quickActions div{
-    display:inline-block;
-    margin:15px;
-    width: 15em;
+ .inviteFriends h3{
+    justify-self: center;
  }
 
- .inviteFriends{
-    background-color: #EEFBF3;
+ .inviteFriends p{
+    padding:10px;
+    margin-top: -15px;
+    justify-self: center;
+ }
+
+ .inviteFriends button{
+    color:white;
+    background-color: #699385;
+    border-radius: 15px;
+    width:120px;
+    padding:7px;
+    font-size:large;
+    justify-self: center;
+    margin-bottom:10px;
+ }
+
+ .calculatorIcon{
+    margin-top: 20px;
+    font-size: 70px;
+    justify-self: center;
+    border: solid 4px #37445E;
+    border-radius: 35px;
+    background-color: #37445E;
  }
 
  .calculator{
     color:white;
+    background-color: #699385;
+ }
+
+ .calculator h3{
+    justify-self: center;
+ }
+
+ .calculator p{
+    margin-top: -15px;
+    padding:10px;
+    justify-self: center;
+ }
+
+ .calculator button{
     background-color: #37445E;
+    color:white;
+    border-radius: 15px;
+    width:120px;
+    padding:7px;
+    font-size:large;
+    justify-self: center;
+    margin-bottom:10px;
+ }
+
+ .newActionIcon{
+    margin-top:20px;
+    font-size: 60px;
+    justify-self: center;
+    border: solid 4px #699385;
+    border-radius: 35px;
+    background-color: #699385;
  }
 
  .newQuickAction{
-    background-color: #699385;
+    background-color: #37445E;
     color:white;
  }
 
- 
- 
+ .newQuickAction h3{
+    justify-self: center;
+ }
+
+ .newQuickAction button{
+    color:white;
+    background-color: #699385;
+    border-radius: 15px;
+    width:120px;
+    padding:7px;
+    font-size:large;
+    justify-self: center;
+    margin-bottom:10px;
+ }
  
  .footer {
     display: none;
@@ -189,6 +386,10 @@
     /* sets the margin so that the hamburger menu is not covering content */
     .homePage{
         margin-left: 70px;
+    }
+
+    .homeTitle{
+        margin-top:50px;
     }
  
  
@@ -236,6 +437,51 @@
         background-color: #15253aff;
         /* ensures that that hamburger icon is shown on top */
         z-index: 1000;
+    }
+
+    .latestFromUs{
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        gap:20px;
+    }
+
+    .latestFromUs div{
+        align-items: center;
+    }
+
+    .newFeature{
+        grid-column: 1 / 2;
+    }
+
+    .bigStat{
+        grid-column: 2 / 3;
+    }
+
+    .upcomingFeature{
+        grid-column: 3 / 4;
+    }
+
+    .quickActions{
+        display: grid;
+        /* grid-template-columns: 300px 300px 300px; */
+        grid-template-columns: 1fr 1fr 1fr;
+        gap:20px;
+    }
+
+    .quickActions div{
+        align-items: center;
+    }
+
+    .inviteFriends{
+        grid-column: 1 / 2;
+    }
+
+    .calculator{
+        grid-column: 2 / 3;
+    }
+
+    .newQuickAction{
+        grid-column: 3 / 4;
     }
  }
  
