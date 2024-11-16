@@ -12,6 +12,8 @@ import logo from '../../../../public/innofunds-logo-transparent.png';
 import { Navbar, Nav, Button, ModalFooter } from 'react-bootstrap';
 import Image from 'react-bootstrap/Image'; 
 import { FaCircleUser } from "react-icons/fa6";
+import { IoMdSettings } from "react-icons/io";
+import { IoNotifications } from "react-icons/io5";
 
 export default function Home() {
   const [isOpen, setIsOpen] = useState(false);
@@ -160,7 +162,7 @@ export default function Home() {
         <div className={homeStyles.homePage}>
 
           {/* profile icon */}
-          <FaCircleUser className={profileStyles.profile_icon} color="#BDCFCC" />
+          <FaCircleUser className={profileStyles.profile_icon} color="#BDCFCC"/>
           {/* <Image src="" rounded /> */}
 
           <p className={profileStyles.name}>Name</p>
@@ -172,6 +174,13 @@ export default function Home() {
           <Button className={`${profileStyles.friends_button}`} variant="primary" type="submit" onClick={() => { window.location.href = 'profile/../friends'; }}>
             Friends
           </Button>
+
+          {/* notifications icon */}
+          <IoNotifications  className={profileStyles.notifications_icon}/>
+
+          {/* settings icon */}
+          <IoMdSettings className={profileStyles.settings_icon}/>
+
         </div>
 
         {/* TODO: add page content here */}

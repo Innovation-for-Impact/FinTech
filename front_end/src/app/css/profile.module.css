@@ -38,7 +38,7 @@
     color: #ffffff;
 
     /* add spacing */
-    margin-left: 2em;
+    margin-left: 1.7em;
     margin-top: 1em;
 }
 
@@ -61,6 +61,18 @@
         margin-top: 0.2em;
         font-size: 0.9em;
     }
+
+    .groups_button, .friends_button {
+        /* adjusts width and height */
+        width: 12%;
+        height: auto;
+
+        font-size: 1.6vw; 
+    }
+
+    .groups_button {
+        margin-left: 3.5em;
+    }
 }
 
 /* desktop view */
@@ -81,5 +93,24 @@
         margin-left: 9.2em;
         margin-top: 0.5em;
         font-size: medium;
+    }
+
+    .groups_button {
+        margin-left: 3em;
+    }
+}
+
+/* desktop large view */
+@media (min-width: 1440px) {
+    .groups_button, .friends_button {
+        /* adjusts width and height */
+        width: 8%;
+        height: auto;
+
+        font-size: 1vw; 
+    }
+
+    .groups_button {
+        margin-left: 4em;
     }
 }
