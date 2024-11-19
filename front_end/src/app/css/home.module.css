@@ -2,7 +2,7 @@
 .homePage{
     margin-left: 70px;
     background-color: white !important;
- }
+}
 
  /* sets the margin so that the hamburger menu is not covering content */
 .content{
@@ -176,13 +176,9 @@
     color:white;
  }
 
- 
- 
- 
  .footer {
-    display: none;
+   display: none;
  }
- 
  
  /* Tablet View at max-width of 768px */
  @media (min-width: 768px) {
@@ -334,7 +330,6 @@
         margin-left: 70px;
     }
  
- 
     /* styles navigation menu (default) */
     .nav_menu {
         /* hides the nagivation menu */
@@ -471,13 +466,8 @@
         background-color: #132338;
         color: #ffff;
         margin-bottom: 1em; /* Adjust bottom margin */
-    }
- 
- 
-    .footer {
         display: block;
     }
- 
  
     /* styles footer text */
     .footer_text {
