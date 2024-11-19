@@ -537,6 +537,64 @@
     }
 }
 
+/* desktop view M */
+
+@media (min-width: 1238px) {
+    .groups_button {
+        margin-left: 6.5em;
+    }
+
+    .card {
+        width: 450%;
+        height: auto;
+        padding-bottom: 9em;
+        margin-left: 5em;
+        margin-bottom: 10em;
+    }
+
+    .previous_button, .next_button {
+        margin-top: 10em;
+        font-size: 0.7em;
+     }
+ 
+     .previous_button {
+         margin-left: 17em;
+     }
+
+     .transfer_button {
+        margin-left: 20em;
+     }
+
+     .transaction_container {
+        width: 81%;
+        height: auto;
+    }
+
+    .transaction_title_container {
+        font-size: 1.7em;
+        margin-top: 0.5em;
+        margin-bottom: 0.2em;
+        border-bottom: 0.5px dashed #ddd;
+        margin-right: 2em;
+    }
+
+    .transaction_date, .transaction_fromTo, .transaction_desc {
+        font-size: 1.1em;
+        padding-right: 8em;
+        padding-top: 2em;
+    }
+
+    .transaction_amt {
+        font-size: 1.1em;
+        padding-top: 2em;
+    }
+
+    .transaction_date, .transaction_fromTo, .transaction_desc, .transaction_amt {
+        border-bottom: 0.5px dashed #ddd;
+        padding-bottom: 1em;
+    }
+}
+
 /* desktop large view */
 @media (min-width: 1440px) {
     .groups_button, .friends_button {
