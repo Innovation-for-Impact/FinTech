@@ -117,6 +117,56 @@ export default function Home() {
       </div>
 
       {/* TODO: add page content here */}
+      <div className={homeStyles.dashBoard}>
+      <div className={homeStyles.square_box}>
+            <h2>Spending</h2>
+            <p>This Month’s Current Spending</p>
+            <h3>$4,500</h3>
+            <div class="line-chart"></div>
+        </div>
+         <div class="square_box">
+            <h2>Income</h2>
+            <ul>
+                <li>Net Worth: <span>$78,000</span></li>
+                <li>Net Cash: <span>$18,000</span></li>
+                <li>Income This Month: <span>$5,000</span></li>
+                <li>Savings: <span>$3,000</span></li>
+            </ul>
+        </div> {/* spending section*/}
+        <div className={homeStyles.budget_tracker}>
+        <h2>Budget Tracker <span>Total Expenses</span></h2>
+        <div class="expense-item">
+            <div class="icon">👤</div>
+            <div class="expense-info">
+                <strong>Food</strong>
+                <p>Transaction Notes</p>
+            </div>
+            <div class="expense-amount">
+                -$15.00 <span>of $100</span>
+            </div>
+        </div>
+        <div class="expense-item">
+            <div class="icon">👤</div>
+            <div class="expense-info">
+                <strong>Bills</strong>
+                <p>Transaction Notes</p>
+            </div>
+            <div class="expense-amount">
+                -$50.00 <span>of $63</span>
+            </div>
+        </div>
+        <div class="expense-item">
+            <div class="icon">👤</div>
+            <div class="expense-info">
+                <strong>Transportation</strong>
+                <p>Transaction Notes</p>
+            </div>
+            <div class="expense-amount">
+                -$70.20 <span>of $200</span>
+            </div>
+        </div>
+        </div>
+        </div> {/* entire dashboard section */}
 
       <ModalFooter className={homeStyles.footer}>
       <h1 className={homeStyles.footer_text} >InnoFunds</h1>
