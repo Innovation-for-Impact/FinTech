@@ -113,10 +113,10 @@ export default function Friends() {
                     <Nav.Link className={`${homeStyles.nav_item} ${homeStyles.link_background}`} href="friends/../goals">Goals</Nav.Link>
                   </li>
                   <li>
-                    <Nav.Link className={`${homeStyles.nav_item} ${homeStyles.link_background} ${homeStyles.active}`} href="friends/../calculator">Calculator</Nav.Link>
+                    <Nav.Link className={`${homeStyles.nav_item} ${homeStyles.link_background}`} href="friends/../calculator">Calculator</Nav.Link>
                   </li>
                   <li>
-                    <Nav.Link className={`${homeStyles.nav_item} ${homeStyles.link_background}`} href="friends">Friends</Nav.Link>
+                    <Nav.Link className={`${homeStyles.nav_item} ${homeStyles.link_background} ${homeStyles.active}`} href="friends">Friends</Nav.Link>
                   </li>
                   <li>
                     <Nav.Link className={`${homeStyles.nav_item} ${homeStyles.link_background}`} href="friends/../profile">Profile</Nav.Link>
