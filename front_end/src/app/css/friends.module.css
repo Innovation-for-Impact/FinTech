@@ -1,82 +1,74 @@
-
 /* FRIENDS PAGE */
 .pageContainer {
-  width: 90%;
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 20px;
+  width: 85%;
+  max-width: 1000px;
+  margin: 0 auto;  /* Center the container */
+  padding: 15px;
+  min-height: 100vh;
 }
+
 
 .activitySection {
   background-color: #2B3444;
-  border-radius: 15px;
-  padding: 25px;
-  margin-bottom: 30px;
+  border-radius: 12px;
+  padding: 20px;
+  margin: 20px auto; /* Changed to auto margins */
   position: relative;
+  width: 100%; /* Ensure full width within container */
 }
 
-
-.activitySection .dot-top-left {
-  position: absolute;
-  top: 15px;
-  left: 15px;
-  width: 8px;
-  height: 8px;
-  background-color: #fff;
-  border-radius: 50%;
-}
-
-.activitySection .dot-top-right {
-  position: absolute;
-  top: 15px;
-  right: 15px;
-  width: 10px;
-  height: 10px;
-  background-color: #fff;
-  border-radius: 50%;
-}
-
+.activitySection .dot-top-left,
 .activitySection .dot-bottom-left {
   position: absolute;
-  bottom: 15px;
-  left: 15px;
-  width: 10px;
-  height: 10px;
+  left: 12px;
+  width: 6px;
+  height: 6px;
   background-color: #fff;
   border-radius: 50%;
 }
 
+.activitySection .dot-top-right,
 .activitySection .dot-bottom-right {
   position: absolute;
-  bottom: 15px;
-  right: 15px;
-  width: 10px;
-  height: 10px;
+  right: 12px;
+  width: 6px;
+  height: 6px;
   background-color: #fff;
   border-radius: 50%;
+}
+
+.activitySection .dot-top-left,
+.activitySection .dot-top-right {
+  top: 12px;
+}
+
+.activitySection .dot-bottom-left,
+.activitySection .dot-bottom-right {
+  bottom: 12px;
 }
 
 .sectionTitle {
   color: white;
-  font-size: 24px;
-  margin-bottom: 20px;
-  padding-left: 15px;
+  font-size: 20px;
+  margin-bottom: 15px;
+  padding-left: 12px;
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Verdana, sans-serif;
 }
 
 .activityCard {
   background-color: #F5F5F5;
-  border-radius: 10px;
-  padding: 15px;
-  margin: 10px 0;
+  border-radius: 8px;
+  padding: 12px;
+  margin: 8px 0;
   display: flex;
   align-items: center;
-  gap: 15px;
-  min-height: 50px;
+  gap: 12px;
+  min-height: 45px;
 }
 
 .avatarWrapper {
-  width: 40px;
-  height: 40px;
+  width: 32px;
+  height: 32px;
   border-radius: 50%;
   overflow: hidden;
 }
@@ -89,7 +81,8 @@
 
 .activityContent {
   flex: 1;
-  font-size: 14px;
+  font-size: 13px;
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Verdana, sans-serif;
   color: #333;
 }
 
@@ -97,16 +90,18 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin: 20px 0;
+  margin: 15px auto; /* Changed to auto margins */
+  width: 100%; /* Ensure full width */
 }
 
 .payRequestButton {
   background-color: #12213F;
   color: white;
   border: none;
-  border-radius: 25px;
-  padding: 10px 25px;
-  font-size: 16px;
+  border-radius: 20px;
+  padding: 8px 20px;
+  font-size: 17px;
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Verdana, sans-serif;
   cursor: pointer;
   transition: background-color 0.3s;
   font-weight: 500;
@@ -114,42 +109,45 @@
 
 .searchWrapper {
   position: relative;
-  width: 250px;
+  width: 350px; 
 }
 
 .searchInput {
   width: 100%;
   background-color: #EAEAEA;
   border: none;
-  border-radius: 20px;
+  border-radius: 16px;
   padding: 8px 35px 8px 15px;
-  font-size: 14px;
+  font-size: 15px; 
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Verdana, sans-serif;
 }
 
 .searchIcon {
   position: absolute;
-  right: 12px;
+  right: 10px;
   top: 50%;
   transform: translateY(-50%);
   color: #666;
-  font-size: 14px;
+  font-size: 15px;
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Verdana, sans-serif;
 }
 
 .friendsGrid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 15px;
-  margin-top: 20px;
+  gap: 12px;
+  margin: 15px auto; /* Changed to auto margins */
+  width: 100%; /* Ensure full width */
 }
 
 .friendCard {
   background-color: #2B3444;
-  border-radius: 8px;
-  padding: 15px;
+  border-radius: 6px;
+  padding: 12px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  min-height: 100px;
+  min-height: 90px;
 }
 
 .colorVariant1 { background-color: #37445E; }
@@ -159,12 +157,12 @@
 .friendInfo {
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 8px;
 }
 
 .avatarCircle {
-  width: 35px;
-  height: 35px;
+  width: 30px;
+  height: 30px;
   border-radius: 50%;
   background-color: rgba(255, 255, 255, 0.2);
   display: flex;
@@ -175,13 +173,15 @@
 .nameInfo h3 {
   color: white;
   margin: 0;
-  font-size: 16px;
+  font-size: 14px;
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Verdana, sans-serif;
 }
 
 .nameInfo p {
   color: #B0B0B0;
-  margin: 3px 0 0 0;
-  font-size: 12px;
+  margin: 2px 0 0 0;
+  font-size: 11px;
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Verdana, sans-serif;
 }
 
 .viewButton {
@@ -189,12 +189,34 @@
   color: white;
   border: none;
   border-radius: 4px;
-  padding: 6px;
-  margin-top: 10px;
+  padding: 5px;
+  margin-top: 8px;
   cursor: pointer;
-  font-size: 12px;
+  font-size: 11px;
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Verdana, sans-serif;
 }
 
+
+.parentContainer {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin: 20px 0;
+}
+
+.addFriendsButton {
+  background-color: #12213F;
+  color: white;
+  border: none;
+  border-radius: 20px;
+  padding: 8px 20px;
+  font-size: 17px;
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Verdana, sans-serif;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  font-weight: 500;
+  width: fit-content;
+}
 @media (max-width: 768px) {
   .friendsGrid {
     grid-template-columns: repeat(2, 1fr);
@@ -204,51 +226,90 @@
     width: 200px;
   }
 }
-
 @media (max-width: 480px) {
+  .nav_menu {
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 60px;
+    height: 100vh;
+    background-color: #15253aff;
+    z-index: 1000;
+  }
+
+  .homePage,
   .pageContainer {
-    width: 95%;  /* Slightly wider container on very small screens */
+    margin-left: 60px;
+    width: calc(100% - 60px);
     padding: 10px;
   }
 
   .activitySection {
-    padding: 12px;
-    margin-bottom: 15px;
-  }
-
-  .sectionTitle {
-    font-size: 18px;  
-    margin-bottom: 12px;
-    padding-left: 8px;
+    padding: 25px 8px; 
+    margin-bottom: 5px; 
+    padding-bottom: 30px;
   }
 
   .activityCard {
-    padding: 8px;
-    margin: 8px 0;
+    padding: 6px;
+    margin: 6px 0;
+  }
+
+  .friendsGrid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 8px;
+  }
+
+  .sectionTitle {
+    font-size: 16px;
+    margin: 15px 0 25px 0; 
+    padding-top: 10px;
   }
 
   .avatarWrapper {
-    width: 28px;  
-    height: 28px;
+    width: 24px;
+    height: 24px;
   }
 
   .activityContent {
-    font-size: 11px;  
+    font-size: 10px;
   }
-  .friendsGrid {
-    grid-template-columns: repeat(2, 1fr);
-  }
-  
+
   .actionBar {
     flex-direction: column;
-    gap: 15px;
+    gap: 10px;
   }
-  
+
+  .parentContainer {
+    margin-left: 60px;
+    width: calc(100% - 60px);
+  }
+
   .searchWrapper {
     width: 100%;
   }
-  
+
   .payRequestButton {
     width: 100%;
+    padding: 8px;
+  }
+
+  .addFriendsButton {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 20px; 
+    margin-left: 10px;
+    margin-right:10px;
+  }
+
+  /* Adjust dots positioning */
+  .activitySection .dot-top-left,
+  .activitySection .dot-top-right {
+    top: 8px;
+  }
+
+  .activitySection .dot-bottom-left,
+  .activitySection .dot-bottom-right {
+    bottom: 8px;
   }
 }
