@@ -5,29 +5,29 @@ import http.client
 import json
 from datetime import datetime, timedelta
 
+CLIENT_ID = "65e7b7407aa8cf001cc59e7b"
+SECRET = "6247f4912edd996835254c9e47bbf4"
+
 def create_link_token(request):
-    
-  client_id = "65e7b7407aa8cf001cc59e7b6247f4912edd996835254c9e47bbf4"
-  secret = "6247f4912edd996835254c9e47bbf4"
 
   conn = http.client.HTTPSConnection("sandbox.plaid.com")
   headers = {'Content-Type': 'application/json'}
 
   payload = json.dumps({
-      "client_id": client_id,
-      "secret": secret,
-      "client_name": "InnoBank user",
-      "country_codes": [
+    "client_id": CLIENT_ID,
+    "secret": SECRET,
+    "client_name": "InnoBank user",
+    "country_codes": [
       "US"
-      ],
-      "language": "en",
-      "user": {
+    ],
+    "language": "en",
+    "user": {
       "client_user_id": "unique_user_id"
-      },
-      "products": [
+    },
+    "products": [
       "auth"
-      ]
-    })
+    ]
+  })
 
   conn.request("POST", "/link/token/create", payload, headers)
   res = conn.getresponse()
@@ -36,7 +36,6 @@ def create_link_token(request):
   link_token_response = json.loads(data.decode("utf-8"))
   link_token = link_token_response['link_token']
   return JsonResponse({'link_token': link_token})
-
 
 def exchange_public_token(request):
     req_data = json.loads(request.body)
@@ -50,8 +49,8 @@ def exchange_public_token(request):
     headers = {'Content-Type': 'application/json'}
 
     payload = json.dumps({
-        "client_id": "65e7b7407aa8cf001cc59e7b6247f4912edd996835254c9e47bbf4",
-        "secret": "6247f4912edd996835254c9e47bbf4",
+        "client_id": CLIENT_ID,
+        "secret": SECRET,
         "public_token": public_token
     })
 
@@ -84,8 +83,8 @@ def get_transactions(request):
   headers = {'Content-Type': 'application/json'}
 
   payload = json.dumps({
-     "client_id": "65e7b7407aa8cf001cc59e7b6247f4912edd996835254c9e47bbf4",
-      "secret": "6247f4912edd996835254c9e47bbf4",
+     "client_id": CLIENT_ID,
+      "secret": SECRET,
       "access_token": access_token,
       "start_date": start_date,
       "end_date": end_date,
