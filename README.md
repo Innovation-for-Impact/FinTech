@@ -21,4 +21,4 @@ $ python3 manage.py runserver
 ```
 This runs the `Django` backend on `localhost:8000`
 
-Navigate to `localhost:3000` to view the web app.
+Navigate to `localhost:3000` to view the web app, then register or sign into your account.
