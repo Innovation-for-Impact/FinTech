@@ -1,0 +1,15 @@
+[
+    {
+        "account_id": "wZVqqwwv17Cx4b1wV3GBSKyAJ3kx56cPq6dqn",
+        "subtype": "checking",
+        "target_amount": 30.0,
+        "saved_amount": 0.0,
+        "remaining_amount": 30.0,
+        "event_date": "12-24-2027",
+        "split_details": {
+            "split_period": "week(s)",
+            "num_splits": 161,
+            "amount_per_split": 0.19
+        }
+    }
+]

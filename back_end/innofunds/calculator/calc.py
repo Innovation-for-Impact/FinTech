@@ -10,7 +10,7 @@ def list_accounts_by_subtype(data):
         subtype = account["subtype"].strip().lower().replace(" ", "_")
         if subtype not in subtypes:
             subtypes[subtype] = []
-        "???"
+        
         subtypes[subtype].append(account)
     
     for idx, subtype in enumerate(subtypes.keys(), start=1):
@@ -29,7 +29,7 @@ def choose_account_by_subtype(data):
         choice = int(input("\nChoose a subtype by number: ")) - 1
         if 0 <= choice < len(subtype_list):
             selected_subtype = subtype_list[choice]
-            account = subtypes[selected_subtype][0]  # Assume only one account per subtype
+            account = subtypes[selected_subtype][0]
             
             # Display the user's choice
             available = account["balances"]["available"]
@@ -79,7 +79,7 @@ def calculate_budget_split(target_amount, event_date):
         
         # Avoid division by zero if event is too close
         if num_splits <= 0:
-            print("Event is too close. Cannot calculate splits.")
+            print("Cannot calculate splits.")
             return None
         
         # Calculate the amount per split
@@ -144,7 +144,7 @@ def set_saving_goal(account):
 def save_to_file(file_path, data):
     """Save updated data to a file."""
     with open(file_path, 'w') as file:
-        json.dump(data, file, indent=4)
+        json.dump(data["saving_goals"], file, indent=4)
         print(f"Data saved to {file_path}.")
 
 def main():
