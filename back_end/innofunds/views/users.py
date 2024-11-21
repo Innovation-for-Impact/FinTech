@@ -66,7 +66,8 @@ class FintechUserViewSet(viewsets.ModelViewSet):
         if request.method == "POST":
             try:
                 recipient_id = int(request.POST.get("recipient_id"))
-                FintechFriend.objects.friend_request(self.get_object().id, recipient_id)
+                FintechFriend.objects.friend_request(
+                    self.get_object().id, recipient_id)
                 return Response(status=status.HTTP_200_OK)
             except TypeError:
                 return Response(
@@ -81,12 +82,15 @@ class FintechUserViewSet(viewsets.ModelViewSet):
                     status=status.HTTP_208_ALREADY_REPORTED,
                 )
         elif request.method == "GET":
-            limit = int(request.GET.get("limit", 10))
+            limit = int(request.GET.get("limit", 50))
             offset = int(request.GET.get("offset", 0))
             type = int(request.GET.get("type", 3))
+            get_id = request.GET.get("id", False)
             friend_ids = FintechFriend.objects.get_user_relationships(
                 self.get_object().id, type=type, limit=limit, offset=offset
             )
+            if get_id:
+                return Response(friend_ids)
             friends = FintechUser.objects.all().filter(id__in=friend_ids)
 
             serializer_data = 0
@@ -115,6 +119,13 @@ class FintechUserViewSet(viewsets.ModelViewSet):
                     status=status.HTTP_404_NOT_FOUND,
                 )
 
+        # @action(
+        #    detail=True,
+        #    methods=["get"],
+        # )
+        # def relationship(self, request, other_id, pk=None):
+        #    return FintechFriend.objects.get_friendship()
+
 
 class FintechFriendsViewSet(viewsets.ModelViewSet):
     """Gets all friends"""
@@ -122,11 +133,3 @@ class FintechFriendsViewSet(viewsets.ModelViewSet):
     queryset = FintechFriend.objects.all()
     serializer_class = FriendSerializer
     permission_classes = [permissions.IsAdminUser]
-
-
-# how do I give the frontend friends
-# api/v1/user/1/friends
-# need to add an endpoint for accepting a friend request
-# need an emdpoint for rejecting a friend request
-# need an endpoint for sending a friend request
-# need and endpoint for getting a user's friends
