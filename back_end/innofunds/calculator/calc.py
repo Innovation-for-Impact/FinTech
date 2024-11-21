@@ -10,6 +10,7 @@ def list_accounts_by_subtype(data):
         subtype = account["subtype"].strip().lower().replace(" ", "_")
         if subtype not in subtypes:
             subtypes[subtype] = []
+        "???"
         subtypes[subtype].append(account)
     
     for idx, subtype in enumerate(subtypes.keys(), start=1):
@@ -48,6 +49,52 @@ def choose_account_by_subtype(data):
         print(f"An unexpected error occurred: {e}. Please try again.")
         return choose_account_by_subtype(data)
 
+def calculate_budget_split(target_amount, event_date):
+    """Calculate the budget split based on user preference."""
+    try:
+        # Prompt user for splitting preference
+        print("\nChoose how you want to split the budget:")
+        print("1. Months")
+        print("2. Weeks")
+        print("3. Days")
+        choice = int(input("Enter your choice (1/2/3): "))
+        
+        # Calculate the difference in time units
+        today = datetime.now()
+        if choice == 1:
+            # Split by months
+            num_splits = (event_date.year - today.year) * 12 + (event_date.month - today.month)
+            period = "month(s)"
+        elif choice == 2:
+            # Split by weeks
+            num_splits = (event_date - today).days // 7
+            period = "week(s)"
+        elif choice == 3:
+            # Split by days
+            num_splits = (event_date - today).days
+            period = "day(s)"
+        else:
+            print("Invalid choice. Please select 1, 2, or 3.")
+            return calculate_budget_split(target_amount, event_date)
+        
+        # Avoid division by zero if event is too close
+        if num_splits <= 0:
+            print("Event is too close. Cannot calculate splits.")
+            return None
+        
+        # Calculate the amount per split
+        amount_per_split = target_amount / num_splits
+        
+        return {
+            "split_period": period,
+            "num_splits": num_splits,
+            "amount_per_split": round(amount_per_split, 2)
+        }
+    except ValueError:
+        print("Invalid input. Please enter a number.")
+        return calculate_budget_split(target_amount, event_date)
+    
+
 def set_saving_goal(account):
     """Set a saving goal for a specific event."""
     try:
@@ -65,6 +112,12 @@ def set_saving_goal(account):
             except ValueError:
                 print("Invalid date format. Please enter the date in MM-DD-YYYY format.")
         
+         # Calculate the budget split
+        split_details = calculate_budget_split(target_amount, event_date)
+        if not split_details:
+            print("Could not calculate budget splits. Exiting goal setup.")
+            return None
+        
         # Saving goal details
         saving_goal = {
             "account_id": account["account_id"],
@@ -72,13 +125,15 @@ def set_saving_goal(account):
             "target_amount": target_amount,
             "saved_amount": 0.0,
             "remaining_amount": target_amount,
-            "event_date": event_date.strftime('%m-%d-%Y')
+            "event_date": event_date.strftime('%m-%d-%Y'),
+            "split_details": split_details
         }
         
         print(f"\nSaving goal set:")
         print(f"Target Amount: ${target_amount:.2f}")
         print(f"Event Date: {event_date.strftime('%m-%d-%Y')}")
         print(f"Account: {account['name']} ({account['subtype']})")
+        print(f"Split Details: Save ${split_details['amount_per_split']} every {split_details['split_period']} for {split_details['num_splits']} {split_details['split_period']}.")
         
         return saving_goal
     except ValueError:
