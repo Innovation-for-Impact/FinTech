@@ -1,32 +1,58 @@
 "use client";
 import styles from "../../../app/css/page.module.css";
 import homeStyles from "../../../app/css/home.module.css";
+import friendStyles from "../../../app/css/friends.module.css";
 import Link from 'next/link';
 import React, { useState } from "react";
-import {Icon} from 'react-icons-kit';
+import Icon from 'react-icons-kit';
 import { ic_menu } from 'react-icons-kit/md/ic_menu';
 import { ic_close } from 'react-icons-kit/md/ic_close';
+import { ic_search } from 'react-icons-kit/md/ic_search';
+import { ic_person } from 'react-icons-kit/md/ic_person';
 import Image from 'next/image';
 import logo from '../../../../public/innofunds-logo-transparent.png';
 import { Navbar, Nav, Button, ModalFooter } from 'react-bootstrap';
 
-export default function Home() {
+export default function Friends() {
   const [isOpen, setIsOpen] = useState(false);
 
-  // MENU functions
   const toggleMenu = () => {
     setIsOpen(!isOpen);
   };
 
   const handleLinkClick = () => {
-    setIsOpen(false); 
+    setIsOpen(false);
   };
 
   const handleIconClick = (e) => {
-    e.stopPropagation(); 
+    e.stopPropagation();
     toggleMenu();
   };
-  // end MENU functions
+
+  const activityData = [
+    {
+      user: "Regan",
+      action: "saved",
+      amount: "$25",
+      target: "Julia's Trip to Cabo",
+      trend: "up"
+    },
+    {
+      user: "Julia",
+      message: "did not meet monthly savings goal for June. Send a message of support!"
+    },
+    {
+      user: "Regan",
+      action: "saved",
+      amount: "$25",
+      target: "Julia's Trip to Cabo",
+      trend: "up"
+    },
+    {
+      user: "Prabhleen",
+      message: "just joined FinTech!"
+    }
+  ];
 
   const handleLogout = (e) => {
     e.preventDefault();
@@ -106,21 +132,100 @@ export default function Home() {
           </div>
         </div>
         </header>
-
+      
       {/* header for current page */}
-      <div className={homeStyles.homePage}>
+      {/* <div className={homeStyles.homePage}>
         <div class={styles.homeTitle}>
           <h1 style={{color:'#32415e'}}>
             Friends
           </h1>
         </div>
-      </div>
+      </div> */}
 
-    {/* TODO: add page content here */}
-    
-    <ModalFooter className={homeStyles.footer}>
+      <div className={friendStyles.pageContainer}>
+        <div className={friendStyles.activitySection}>
+          <div className={friendStyles["dot-top-left"]}></div>
+          <div className={friendStyles["dot-top-right"]}></div>
+          <div className={friendStyles["dot-bottom-left"]}></div>
+          <div className={friendStyles["dot-bottom-right"]}></div>
+          
+          <h2 className={friendStyles.sectionTitle}>Your Friends</h2>
+          
+          {activityData.map((activity, index) => (
+            <div key={index} className={friendStyles.activityCard}>
+              <div className={friendStyles.avatarWrapper}>
+                <Image 
+                  src="/default-avatar.png"
+                  alt={`${activity.user}'s avatar`}
+                  width={40}
+                  height={40}
+                  className={friendStyles.userAvatar}
+                />
+              </div>
+              <div className={friendStyles.activityContent}>
+                {activity.action ? (
+                  <p>
+                    <strong>{activity.user}</strong> {activity.action} {activity.amount} towards {activity.target} 
+                    {activity.trend === 'up' && ' ↑'}
+                  </p>
+                ) : (
+                  <p><strong>{activity.user}</strong> {activity.message}</p>
+                )}
+              </div>
+            </div>
+          ))}
+        </div>
+        <br></br>
+        <br></br>
+
+        <div className={friendStyles.actionBar}>
+          <button className={friendStyles.payRequestButton}>
+            Pay or Request
+          </button>
+          <div className={friendStyles.searchWrapper}>
+            <input 
+              type="search" 
+              placeholder="Search" 
+              className={friendStyles.searchInput}
+            />
+            <Icon icon={ic_search} size={20} className={friendStyles.searchIcon} />
+          </div>
+        </div>
+
+        <div className={friendStyles.friendsGrid}>
+          {[...Array(12)].map((_, index) => (
+            <div 
+              key={index} 
+              className={`${friendStyles.friendCard} ${
+                index % 3 === 0 ? friendStyles.colorVariant1 : 
+                index % 3 === 1 ? friendStyles.colorVariant2 : 
+                friendStyles.colorVariant3
+              }`}
+            >
+              <div className={friendStyles.friendInfo}>
+                <div className={friendStyles.avatarCircle}>
+                  <Icon icon={ic_person} size={24} className={friendStyles.personIcon} />
+                </div>
+                <div className={friendStyles.nameInfo}>
+                  <h3>Name</h3>
+                  <p>Username</p>
+                </div>
+              </div>
+              <button className={friendStyles.viewButton}>
+                View
+              </button>
+            </div>
+          ))}
+        </div>
+      </div>
+      <div className={friendStyles.parentContainer}>
+  <button className={friendStyles.addFriendsButton}>Add Friends</button>
+</div>
+  
+
+<ModalFooter className={homeStyles.footer}>
       <h1 className={homeStyles.footer_text} >InnoFunds</h1>
     </ModalFooter>
-  </main>
+    </main>
   );
 }

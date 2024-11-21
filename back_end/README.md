@@ -91,6 +91,33 @@ python3 manage.py createsuperuser
 
 Creates an admin account. Follow the prompts and then go to `localhost:8000/admin/` and log in with the credentials.
 
+# Development
+
+Add Development instructions here...
+
+## Testing
+
+Testing is an important part of creating any piece of software, and Innofunds is no different. You will be **required** to write
+test cases for the code that you write. To write test cases, you can take advantage of Django's built in testing suite.
+
+Running tests. You can run tests with `$ python manage.py test`. For more advanced functionality, see
+[here](https://docs.djangoproject.com/en/5.1/topics/testing/overview/#running-tests).
+
+### Model and General Testing
+
+For testing models and other general functions, see [this](https://docs.djangoproject.com/en/5.1/topics/testing/overview/) guide by Django.
+You can also find some examples in the `tests.py` file, where these tests should be written.
+
+### Django Rest Framework Testing
+
+See this [guide](https://www.django-rest-framework.org/api-guide/testing/). API tests should, again, be written in `tests.py`.
+
+Additional resource for examples [here](https://dev.to/alchermd/what-to-test-in-django-endpoints-357n)
+
+### Django Endpoint Testing
+
+For testing general purpose endpoints (that are not DRF), see
+[this](https://developer.mozilla.org/en-US/docs/Learn/Server-side/Django/Testing#views) guide
 ### Development
 
 Add Development instructions here
@@ -110,6 +137,7 @@ This is the authentication input. All specifications are [here](https://django-r
 * Registration takes in `first_name` and `last_name`.
 * There is a password reset confirmation URL (that **isn't** specified in the linked specification) that will server a *static* HTML page provided by the backend. I.e. the frontend need not do anything with this endpoint.
 
+### Add any additional endpoints here
 ### Friends: `api/v1/users/<id>/friends`
 
 Allows access and modification of user `id`'s friends.
