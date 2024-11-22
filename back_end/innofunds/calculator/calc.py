@@ -109,3 +109,16 @@ def calculator(data, subtype_choice, target_amount, event_date_input, split_choi
     save_to_file('saving_goals.json', data["saving_goals"])
     
     return saving_goal
+
+def transaction(account, subtype, amount_change, date):
+    """Record a transaction for an account."""
+    # check the subtype is correct
+    # check the date is not before the event
+    # change the saved_amount, remain_amount
+    transaction = {
+        "account_id": account["account_id"],
+        "subtype": subtype,
+        "amount_change": amount_change,
+        "date": date
+    }
+    return transaction
