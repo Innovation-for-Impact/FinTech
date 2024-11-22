@@ -79,7 +79,8 @@ def set_saving_goal(account, target_amount, event_date_input, split_choice):
         "saved_amount": 0.0,
         "remaining_amount": target_amount,
         "event_date": event_date.strftime('%m-%d-%Y'),
-        "split_details": split_details
+        "split_details": split_details, 
+        "transactions": []
     }
     
     return saving_goal
@@ -110,15 +111,26 @@ def calculator(data, subtype_choice, target_amount, event_date_input, split_choi
     
     return saving_goal
 
-def transaction(account, subtype, amount_change, date):
+def transaction(account, subtype, amount_change, date, saving_goal):
     """Record a transaction for an account."""
     # check the subtype is correct
+    if saving_goal["subtype"] != account["subtype"]:
+        raise ValueError("Subtype in saving goal does not match the account's subtype.")
+    
     # check the date is not before the event
+    if date < saving_goal["event_date"]:
+        raise ValueError("Transaction date cannot be after the event date.")
+
     # change the saved_amount, remain_amount
-    transaction = {
+    saving_goal["saved_amount"] += amount_change
+    saving_goal["remaining_amount"] -= amount_change
+
+    transaction_record = {
         "account_id": account["account_id"],
         "subtype": subtype,
         "amount_change": amount_change,
         "date": date
     }
-    return transaction
+
+    saving_goal["transactions"].append(transaction_record)
+    return saving_goal
