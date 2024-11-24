@@ -3,21 +3,76 @@ from django.db import models
 
 from django.contrib.auth.models import BaseUserManager, AbstractUser
 from itertools import chain
+from django.db.models.manager import BaseManager
 from django.db.models.signals import pre_delete
 from django.dispatch import receiver
 from django.utils.module_loading import module_dir
+
+
+class FintechGroupManager(models.Manager):
+    def get_group_member_ids(self, group_id):
+        members = self.filter(id=group_id).values("user_id")
+        member_ids = map(lambda member: list(member.values())[0], members)
+
+        return member_ids
+
+    def get_group_members(self, group_id):
+        member_ids = self.get_group_member_ids(group_id)
+        members = FintechUser.objects.all().filter(id__in=member_ids)
+
+        return members
+
+    def get_user_group_ids(self, user_id):
+        groups = self.filter(user_id=user_id).values("id")
+        group_ids = map(lambda member: list(member.values())[0], groups)
+
+        return group_ids
+
+    def get_user_groups(self, user_id):
+        return self.filter(user_id=user_id)
+
+    def delete_all_group_users(self, group_id):
+        self.filter(group_id=group_id).delete()
+
+    def remove_user_from_group(self, group_id, user_id):
+        self.filter(group_id=group_id).filter(user_id=user_id).delete()
+
+    def remove_users_from_group(self, group_id, user_ids):
+        self.filter(group_id=group_id).filter(user_id__in=user_ids).delete()
+
+    def remove_user_from_groups(self, user_id):
+        self.filter(user_id=user_id).delete()
+
+    def has_member(self, group_id, user_id):
+        return self.filter(group_id=group_id).filter(user_id=user_id).exists()
+
+    def user_has_permissions(self, group_id, user_id, permission_flag):
+        membership = self.filter(group_id).get(user_id)
+        permissions = membership.permissions_flag
+        return permissions & permission_flag > 0
 
 
 class FintechGroup(models.Model):
     id = models.BigAutoField(unique=True, primary_key=True)
     name = models.CharField(max_length=255)
     description = models.CharField(max_length=1000)
+    private = models.BooleanField()
+
+    objects = models.Manager()
+
+
+@receiver(pre_delete, sender=FintechGroup, dispatch_uid="group_delete_signal")
+def clean_up_group(sender, instance, using, **kwargs):
+    FintechGroupManager.objects.delete_group_users(instance.id)
 
 
 class FintechGroupMembership(models.Model):
     id = models.BigAutoField(unique=True, primary_key=True)
-    group_id = models.IntegerField()
-    user_id = models.IntegerField()
+    group_id = models.PositiveIntegerField()
+    user_id = models.PositiveIntegerField()
+    permissions_flag = models.PositiveIntegerField()
+
+    objects = FintechGroupManager()
 
 
 class FintechUserManager(BaseUserManager):
@@ -85,9 +140,10 @@ class FintechUser(AbstractUser):
 
 
 @receiver(pre_delete, sender=FintechUser, dispatch_uid="user_delete_signal")
-def delete_user_friendships(sender, instance, using, **kwargs):
+def clean_up_user(sender, instance, using, **kwargs):
     """Cleans up a users friendships before they are deleted"""
     FintechFriend.objects.remove_user_friendships(instance.id)
+    FintechGroupMembership.objects.remove_user_from_groups(instance.id)
 
 
 class RelationshipTypes(IntEnum):
@@ -185,7 +241,8 @@ class FintechFriendManager(models.Manager):
         ID is not strictly less than user 2's id.
         """
         if user1_id >= user2_id:
-            raise Exception("Used 1's ID must be striclty less than User 2's ID")
+            raise Exception(
+                "Used 1's ID must be striclty less than User 2's ID")
 
         friendship = (
             self.get_queryset().filter(user1_pk=user1_id).get(user2_pk=user2_id)
@@ -213,7 +270,9 @@ class FintechFriendManager(models.Manager):
         When type=0, all unknown relationships are retrieved. When type=1,
         gets all relationships where the given user sent a friend request.
         When type=2, gets all relationships where they were sent a friend
-        request. When type=3, gets all proper friendships
+        request. When type=3, gets all proper friendships.
+
+        Limit can be at most 100, and must be a positive integer
         """
         friends_lower = (
             self.get_queryset()
@@ -231,6 +290,10 @@ class FintechFriendManager(models.Manager):
             .filter(type=type)
             .values("user1_pk")
         )
+
+        # Bound the limits
+        limit = max(1, min(limit, 100))
+        offset = max(0, offset)
 
         # applies limit and offset variables
         upper = limit + offset
@@ -276,7 +339,8 @@ class FintechFriendManager(models.Manager):
         User 1's ID must be strictly less than User 2's ID
         """
         if user1_id >= user2_id:
-            raise Exception("User 1's ID must be striclty less than User 2's ID")
+            raise Exception(
+                "User 1's ID must be striclty less than User 2's ID")
 
         friendship = (
             self.get_queryset()
@@ -289,13 +353,13 @@ class FintechFriendManager(models.Manager):
 
 class FintechFriend(models.Model):
     id = models.BigAutoField(unique=True, primary_key=True)
-    user1_pk = models.IntegerField()
-    user2_pk = models.IntegerField()
+    user1_pk = models.PositiveIntegerField()
+    user2_pk = models.PositiveIntegerField()
 
     # type 0: unknown relation
     # type 1: user1 pending on user2
     # type 2: user2 pending on user1
     # type 3: friendship established
-    type = models.IntegerField(default=0)
+    type = models.PositiveIntegerField(default=0)
 
     objects = FintechFriendManager()

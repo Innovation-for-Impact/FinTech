@@ -1,5 +1,10 @@
 from dj_rest_auth.serializers import UserDetailsSerializer
-from innofunds.models import FintechFriend, FintechUser
+from innofunds.models import (
+    FintechFriend,
+    FintechGroup,
+    FintechGroupMembership,
+    FintechUser,
+)
 from rest_framework import serializers
 
 
@@ -31,3 +36,15 @@ class FriendSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = FintechFriend
         fields = ["user1_pk", "user2_pk", "type"]
+
+
+class GroupSerializer(serializers.HyperlinkedModelSerializer):
+    class Meta:
+        model = FintechGroup
+        fields = ["id", "name", "description"]
+
+
+class GroupMembersipSerializer(serializers.HyperlinkedModelSerializer):
+    class Meta:
+        model = FintechGroupMembership
+        fields = ["id", "group_id", "user_id", "permissions_flag"]

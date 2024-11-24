@@ -118,15 +118,25 @@ Additional resource for examples [here](https://dev.to/alchermd/what-to-test-in-
 
 For testing general purpose endpoints (that are not DRF), see
 [this](https://developer.mozilla.org/en-US/docs/Learn/Server-side/Django/Testing#views) guide
+
 ### Development
 
 Add Development instructions here
 
 ## API
 
-### Users: `/api/v1/users`
+### Admin Users: `/api/v1/admin/users`
 
-A **GET** request returns information about a user. If the user is an admin, it returns all suer data
+Admin only. Supports all operations. **UNSTABLE: MAY CHANGE IN THE FUTURE**
+
+### Limited User Info: `/api/v1/users`
+
+A limit-offset paginated endpoint that returns info of up to 100 users at a time.
+
+**Query Arguments**:
+In addition to limit it and offset:
+
+* `search`: allows users to be searched by first and last name
 
 ### Authentication: `api/v1/auth/...`
 
@@ -138,6 +148,7 @@ This is the authentication input. All specifications are [here](https://django-r
 * There is a password reset confirmation URL (that **isn't** specified in the linked specification) that will server a *static* HTML page provided by the backend. I.e. the frontend need not do anything with this endpoint.
 
 ### Add any additional endpoints here
+
 ### Friends: `api/v1/users/<id>/friends`
 
 Allows access and modification of user `id`'s friends.

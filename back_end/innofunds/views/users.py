@@ -1,5 +1,6 @@
 from urllib.request import HTTPPasswordMgrWithDefaultRealm
 from django.contrib.auth.models import PermissionDenied
+from django.db.models.indexes import NoneType
 from django.shortcuts import render
 from rest_framework import viewsets, permissions
 from rest_framework.exceptions import APIException
@@ -12,6 +13,7 @@ from innofunds.serializers import (
 from rest_framework.decorators import action
 from rest_framework.response import Response
 from rest_framework import status
+from rest_framework import filters
 
 
 class UserViewPermission(permissions.BasePermission):
@@ -45,14 +47,34 @@ class IsAdminOrSelfOrReadOnly(permissions.BasePermission):
         ) or request.method == "GET"
 
 
+class ReadOnly(permissions.BasePermission):
+    def has_permission(self, request, view):
+        return view.action == "list" or view.action == "retrieve"
+
+    def has_object_permission(self, request, view, obj):
+        return request.method == "GET"
+
+
 class FintechUserViewSet(viewsets.ModelViewSet):
+    """Admin only"""
+
+    queryset = FintechUser.objects.all()
+    serializer_class = UserSerializer
+    permission_classes = [permissions.IsAdminUser]
+    filter_backends = [filters.SearchFilter]
+    search_fields = ["first_name", "last_name", "email", "username"]
+
+
+class FintechLimitedUserViewSet(viewsets.ModelViewSet):
     """
     Gets all users; limited by UserViewPermission
     """
 
     queryset = FintechUser.objects.all()
-    serializer_class = UserSerializer
-    permission_classes = [UserViewPermission]
+    serializer_class = LimitedUserSerializer
+    permission_classes = [ReadOnly]
+    filter_backends = [filters.SearchFilter]
+    search_fields = ["first_name", "last_name"]
 
     @action(
         detail=True,
@@ -82,6 +104,7 @@ class FintechUserViewSet(viewsets.ModelViewSet):
                     status=status.HTTP_208_ALREADY_REPORTED,
                 )
         elif request.method == "GET":
+            # TODO: figure out how to make this searchable
             limit = int(request.GET.get("limit", 50))
             offset = int(request.GET.get("offset", 0))
             type = int(request.GET.get("type", 3))
@@ -93,11 +116,7 @@ class FintechUserViewSet(viewsets.ModelViewSet):
                 return Response(friend_ids)
             friends = FintechUser.objects.all().filter(id__in=friend_ids)
 
-            serializer_data = 0
-            if self.get_object().is_admin:
-                serializer_data = self.get_serializer(friends, many=True)
-            else:
-                serializer_data = LimitedUserSerializer(friends, many=True)
+            serializer_data = LimitedUserSerializer(friends, many=True)
             return Response(serializer_data.data)
         elif request.method == "DELETE":
             try:
@@ -119,12 +138,24 @@ class FintechUserViewSet(viewsets.ModelViewSet):
                     status=status.HTTP_404_NOT_FOUND,
                 )
 
-        # @action(
-        #    detail=True,
-        #    methods=["get"],
-        # )
-        # def relationship(self, request, other_id, pk=None):
-        #    return FintechFriend.objects.get_friendship()
+    @action(
+        detail=True,
+        methods=["get"],
+        permission_classes=[IsAdminOrSelfOrReadOnly],
+    )
+    def relationship(self, request, pk=None):
+        try:
+            user_id = int(request.GET.get("user_id", -1))
+            relationships = FintechFriend.objects.get_friendship(
+                min(self.get_object().id, user_id), max(
+                    self.get_object().id, user_id)
+            )
+            return Response(
+                {"relationship": FriendSerializer(
+                    relationships, many=True).data}
+            )
+        except Exception:
+            return Response("Friendship not found", status=status.HTTP_404_NOT_FOUND)
 
 
 class FintechFriendsViewSet(viewsets.ModelViewSet):
