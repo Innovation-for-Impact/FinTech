@@ -1,6 +1,7 @@
 "use client";
 import styles from "../../../app/css/page.module.css";
 import homeStyles from "../../../app/css/home.module.css";
+import calcStyles from "../../../app/css/calculator.module.css";
 import Link from 'next/link';
 import React, { useState } from "react";
 import {Icon} from 'react-icons-kit';
@@ -9,9 +10,15 @@ import { ic_close } from 'react-icons-kit/md/ic_close';
 import Image from 'next/image';
 import logo from '../../../../public/innofunds-logo-transparent.png';
 import { Navbar, Nav, Button, ModalFooter } from 'react-bootstrap';
+import { FaPlus } from "react-icons/fa6";
+import Form from 'react-bootstrap/Form';
 
 export default function Home() {
   const [isOpen, setIsOpen] = useState(false);
+  const [showForm, setShowForm] = useState(false);
+  const [name, setName] = useState('');
+  const [purpose, setPurpose] = useState('');
+  const [amount, setAmount] = useState('');
 
   // MENU functions
   const toggleMenu = () => {
@@ -27,6 +34,12 @@ export default function Home() {
     toggleMenu();
   };
   // end MENU functions
+
+  const handleShowForm = () => setShowForm(true);
+  const handleCloseForm = () => setShowForm(false);
+
+  const handleSubmit = (e) => {
+  }
 
   const handleLogout = (e) => {
     e.preventDefault();
@@ -107,14 +120,56 @@ export default function Home() {
         </div>
         </header>
       
-      {/* header for current page */}
-      <div className={homeStyles.homePage}>
-        <div class={styles.homeTitle}>
-          <h1 style={{color:'#32415e'}}>
-            Calculator
-          </h1>
+        {/* header for current page */}
+        <div className={homeStyles.content}>
+        <FaPlus className={calcStyles.card_plus_icon} onClick={handleShowForm}/>
+
+        {/* Form */}
+        {showForm && (
+            <Form className= {`${calcStyles.form_container}`} onSubmit={handleSubmit}>
+                {/* accept NAME */}
+                <Form.Group>
+                  <Form.Control
+                    className= {`${calcStyles.input}`}
+                    placeholder="Name" // placeholder word (ie. shows up in gray-ed out font)
+                    name="name"  // allow auto-fill
+                    aria-label="name"
+                    value={name} // save input to variable
+                    onChange={(e) => setName(e.target.value)}
+                  />
+                </Form.Group>
+
+                {/* accept PURPOSE */}
+                <Form.Group>
+                  <Form.Control
+                    className= {`${calcStyles.input}`}
+                    placeholder="Purpose" // placeholder word (ie. shows up in gray-ed out font)
+                    name="purpose"  // allow auto-fill
+                    aria-label="purpose"
+                    value={purpose} // save input to variable
+                    onChange={(e) => setPurpose(e.target.value)}
+                  />
+                </Form.Group>
+
+                {/* accept AMOUNT */}
+                <Form.Group>
+                  <Form.Control
+                    className= {`${calcStyles.input}`}
+                    placeholder="Amount" // placeholder word (ie. shows up in gray-ed out font)
+                    name="amount"  // allow auto-fill
+                    aria-label="amount"
+                    value={amount} // save input to variable
+                    onChange={(e) => setAmount(e.target.value)}
+                  />
+                </Form.Group>
+
+                <Button variant="primary" className= {`${calcStyles.save_button}`} type="submit" onClick={handleCloseForm}>
+                  Save
+                </Button>
+            </Form>
+        )}
+            
         </div>
-      </div>
 
       {/* TODO Chiho: add form here
           
