@@ -125,6 +125,9 @@ def transaction(account, subtype, amount_change, date, saving_goal):
     saving_goal["saved_amount"] += amount_change
     saving_goal["remaining_amount"] -= amount_change
 
+    if saving_goal["remaining_amount"] <= 0:
+        print(f"The event goal is completed.")
+
     transaction_record = {
         "account_id": account["account_id"],
         "subtype": subtype,
