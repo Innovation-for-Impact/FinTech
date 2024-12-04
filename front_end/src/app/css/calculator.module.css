@@ -1,0 +1,119 @@
+
+.calculatorContainer {
+  width: 100%;
+  max-width: 1200px;
+  margin: 20px auto;
+  padding: 20px;
+  background-color: white;
+  border-radius: 8px;
+}
+
+.groupCard {
+  padding: 25px;
+  border-radius: 20px;
+  margin-bottom: 15px;
+  width: 100%;
+  min-height: 300px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  color: white;
+}
+
+/* Different colors for each card */
+.groupCard:nth-child(1) {
+  background-color: #37445E; /* Dark blue for first card */
+}
+
+.groupCard:nth-child(2) {
+  background-color: #37445E;
+}
+
+.groupCard:nth-child(3) {
+  background-color: #3B5C68; /* Sage green for third card */
+}
+.groupCard:nth-child(4) {
+    background-color: #699385; /* Sage green for third card */
+  }
+  .groupTitle {
+    font-size: 1.5rem;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Verdana, sans-serif;
+    margin-bottom: 20px;
+  }
+  
+  .groupInfo {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 15px;
+  }
+  
+  .goalAmount, .currentAmount {
+    display: block; /* Stack amounts vertically */
+  }
+  
+  .goalAmount {
+    font-size: 1.2rem;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Verdana, sans-serif;
+    margin-bottom: 5px;
+  }
+  
+  .currentAmount {
+    font-size: 1.2rem;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Verdana, sans-serif;
+    color: #e0e0e0;
+  }
+  
+  .progressBar {
+    height: 8px; /* Reduced height */
+    background-color: rgba(255, 255, 255, 0.2);
+    border-radius: 4px;
+    margin: 15px 0;
+    position: relative;
+  }
+  
+  .progressFill {
+    height: 100%;
+    background-color: #4CAF50;
+    border-radius: 2px;
+  }
+  
+  .dateInfo {
+    text-align: right;
+    font-size: 0.8rem;
+    color: #e0e0e0;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Verdana, sans-serif;
+    margin-top: 10px;
+  }
+  
+  .addGroupButton {
+    width: 100%;
+    padding: 12px;
+    background-color: #32415e;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 0.9rem;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Verdana, sans-serif;
+    margin-top: 15px;
+  }
+  
+  /* Add styles for the Groups title */
+  .groupsTitle {
+    font-size: 2rem;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Verdana, sans-serif;
+    margin-bottom: 20px;
+    color: #333;
+  }
+  @media (max-width: 480px) {
+    .calculatorContainer {
+        margin-left: 60px;
+        width: calc(100% - 100px);
+        max-width: 500px;
+        margin: 20px auto;
+        padding: 20px;
+        background-color: white;
+        border-radius: 8px;
+      }
+      
+  }

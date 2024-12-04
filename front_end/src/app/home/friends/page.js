@@ -220,6 +220,7 @@ export default function Friends() {
       </div>
       <div className={friendStyles.parentContainer}>
   <button className={friendStyles.addFriendsButton}>Add Friends</button>
+  
 </div>
   
 
