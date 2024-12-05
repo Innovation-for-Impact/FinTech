@@ -407,7 +407,9 @@
   }
 
   .signup {
-    width: 35vw;
+    width: 35vw; /* Smaller width for desktop */
+    
+    padding: 1%; /* Reduced padding for a smaller appearance */
   }
 
   .x_signup {
