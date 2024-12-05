@@ -5,7 +5,6 @@ def list_accounts_by_subtype(data):
     """List accounts grouped by subtype."""
     subtypes = {}
     for account in data["accounts"]:
-        # Normalize subtype for consistent keys
         subtype = account["subtype"].strip().lower().replace(" ", "_")
         if subtype not in subtypes:
             subtypes[subtype] = []

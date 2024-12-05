@@ -138,6 +138,9 @@ This is the authentication input. All specifications are [here](https://django-r
 
 > Add all API endpoints and their specifications here
 
+### Calculator
+* 
+
 ## Conclusion
 
 If anything about this document is unclear, please make an issue on Github or bring it up in the Slack.
